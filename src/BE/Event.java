@@ -4,12 +4,14 @@ import java.sql.Date;
 import java.sql.Time;
 
 public class Event {
+    private int id;
     private String name;
     private Date date;
     private Time time;
     private String location;
 
-    public Event(String name, Date date, Time time, String location) {
+    public Event(int id, String name, Date date, Time time, String location) {
+        this.id = id;
         this.name = name;
         this.date = date;
         this.time = time;
