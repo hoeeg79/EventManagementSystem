@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="439.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.CreateEventViewController">
+<AnchorPane prefHeight="400.0" prefWidth="439.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.CreateEventViewController">
    <children>
       <Button fx:id="saveEvent" layoutX="262.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleSaveEvent" prefHeight="26.0" prefWidth="85.0" text="Save Event" />
       <Label layoutX="133.0" layoutY="29.0" text="Let's make an Event!">
@@ -40,12 +39,14 @@
       <TextField fx:id="txtNameOfEvent" layoutX="167.0" layoutY="86.0" prefHeight="26.0" prefWidth="247.0" />
       <TextField fx:id="txtNumberOfParticipants" layoutX="167.0" layoutY="236.0" prefHeight="26.0" prefWidth="115.0" />
       <TextField fx:id="txtLocation" layoutX="108.0" layoutY="286.0" prefHeight="26.0" prefWidth="309.0" />
-      <DatePicker layoutX="167.0" layoutY="186.0" prefHeight="26.0" prefWidth="173.0" />
-      <TextField fx:id="txtTimeOfEvent" layoutX="167.0" layoutY="135.0" prefHeight="26.0" prefWidth="107.0" />
+      <DatePicker fx:id="selectedDate" layoutX="167.0" layoutY="186.0" prefHeight="26.0" prefWidth="173.0" />
+      <TextField fx:id="txtHours" layoutX="167.0" layoutY="136.0" prefHeight="26.0" prefWidth="44.0" promptText="HH" />
       <Label layoutX="25.0" layoutY="190.0" text="Date of the event?">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
+      <TextField fx:id="txtMinutes" layoutX="232.0" layoutY="136.0" prefHeight="26.0" prefWidth="44.0" promptText="MM" />
+      <Label layoutX="221.0" layoutY="140.0" prefHeight="17.0" prefWidth="7.0" text=":" />
    </children>
 </AnchorPane>
