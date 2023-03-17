@@ -10,6 +10,7 @@ public class EventModel {
 
     private EventManager eventManager;
 
+
     public EventModel(){
         eventManager = new EventManager();
 
@@ -20,6 +21,11 @@ public class EventModel {
     public void createEvent(String name, Date date, Time time, String location) throws Exception{
         Event e = eventManager.createEvent(name, date, time, location);
 
+
+    }
+
+    public void deleteEvent(Event deletedEvent) throws Exception {
+        eventManager.deleteEvent(deletedEvent);
 
     }
 
