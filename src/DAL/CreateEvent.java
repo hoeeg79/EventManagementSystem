@@ -1,6 +1,7 @@
-package DAL.DatabaseConnector;
+package DAL;
 
 import BE.Event;
+import DAL.DatabaseConnector.DBConnector;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.sql.*;
