@@ -29,7 +29,7 @@ public class CreateEvent {
                 id = rs.getInt(1);
             }
 
-            Event event = new Event(name, date, time, location);
+            Event event = new Event(id, name, date, time, location);
             return event;
         } catch (SQLException e) {
             throw new SQLException();
