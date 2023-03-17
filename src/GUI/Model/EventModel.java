@@ -26,7 +26,6 @@ public class EventModel {
 
     public void deleteEvent(Event deletedEvent) throws Exception {
         eventManager.deleteEvent(deletedEvent);
-
     }
 
 }

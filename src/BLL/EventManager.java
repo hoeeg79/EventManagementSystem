@@ -10,7 +10,6 @@ import java.sql.Time;
 public class EventManager {
 
 
-    private DeleteEvent deleteEvent = new DeleteEvent();
     private EventFacade eventFacade = new EventFacade();
 
     public Event createEvent(String name, Date date, Time time, String location) throws Exception{
@@ -18,6 +17,6 @@ public class EventManager {
     }
 
     public void deleteEvent(Event deletedEvent) throws Exception {
-        deleteEvent.deleteEvent(deletedEvent);
+        eventFacade.deleteEvent(deletedEvent);
     }
 }
