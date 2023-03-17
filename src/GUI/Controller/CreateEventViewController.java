@@ -1,20 +1,31 @@
 package GUI.Controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class CreateEventViewController {
-    public Button saveEvent;
-    public Button cancelEvent;
-    public TextField txtNameOfEvent;
-    public TextField txtNumberOfParticipants;
-    public TextField txtLocation;
-    public TextField txtTimeOfEvent;
+    @FXML
+    private Button saveEvent;
+    @FXML
+    private Button cancelEvent;
+    @FXML
+    private TextField txtNameOfEvent;
+    @FXML
+    private TextField txtNumberOfParticipants;
+    @FXML
+    private TextField txtLocation;
+    @FXML
+    private TextField txtTimeOfEvent;
 
-    public void handleSaveEvent(ActionEvent actionEvent) {
+
+    @FXML
+    private void handleSaveEvent(ActionEvent actionEvent) {
+
     }
 
-    public void handleCancelEvent(ActionEvent actionEvent) {
+    @FXML
+    private void handleCancelEvent(ActionEvent actionEvent) {
     }
 }
