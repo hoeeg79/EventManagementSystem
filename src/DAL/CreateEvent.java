@@ -9,6 +9,11 @@ import java.sql.*;
 public class CreateEvent {
 
     private DBConnector DBCon;
+
+    public CreateEvent() throws Exception {
+        DBCon = new DBConnector();
+    }
+
     public Event createEvent(String name, Date date, Time time, String location) throws SQLException {
         String sql = "INSERT INTO Event (name, date, time, location)VALUES (?,?,?,?);";
 
