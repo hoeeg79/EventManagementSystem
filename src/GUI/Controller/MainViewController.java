@@ -1,5 +1,6 @@
 package GUI.Controller;
 
+import GUI.Model.EventModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,17 +12,24 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainViewController {
+public class MainViewController extends BaseController {
 
     public Button createEvent;
     public Button deleteEvent;
     public Button sellTickets;
     public Button editEvent;
+    
+    private EventModel model;
+
 
     public void handleCreateEvent(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/CreateEventView.fxml"));
         Parent root = loader.load();
+
+        CreateEventViewController controller = loader.getController();
+        controller.setModel(super.getModel());
+        controller.setup();
 
         stage.setScene(new Scene(root));
         stage.setTitle("Create an Event");
@@ -37,5 +45,10 @@ public class MainViewController {
     }
 
     public void handleEditEvent(ActionEvent actionEvent) {
+    }
+
+    @Override
+    public void setup() {
+
     }
 }

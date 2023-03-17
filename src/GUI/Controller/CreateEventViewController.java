@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class CreateEventViewController {
+public class CreateEventViewController extends BaseController {
     @FXML
     private Button saveEvent;
     @FXML
@@ -19,6 +19,9 @@ public class CreateEventViewController {
     @FXML
     private TextField txtTimeOfEvent;
 
+    @Override
+    public void setup() {
+    }
 
     @FXML
     private void handleSaveEvent(ActionEvent actionEvent) {
@@ -28,4 +31,5 @@ public class CreateEventViewController {
     @FXML
     private void handleCancelEvent(ActionEvent actionEvent) {
     }
+
 }
