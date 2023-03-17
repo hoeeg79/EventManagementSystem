@@ -12,4 +12,10 @@ public class EventFacade {
 
         return ce.createEvent(name,date,time,location);
     }
+
+    public void deleteEvent(Event deletedEvent) throws Exception{
+        DeleteEvent de = new DeleteEvent();
+
+        de.deleteEvent(deletedEvent);
+    }
 }

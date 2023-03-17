@@ -19,7 +19,7 @@
       <font>
          <Font size="15.0" />
       </font></Label>
-    <TableView layoutX="203.0" layoutY="82.0" prefHeight="514.0" prefWidth="394.0">
+    <TableView fx:id="eventBordet" layoutX="203.0" layoutY="82.0" prefHeight="514.0" prefWidth="394.0">
         <columns>
           <TableColumn prefWidth="393.0" text="These are your upcoming events!" />
         </columns>
