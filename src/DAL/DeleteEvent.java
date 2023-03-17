@@ -10,6 +10,10 @@ public class DeleteEvent {
 
     private DBConnector DBCon;
 
+    public DeleteEvent() throws Exception {
+        DBCon = new DBConnector();
+    }
+
     public void deleteEvent(Event event) throws Exception{
         try(Connection conn = DBCon.getConnection()){
 
