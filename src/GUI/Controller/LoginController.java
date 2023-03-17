@@ -1,5 +1,6 @@
 package GUI.Controller;
 
+import GUI.Model.EventModel;
 import GUI.Model.LoginModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,17 +26,24 @@ public class LoginController {
         String username = tfUsername.getText();
         String password = tfPassword.getText();
         Stage primaryStage = (Stage) btnLogin.getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/MainView.fxml"));
 
         try {
             if (loginModel.login(username, password).isAdmin()){
-                Parent root = FXMLLoader.load(getClass().getResource("/GUI/View/MainView.fxml"));
+                Parent root = loader.load();
                 Scene scene = new Scene(root);
+                MainViewController controller = loader.getController();
+                controller.setModel(new EventModel());
+                controller.setup();
                 primaryStage.setScene(scene);
                 primaryStage.setTitle("Event System.");
                 primaryStage.show();
             } else if (!loginModel.login(username, password).isAdmin()) {
-                Parent root = FXMLLoader.load(getClass().getResource("/GUI/View/MainView.fxml"));
+                Parent root = loader.load();
                 Scene scene = new Scene(root);
+                MainViewController controller = loader.getController();
+                controller.setModel(new EventModel());
+                controller.setup();
                 primaryStage.setScene(scene);
                 primaryStage.setTitle("Event System.");
                 primaryStage.show();

@@ -8,6 +8,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.util.converter.IntegerStringConverter;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
 
 
@@ -35,9 +37,17 @@ public class CreateEventViewController extends BaseController {
     }
 
     @FXML
-    private void handleSaveEvent(ActionEvent actionEvent) {
+    private void handleSaveEvent(ActionEvent actionEvent) throws Exception {
     String name = txtNameOfEvent.getText();
-    LocalDate date = selectedDate.getValue();
+    LocalDate unconvertedDate = selectedDate.getValue();
+    Date convertedDate = Date.valueOf(unconvertedDate);
+    String location = txtLocation.getText();
+
+    int hours = Integer.parseInt(txtHours.getText());
+    int minutes = Integer.parseInt(txtMinutes.getText());
+    Time startTime = new Time(hours,minutes,0);
+
+    super.getModel().createEvent(name,convertedDate,startTime,location);
 
     }
 
