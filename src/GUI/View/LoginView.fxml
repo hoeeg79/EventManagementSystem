@@ -11,7 +11,7 @@
       <TextField fx:id="tfUsername" layoutX="102.0" layoutY="81.0" />
       <Label layoutX="150.0" layoutY="61.0" text="Username" />
       <Label layoutX="152.0" layoutY="109.0" text="Password" />
-      <Button fx:id="btnLogin" layoutX="154.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
       <PasswordField fx:id="tfPassword" layoutX="102.0" layoutY="126.0" />
+      <Button fx:id="btnLogin" layoutX="154.0" layoutY="174.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
    </children>
 </AnchorPane>
