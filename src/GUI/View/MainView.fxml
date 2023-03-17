@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GUI.Controller.MainViewController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@MainView.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.MainViewController">
+    <Button fx:id="createEvent" layoutX="21.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleCreateEvent" prefHeight="26.0" prefWidth="142.0" text="Create a new Event?" />
+    <Label layoutX="244.0" layoutY="22.0" prefHeight="26.0" prefWidth="313.0" text="Welcome back to your EventPlanner!" textAlignment="CENTER">
+        <font>
+          <Font size="20.0" />
+        </font>
+    </Label>
+    <Label layoutX="646.0" layoutY="27.0" prefHeight="17.0" prefWidth="54.0" text="Hello ...">
+      <font>
+         <Font size="15.0" />
+      </font></Label>
+    <TableView layoutX="203.0" layoutY="82.0" prefHeight="514.0" prefWidth="394.0">
+        <columns>
+          <TableColumn prefWidth="393.0" text="These are your upcoming events!" />
+        </columns>
+    </TableView>
+    <Button fx:id="deleteEvent" layoutX="620.0" layoutY="546.0" mnemonicParsing="false" onAction="#handleDeleteEvent" text="Delete Event?" />
+    <ImageView fitHeight="64.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
+    </ImageView>
+   <Button fx:id="sellTickets" layoutX="620.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleSellTickets" text="Sell Tickets" />
+   <Button fx:id="editEvent" layoutX="92.0" layoutY="546.0" mnemonicParsing="false" onAction="#handleEditEvent" text="Edit the Event" />
 </AnchorPane>
