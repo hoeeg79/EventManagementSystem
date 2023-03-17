@@ -9,6 +9,13 @@ public class Event {
     private Time time;
     private String location;
 
+    public Event(String name, Date date, Time time, String location) {
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.location = location;
+    }
+
     public String getName() {
         return name;
     }
