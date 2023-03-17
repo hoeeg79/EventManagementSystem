@@ -62,8 +62,20 @@ public class MainViewController extends BaseController {
     }
 
     @FXML
-    private void handleEditEvent(ActionEvent actionEvent) {
+    private void handleEditEvent(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/CreateEventView.fxml"));
+        Parent root = loader.load();
+        CreateEventViewController controller = loader.getController();
+        controller.setModel(super.getModel());
+        controller.setup();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
+        stage.show();
     }
+
 
     @Override
     public void setup() {
