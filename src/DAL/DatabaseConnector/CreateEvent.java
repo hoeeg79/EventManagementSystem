@@ -1,5 +1,6 @@
 package DAL.DatabaseConnector;
 
+import BE.Event;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 import java.sql.*;
@@ -7,13 +8,13 @@ import java.sql.*;
 public class CreateEvent {
 
     private DBConnector DBCon;
-    public Event createEvent(String title, Date date, Time time, String location) throws SQLServerException {
+    public Event createEvent(String name, Date date, Time time, String location) throws SQLException {
         String sql = "INSERT INTO Event (name, date, time, location)VALUES (?,?,?,?);";
 
         try (Connection connection = DBCon.getConnection()){
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            stmt.setString(1, title);
+            stmt.setString(1, name);
             stmt.setDate(2, date);
             stmt.setTime(3, time);
             stmt.setString(4, location);
@@ -30,8 +31,7 @@ public class CreateEvent {
             Event event = new Event(name, date, time, location);
             return event;
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new SQLException();
         }
-        return null;
     }
 }
