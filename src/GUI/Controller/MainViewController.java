@@ -1,6 +1,7 @@
 package GUI.Controller;
 
 import BE.Event;
+import BE.User;
 import GUI.Model.EventModel;
 import GUI.Model.UserModel;
 import javafx.event.ActionEvent;
@@ -21,6 +22,8 @@ import javafx.scene.control.TableView;
 
 public class MainViewController extends BaseController {
     @FXML
+    private Button btnManageUsers;
+    @FXML
     private TableColumn clnLocation;
     @FXML
     private TableColumn clnDate;
@@ -39,13 +42,22 @@ public class MainViewController extends BaseController {
     @FXML
     private TableView<Event> eventBordet;
     private EventModel eventModel;
+    private User user;
 
     @Override
     public void setup() {
         eventModel = super.getModel();
         fillEventList();
+        if (user.isAdmin()){
+            enableAdmin();
+        } else {
+            enableCoordinator();
+        }
 
+    }
 
+    public void setUser(User user){
+        this.user = user;
     }
 
     @FXML
@@ -124,5 +136,21 @@ public class MainViewController extends BaseController {
             displayError(e);
         }
 
+    }
+
+    public void enableAdmin(){
+        createEvent.setVisible(false);
+        sellTickets.setVisible(false);
+        editEvent.setVisible(false);
+        deleteEvent.setVisible(true);
+        btnManageUsers.setVisible(true);
+    }
+
+    public void enableCoordinator(){
+        createEvent.setVisible(true);
+        sellTickets.setVisible(true);
+        editEvent.setVisible(true);
+        deleteEvent.setVisible(true);
+        btnManageUsers.setVisible(false);
     }
 }
