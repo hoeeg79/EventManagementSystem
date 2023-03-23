@@ -1,4 +1,4 @@
-package DAL;
+package DAL.Login;
 
 import BE.User;
 

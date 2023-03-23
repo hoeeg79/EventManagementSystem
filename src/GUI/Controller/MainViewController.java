@@ -2,6 +2,7 @@ package GUI.Controller;
 
 import BE.Event;
 import GUI.Model.EventModel;
+import GUI.Model.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -143,7 +144,7 @@ public class MainViewController extends BaseController {
             controller.setup();
 
             stage.setScene(new Scene(root));
-            stage.setTitle("Create an Event");
+            stage.setTitle("Create a User");
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
             stage.show();

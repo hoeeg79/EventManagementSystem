@@ -1,9 +1,9 @@
-package DAL;
+package DAL.Event;
 
 import BE.Event;
+import DAL.User.GetEvents;
 
 import java.sql.Date;
-import java.sql.SQLException;
 import java.sql.Time;
 import java.util.List;
 

@@ -4,18 +4,19 @@ import BE.User;
 import GUI.Model.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class UsersController extends BaseController{
+    public TableColumn clnAdmin;
+    @FXML
+    private TableColumn clnUsername;
     @FXML
     private Button btnCreate;
     @FXML
     private Button btnDelete;
     @FXML
-    private ListView userList;
+    private TableView<User> userList;
     @FXML
     private CheckBox cbIsAdmin;
     @FXML
@@ -31,7 +32,6 @@ public class UsersController extends BaseController{
     public void setup() {
         try{
         userModel = super.getUModel();
-        userList = new ListView();
         fillList();
         }
         catch(Exception e){
@@ -59,7 +59,7 @@ public class UsersController extends BaseController{
 
     public void handleDeleteUsers(ActionEvent actionEvent) {
         try {
-            User deletedUser = (User) userList.getSelectionModel().getSelectedItem();
+            User deletedUser = userList.getSelectionModel().getSelectedItem();
             userModel.deleteUsers(deletedUser);
         } catch (Exception e) {
             displayError(e);
@@ -67,6 +67,15 @@ public class UsersController extends BaseController{
     }
 
     public void fillList(){
-        userList.setItems(userModel.getObservableUsers());
+        try {
+            clnUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+            clnAdmin.setCellValueFactory(new PropertyValueFactory<>("admin"));
+
+            userList.getColumns().addAll();
+            userList.setItems(userModel.getObservableUsers());
+        }catch (Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 }

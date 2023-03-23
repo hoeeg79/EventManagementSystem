@@ -1,4 +1,4 @@
-package DAL;
+package DAL.Login;
 
 import BE.User;
 import DAL.DatabaseConnector.DBConnector;
@@ -12,11 +12,11 @@ public class Login {
 
     private final DBConnector dbc;
 
-    public Login() throws Exception {
+    protected Login() throws Exception {
         dbc = new DBConnector();
     }
 
-    public User login(String username, String password) throws SQLException {
+    protected User login(String username, String password) throws SQLException {
         String sql = "SELECT * FROM User_credentials WHERE username=? AND password=?;";
 
         try(Connection conn = dbc.getConnection()) {
@@ -29,7 +29,7 @@ public class Login {
 
             if (rs.next()) {
                 System.out.println("Login successful!");
-                return new User(rs.getString(2),rs.getInt(1),rs.getBoolean(3));
+                return new User(rs.getString(2),rs.getInt(1), rs.getBoolean("admin"));
             } else {
                 System.out.println("Invalid username or password.");
             }
