@@ -63,12 +63,12 @@ public class MainViewController extends BaseController {
     }
 
     @FXML
-    private void handleDeleteEvent(ActionEvent actionEvent) throws Exception {
+    private void handleDeleteEvent(ActionEvent actionEvent){
         try{
             Event deletedEvent = eventBordet.getSelectionModel().getSelectedItem();
             eventModel.deleteEvent(deletedEvent);
         }catch (Exception e){
-            throw new Exception(e);
+            displayError(e);
         }
     }
 

@@ -29,7 +29,7 @@ public class Login {
 
             if (rs.next()) {
                 System.out.println("Login successful!");
-                return new User(rs.getString(1),rs.getBoolean(3));
+                return new User(rs.getString(2),rs.getInt(2),rs.getBoolean(3));
             } else {
                 System.out.println("Invalid username or password.");
             }
