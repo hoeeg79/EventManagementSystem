@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="GUI.Controller.UsersController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="430.0" prefWidth="506.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.UsersController">
+   <children>
+      <TextField layoutX="26.0" layoutY="31.0" />
+      <TextField layoutX="26.0" layoutY="87.0" />
+      <Label layoutX="28.0" layoutY="14.0" text="Username" />
+      <Label layoutX="26.0" layoutY="70.0" text="password" />
+      <Button fx:id="btnCreate" layoutX="28.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleCreateCoordinator" text="Create Coordinator" />
+      <Label layoutX="28.0" layoutY="122.0" text="Confirm password" />
+      <TextField layoutX="26.0" layoutY="139.0" />
+      <Button fx:id="btnDelete" layoutX="28.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleDeleteCoordinator" text="Delete Coordinator" />
+      <ListView layoutX="193.0" layoutY="23.0" prefHeight="358.0" prefWidth="296.0" />
+   </children>
 </AnchorPane>
