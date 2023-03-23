@@ -30,7 +30,7 @@ public class UsersController extends BaseController{
     @Override
     public void setup() {
         try{
-        userModel = new UserModel();
+        userModel = super.getUModel();
         userList = new ListView();
         fillList();
         }

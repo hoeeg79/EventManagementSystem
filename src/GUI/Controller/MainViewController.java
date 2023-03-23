@@ -44,6 +44,7 @@ public class MainViewController extends BaseController {
         eventModel = super.getModel();
         fillEventList();
 
+
     }
 
     @FXML
@@ -110,7 +111,7 @@ public class MainViewController extends BaseController {
             Parent root = loader.load();
 
             UsersController controller = loader.getController();
-            controller.setModel(super.getModel());
+            controller.setUModel(super.getUModel());
             controller.setup();
 
             stage.setScene(new Scene(root));
