@@ -43,6 +43,7 @@ public class MainViewController extends BaseController {
     public void setup() {
         eventModel = super.getModel();
         fillEventList();
+
     }
 
     @FXML

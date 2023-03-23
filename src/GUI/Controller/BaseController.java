@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public abstract class BaseController {
 
     private EventModel model;
-    public abstract void setup();
+    public abstract void setup() throws Exception;
 
     public void setModel(EventModel model) {
         this.model = model;

@@ -13,10 +13,10 @@
       <TextField fx:id="tfPassword" layoutX="26.0" layoutY="87.0" />
       <Label layoutX="28.0" layoutY="14.0" text="Username" />
       <Label layoutX="26.0" layoutY="70.0" text="password" />
-      <Button fx:id="btnCreate" layoutX="28.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleCreateCoordinator" text="Create Coordinator" />
+      <Button fx:id="btnCreate" layoutX="28.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleCreateUsers" text="Create Coordinator" />
       <Label layoutX="28.0" layoutY="122.0" text="Confirm password" />
       <TextField fx:id="tfConfirmPassword" layoutX="26.0" layoutY="139.0" />
-      <Button fx:id="btnDelete" layoutX="28.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleDeleteCoordinator" text="Delete Coordinator" />
+      <Button fx:id="btnDelete" layoutX="28.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleDeleteUsers" text="Delete Coordinator" />
       <ListView fx:id="userList" layoutX="193.0" layoutY="23.0" prefHeight="358.0" prefWidth="296.0" />
       <CheckBox fx:id="cbIsAdmin" layoutX="26.0" layoutY="176.0" mnemonicParsing="false" text="Admin" />
    </children>

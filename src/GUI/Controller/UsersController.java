@@ -29,10 +29,17 @@ public class UsersController extends BaseController{
 
     @Override
     public void setup() {
+        try{
         userModel = new UserModel();
+        userList = new ListView();
+        fillList();
+        }
+        catch(Exception e){
+            displayError(e);
+        }
     }
 
-    public void handleCreateCoordinator(ActionEvent actionEvent) {
+    public void handleCreateUsers(ActionEvent actionEvent) {
         String username = tfUsername.getText();
         String password = tfPassword.getText();
         String confirmPassword = tfConfirmPassword.getText();
@@ -41,7 +48,8 @@ public class UsersController extends BaseController{
 
         if(password.equals(confirmPassword)){
             userModel.createUsers(username, password, isAdmin);
-            cancel(btnCreate);}
+            cancel(btnCreate);
+        }
         }catch(Exception e){
             displayError(e);
             e.printStackTrace();
@@ -49,7 +57,7 @@ public class UsersController extends BaseController{
     }
 
 
-    public void handleDeleteCoordinator(ActionEvent actionEvent) {
+    public void handleDeleteUsers(ActionEvent actionEvent) {
         try {
             User deletedUser = (User) userList.getSelectionModel().getSelectedItem();
             userModel.deleteUsers(deletedUser);
@@ -58,5 +66,7 @@ public class UsersController extends BaseController{
         }
     }
 
-
+    public void fillList(){
+        userList.setItems(userModel.getObservableUsers());
+    }
 }
