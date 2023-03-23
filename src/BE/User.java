@@ -2,11 +2,13 @@ package BE;
 
 public class User {
     private String username;
+    private int id;
     private boolean admin;
 
-    public User(String username, boolean admin) {
+    public User(String username, int id, boolean admin) {
         this.username = username;
         this.admin = admin;
+        this.id = id;
     }
 
     public String getUsername() {
@@ -23,5 +25,13 @@ public class User {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
