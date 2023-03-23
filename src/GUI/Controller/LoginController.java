@@ -34,6 +34,7 @@ public class LoginController {
             String password = tfPassword.getText();
             Stage primaryStage = (Stage) btnLogin.getScene().getWindow();
             User user = loginModel.login(username, password);
+            System.out.println(user);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/MainView.fxml"));
 
             if (user == null){
