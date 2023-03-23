@@ -44,6 +44,7 @@ public class UsersController extends BaseController{
             cancel(btnCreate);}
         }catch(Exception e){
             displayError(e);
+            e.printStackTrace();
         }
     }
 
