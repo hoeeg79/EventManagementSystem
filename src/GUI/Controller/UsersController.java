@@ -48,7 +48,7 @@ public class UsersController extends BaseController{
 
         if(password.equals(confirmPassword)){
             userModel.createUsers(username, password, isAdmin);
-            cancel(btnCreate);
+            closeWindow(btnCreate);
         }
         }catch(Exception e){
             displayError(e);

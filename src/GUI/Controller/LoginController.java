@@ -41,19 +41,23 @@ public class LoginController {
             }else if (user.isAdmin()){
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
+
                 MainViewController controller = loader.getController();
                 controller.setModel(new EventModel());
                 controller.setUModel(new UserModel());
                 controller.setup();
+
                 primaryStage.setScene(scene);
                 primaryStage.setTitle("Event System.");
                 primaryStage.show();
             } else if (!user.isAdmin()) {
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
+
                 MainViewController controller = loader.getController();
                 controller.setModel(new EventModel());
                 controller.setup();
+
                 primaryStage.setScene(scene);
                 primaryStage.setTitle("Event System.");
                 primaryStage.show();
@@ -64,7 +68,8 @@ public class LoginController {
         }
     }
 
-    public void handleLogin(ActionEvent actionEvent) {
+    @FXML
+    private void handleLogin(ActionEvent actionEvent) {
         login();
     }
 }
