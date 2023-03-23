@@ -29,4 +29,5 @@
     </ImageView>
    <Button fx:id="sellTickets" layoutX="620.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleSellTickets" text="Sell Tickets" />
    <Button fx:id="editEvent" layoutX="92.0" layoutY="546.0" mnemonicParsing="false" onAction="#handleEditEvent" text="Edit the Event" />
+   <Button fx:id="btnManageUsers" layoutX="46.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleManageUsers" text="Manage Users" />
 </AnchorPane>
