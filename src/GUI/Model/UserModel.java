@@ -2,6 +2,7 @@ package GUI.Model;
 
 import BE.User;
 import BLL.UsersManager;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class UserModel {
@@ -11,6 +12,8 @@ public class UserModel {
 
     public UserModel() throws Exception {
         usersManager = new UsersManager();
+
+        usersList = FXCollections.observableArrayList();
         usersList.addAll(usersManager.getUsers());
     }
 

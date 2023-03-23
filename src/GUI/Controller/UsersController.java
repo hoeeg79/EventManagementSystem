@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class UsersController extends BaseController{
     @FXML
@@ -68,5 +69,6 @@ public class UsersController extends BaseController{
 
     public void fillList(){
         userList.setItems(userModel.getObservableUsers());
+
     }
 }
