@@ -1,6 +1,7 @@
 package GUI.Controller;
 
 import GUI.Model.EventModel;
+import GUI.Model.UserModel;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
@@ -8,7 +9,8 @@ import javafx.stage.Stage;
 public abstract class BaseController {
 
     private EventModel model;
-    public abstract void setup();
+    private UserModel uModel;
+    public abstract void setup() throws Exception;
 
     public void setModel(EventModel model) {
         this.model = model;
@@ -16,6 +18,14 @@ public abstract class BaseController {
 
     public EventModel getModel() {
         return model;
+    }
+
+    public void setUModel(UserModel model){
+        this.uModel = uModel;
+    }
+
+    public UserModel getUModel(){
+        return uModel;
     }
 
     /**

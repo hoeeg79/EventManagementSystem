@@ -47,20 +47,22 @@ public class MainViewController extends BaseController {
     public void setup() {
         eventModel = super.getModel();
         fillEventList();
+
+
     }
 
     @FXML
     private void handleCreateEvent(ActionEvent actionEvent) throws IOException {
-        openEventView(actionEvent,"Create an Event", false);
+        openEventView(actionEvent, "Create an Event", false);
     }
 
     @FXML
-    private void handleDeleteEvent(ActionEvent actionEvent) throws Exception {
+    private void handleDeleteEvent(ActionEvent actionEvent){
         try{
             Event deletedEvent = eventBordet.getSelectionModel().getSelectedItem();
             eventModel.deleteEvent(deletedEvent);
         }catch (Exception e){
-            throw new Exception(e);
+            displayError(e);
         }
     }
 
@@ -121,12 +123,32 @@ public class MainViewController extends BaseController {
     }
 
     private Event getChosenEvent() {
-        int id = eventBordet.getSelectionModel().getSelectedItem().getId();
-        String name = eventBordet.getSelectionModel().getSelectedItem().getName();
-        Date date = eventBordet.getSelectionModel().getSelectedItem().getDate();
-        Time time = eventBordet.getSelectionModel().getSelectedItem().getTime();
-        String location = eventBordet.getSelectionModel().getSelectedItem().getLocation();
+            int id = eventBordet.getSelectionModel().getSelectedItem().getId();
+            String name = eventBordet.getSelectionModel().getSelectedItem().getName();
+            Date date = eventBordet.getSelectionModel().getSelectedItem().getDate();
+            Time time = eventBordet.getSelectionModel().getSelectedItem().getTime();
+            String location = eventBordet.getSelectionModel().getSelectedItem().getLocation();
 
-        return new Event(id,name,date,time,location);
+            return new Event(id, name, date, time, location);
+        }
+
+    public void handleManageUsers(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/UsersView.fxml"));
+            Parent root = loader.load();
+
+            UsersController controller = loader.getController();
+            controller.setUModel(super.getUModel());
+            controller.setup();
+
+            stage.setScene(new Scene(root));
+            stage.setTitle("Create an Event");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
+            stage.show();
+        }catch (Exception e){
+            displayError(e);
+        }
     }
 }

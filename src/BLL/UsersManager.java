@@ -3,6 +3,8 @@ package BLL;
 import BE.User;
 import DAL.UserFacade;
 
+import java.util.List;
+
 public class UsersManager {
     private final UserFacade uf = new UserFacade();
 
@@ -14,4 +16,7 @@ public class UsersManager {
         uf.deleteUser(deletedUser);
     }
 
+    public List<User> getUsers() throws Exception{
+        return uf.getUsers();
+    }
 }
