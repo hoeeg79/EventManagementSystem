@@ -14,17 +14,21 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.sql.Time;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
+
+import javax.swing.*;
 
 public class MainViewController extends BaseController {
     @FXML
     private TableColumn clnLocation;
     @FXML
-    private TableColumn clnDate;
+    private TableColumn<Event, Date> clnDate;
     @FXML
-    private TableColumn clnTime;
+    private TableColumn<Event, Time> clnTime;
     @FXML
     private TableColumn clnTitle;
     @FXML
@@ -47,19 +51,7 @@ public class MainViewController extends BaseController {
 
     @FXML
     private void handleCreateEvent(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/CreateEventView.fxml"));
-        Parent root = loader.load();
-
-        CreateEventViewController controller = loader.getController();
-        controller.setModel(super.getModel());
-        controller.setup();
-
-        stage.setScene(new Scene(root));
-        stage.setTitle("Create an Event");
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
-        stage.showAndWait();
+        openEventView(actionEvent,"Create an Event", false);
     }
 
     @FXML
@@ -78,8 +70,12 @@ public class MainViewController extends BaseController {
 
     @FXML
     private void handleEditEvent(ActionEvent actionEvent) {
+        openEventView(actionEvent, "Edit Event", true);
     }
 
+    /**
+     * Method to fill the main table when view is opened
+     */
     private void fillEventList() {
         try {
             //Gives every column a property to look for in given object
@@ -96,5 +92,39 @@ public class MainViewController extends BaseController {
             displayError(e);
             e.printStackTrace();
         }
+    }
+
+    private void openEventView(ActionEvent actionEvent, String title, boolean editView) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/CreateEventView.fxml"));
+            Parent root = loader.load();
+
+            CreateEventViewController controller = loader.getController();
+            controller.setModel(super.getModel());
+            controller.setup();
+
+            if (editView) {
+                getChosenEvent();
+            }
+
+            stage.setScene(new Scene(root));
+            stage.setTitle(title);
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
+            stage.showAndWait();
+        } catch (Exception e) {
+            displayError(e);
+        }
+    }
+
+    private Event getChosenEvent() {
+        int id = eventBordet.getSelectionModel().getSelectedItem().getId();
+        String name = eventBordet.getSelectionModel().getSelectedItem().getName();
+        Date date = eventBordet.getSelectionModel().getSelectedItem().getDate();
+        Time time = eventBordet.getSelectionModel().getSelectedItem().getTime();
+        String location = eventBordet.getSelectionModel().getSelectedItem().getLocation();
+
+        return new Event(id,name,date,time,location);
     }
 }
