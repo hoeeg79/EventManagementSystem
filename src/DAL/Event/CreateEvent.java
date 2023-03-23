@@ -1,4 +1,4 @@
-package DAL;
+package DAL.Event;
 
 import BE.Event;
 import DAL.DatabaseConnector.DBConnector;
@@ -10,11 +10,11 @@ public class CreateEvent {
 
     private DBConnector DBCon;
 
-    public CreateEvent() throws Exception {
+    protected CreateEvent() throws Exception {
         DBCon = new DBConnector();
     }
 
-    public Event createEvent(String name, Date date, Time time, String location) throws SQLException {
+    protected Event createEvent(String name, Date date, Time time, String location) throws SQLException {
         String sql = "INSERT INTO Event (name, date, time, location)VALUES (?,?,?,?);";
 
         try (Connection connection = DBCon.getConnection()){

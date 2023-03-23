@@ -1,6 +1,7 @@
-package DAL.DatabaseConnector;
+package DAL.Event;
 
 import BE.User;
+import DAL.DatabaseConnector.DBConnector;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

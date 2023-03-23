@@ -45,6 +45,7 @@ public class LoginController {
                 MainViewController controller = loader.getController();
                 controller.setModel(new EventModel());
                 controller.setUModel(new UserModel());
+                System.out.println(controller.getUModel());
                 controller.setup();
                 primaryStage.setScene(scene);
                 primaryStage.setTitle("Event System.");

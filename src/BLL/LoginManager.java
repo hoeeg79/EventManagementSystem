@@ -1,7 +1,7 @@
 package BLL;
 
 import BE.User;
-import DAL.LoginFacade;
+import DAL.Login.LoginFacade;
 
 public class LoginManager {
     private LoginFacade loginFacade = new LoginFacade();

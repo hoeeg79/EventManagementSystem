@@ -1,4 +1,4 @@
-package DAL;
+package DAL.User;
 
 import BE.User;
 import DAL.DatabaseConnector.DBConnector;
@@ -15,7 +15,7 @@ public class DeleteUser {
         this.dbc = new DBConnector();
     }
 
-    public void deleteUser(User user){
+    protected void deleteUser(User user){
         String sql = "DELETE FROM User_credentials WHERE id = ?;";
 
         try (Connection conn = dbc.getConnection()){

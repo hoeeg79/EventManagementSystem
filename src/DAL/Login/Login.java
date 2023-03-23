@@ -1,4 +1,4 @@
-package DAL;
+package DAL.Login;
 
 import BE.User;
 import DAL.DatabaseConnector.DBConnector;
@@ -12,11 +12,11 @@ public class Login {
 
     private final DBConnector dbc;
 
-    public Login() throws Exception {
+    protected Login() throws Exception {
         dbc = new DBConnector();
     }
 
-    public User login(String username, String password) throws SQLException {
+    protected User login(String username, String password) throws SQLException {
         String sql = "SELECT * FROM User_credentials WHERE username=? AND password=?;";
 
         try(Connection conn = dbc.getConnection()) {

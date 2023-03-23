@@ -1,12 +1,12 @@
 package BLL;
 
 import BE.User;
-import DAL.UserFacade;
+import DAL.User.UserFacade;
 
 import java.util.List;
 
 public class UsersManager {
-    private final UserFacade uf = new UserFacade();
+    private UserFacade uf = new UserFacade();
 
     public User createUser(String username, String password, boolean isAdmin) throws Exception {
         return uf.createUser(username, password, isAdmin);

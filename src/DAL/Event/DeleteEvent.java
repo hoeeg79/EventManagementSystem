@@ -1,4 +1,4 @@
-package DAL;
+package DAL.Event;
 
 import BE.Event;
 import DAL.DatabaseConnector.DBConnector;
@@ -10,11 +10,11 @@ public class DeleteEvent {
 
     private DBConnector DBCon;
 
-    public DeleteEvent() throws Exception {
+    protected DeleteEvent() throws Exception {
         DBCon = new DBConnector();
     }
 
-    public void deleteEvent(Event event) throws Exception{
+    protected void deleteEvent(Event event) throws Exception{
         try(Connection conn = DBCon.getConnection()){
 
             String sql = "DELETE FROM Event WHERE id = ?";
