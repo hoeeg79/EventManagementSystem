@@ -46,7 +46,7 @@ public class LoginController {
                 MainViewController controller = loader.getController();
                 controller.setModel(new EventModel());
                 controller.setUModel(new UserModel());
-                System.out.println(controller.getUModel());
+                controller.setUser(user);
                 controller.setup();
 
                 primaryStage.setScene(scene);
@@ -58,6 +58,7 @@ public class LoginController {
 
                 MainViewController controller = loader.getController();
                 controller.setModel(new EventModel());
+                controller.setUser(user);
                 controller.setup();
 
                 primaryStage.setScene(scene);
