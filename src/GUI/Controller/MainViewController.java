@@ -97,4 +97,7 @@ public class MainViewController extends BaseController {
             e.printStackTrace();
         }
     }
+
+    public void handleManageUsers(ActionEvent actionEvent) {
+    }
 }
