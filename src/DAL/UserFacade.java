@@ -1,6 +1,9 @@
 package DAL;
 
 import BE.User;
+import DAL.DatabaseConnector.GetUsers;
+
+import java.util.List;
 
 public class UserFacade {
     public User createUser(String username, String password, boolean isAdmin) throws Exception {
@@ -12,5 +15,11 @@ public class UserFacade {
         DeleteUser du = new DeleteUser();
 
         du.deleteUser(deletedUser);
+    }
+
+    public List<User> getUsers() throws Exception{
+        GetUsers users = new GetUsers();
+
+        return users.returnUsers();
     }
 }

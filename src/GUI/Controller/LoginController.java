@@ -3,6 +3,7 @@ package GUI.Controller;
 import GUI.Model.EventModel;
 import BE.User;
 import GUI.Model.LoginModel;
+import GUI.Model.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,6 +43,7 @@ public class LoginController {
                 Scene scene = new Scene(root);
                 MainViewController controller = loader.getController();
                 controller.setModel(new EventModel());
+                controller.setUModel(new UserModel());
                 controller.setup();
                 primaryStage.setScene(scene);
                 primaryStage.setTitle("Event System.");
