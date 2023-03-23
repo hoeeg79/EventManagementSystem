@@ -20,7 +20,7 @@ public abstract class BaseController {
         return model;
     }
 
-    public void setUModel(UserModel model){
+    public void setUModel(UserModel uModel){
         this.uModel = uModel;
     }
 

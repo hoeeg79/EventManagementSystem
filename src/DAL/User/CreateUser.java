@@ -1,4 +1,4 @@
-package DAL;
+package DAL.User;
 
 import BE.User;
 import DAL.DatabaseConnector.DBConnector;
@@ -13,7 +13,7 @@ public class CreateUser {
         dbc = new DBConnector();
     }
 
-    public User createUser(String username, String password, boolean isAdmin){
+    protected User createUser(String username, String password, boolean isAdmin){
         String sql = "INSERT INTO User_credentials (username, password, admin) VALUES (?,?,?);";
 
         try (Connection conn = dbc.getConnection()){

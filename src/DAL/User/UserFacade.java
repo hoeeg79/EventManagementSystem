@@ -1,7 +1,8 @@
-package DAL;
+package DAL.User;
 
 import BE.User;
-import DAL.DatabaseConnector.GetUsers;
+import DAL.Event.GetUsers;
+
 
 import java.util.List;
 

@@ -1,8 +1,7 @@
 package BLL;
 
 import BE.Event;
-import DAL.DeleteEvent;
-import DAL.EventFacade;
+import DAL.Event.EventFacade;
 
 import java.sql.Date;
 import java.sql.Time;
