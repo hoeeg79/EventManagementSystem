@@ -1,5 +1,6 @@
 package GUI.Controller;
 
+import BE.Event;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -30,6 +31,8 @@ public class CreateEventViewController extends BaseController {
     private TextField txtLocation;
     @FXML
     private TextField txtHours;
+    private boolean isEdit;
+    private int idOfEvent;
 
     @Override
     public void setup() {
@@ -47,7 +50,12 @@ public class CreateEventViewController extends BaseController {
     int minutes = Integer.parseInt(txtMinutes.getText());
     Time startTime = new Time(hours,minutes,0);
 
-    super.getModel().createEvent(name,convertedDate,startTime,location);
+    if (isEdit) {
+        super.getModel().editEvent(idOfEvent, name, convertedDate, startTime,location);
+        getModel().getObservableEvents();
+    } else {
+        super.getModel().createEvent(name, convertedDate, startTime, location);
+    }
     closeWindow(saveEvent);
     }
 
@@ -71,5 +79,15 @@ public class CreateEventViewController extends BaseController {
                 return null;
             }
         }));
+    }
+
+    public void setFields(Event event) {
+        txtNameOfEvent.setText(event.getName());
+        txtHours.setText(String.valueOf(event.getTime().getHours()));
+        txtMinutes.setText(String.valueOf(event.getTime().getMinutes()));
+        txtLocation.setText(event.getLocation());
+        selectedDate.setValue(LocalDate.of(event.getDate().getYear(), event.getDate().getMonth(), event.getDate().getDay()));
+        idOfEvent = event.getId();
+        isEdit = true;
     }
 }

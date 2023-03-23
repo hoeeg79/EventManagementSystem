@@ -25,4 +25,10 @@ public class EventFacade {
 
         return events.returnEvents();
     }
+
+    public void editEvent(Event e) throws Exception {
+        EditEvent editE = new EditEvent();
+
+        editE.editE(e);
+    }
 }

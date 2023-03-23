@@ -18,10 +18,7 @@ public class EventModel {
         eventManager = new EventManager();
 
         eventList = FXCollections.observableArrayList();
-        eventList.addAll(eventManager.getEvents());
     }
-
-
 
     public void createEvent(String name, Date date, Time time, String location) throws Exception{
         Event e = eventManager.createEvent(name, date, time, location);
@@ -33,7 +30,14 @@ public class EventModel {
         eventList.remove(deletedEvent);
     }
 
-    public ObservableList<Event> getObservableEvents() {
+    public ObservableList<Event> getObservableEvents() throws Exception {
+        eventList.clear();
+        eventList.addAll(eventManager.getEvents());
         return eventList;
+    }
+
+    public void editEvent(int idOfEvent, String name, Date convertedDate, Time startTime, String location) throws Exception {
+        Event e = new Event(idOfEvent, name, convertedDate, startTime, location);
+        eventManager.editEvent(e);
     }
 }

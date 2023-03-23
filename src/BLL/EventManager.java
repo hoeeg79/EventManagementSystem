@@ -24,4 +24,8 @@ public class EventManager {
     public List<Event> getEvents() throws Exception{
         return eventFacade.getEvents();
     }
+
+    public void editEvent(Event e) throws Exception {
+        eventFacade.editEvent(e);
+    }
 }
