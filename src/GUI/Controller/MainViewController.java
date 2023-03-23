@@ -8,16 +8,25 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 
 public class MainViewController extends BaseController {
+    @FXML
+    private TableColumn clnLocation;
+    @FXML
+    private TableColumn clnDate;
+    @FXML
+    private TableColumn clnTime;
+    @FXML
+    private TableColumn clnTitle;
     @FXML
     private Button createEvent;
     @FXML
@@ -29,6 +38,12 @@ public class MainViewController extends BaseController {
     @FXML
     private TableView<Event> eventBordet;
     private EventModel eventModel;
+
+    @Override
+    public void setup() {
+        eventModel = super.getModel();
+        fillEventList();
+    }
 
     @FXML
     private void handleCreateEvent(ActionEvent actionEvent) throws IOException {
@@ -65,8 +80,21 @@ public class MainViewController extends BaseController {
     private void handleEditEvent(ActionEvent actionEvent) {
     }
 
-    @Override
-    public void setup() {
+    private void fillEventList() {
+        try {
+            //Gives every column a property to look for in given object
+            // It uses the getters from the object, to retrieve the values
+            clnTitle.setCellValueFactory(new PropertyValueFactory<>("name"));
+            clnLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
+            clnDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+            clnTime.setCellValueFactory(new PropertyValueFactory<>("time"));
 
+            //Add the Movies to the list
+            eventBordet.getColumns().addAll();
+            eventBordet.setItems(eventModel.getObservableEvents());
+        } catch (Exception e) {
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 }

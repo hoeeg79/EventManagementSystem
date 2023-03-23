@@ -5,6 +5,7 @@ import BE.Event;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.List;
 
 public class EventFacade {
     public Event createEvent(String name, Date date, Time time, String location) throws Exception {
@@ -17,5 +18,11 @@ public class EventFacade {
         DeleteEvent de = new DeleteEvent();
 
         de.deleteEvent(deletedEvent);
+    }
+
+    public List<Event> getEvents() throws Exception {
+        GetEvents events = new GetEvents();
+
+        return events.returnEvents();
     }
 }

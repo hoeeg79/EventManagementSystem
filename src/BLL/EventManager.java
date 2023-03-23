@@ -6,6 +6,7 @@ import DAL.EventFacade;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 public class EventManager {
 
@@ -18,5 +19,9 @@ public class EventManager {
 
     public void deleteEvent(Event deletedEvent) throws Exception {
         eventFacade.deleteEvent(deletedEvent);
+    }
+
+    public List<Event> getEvents() throws Exception{
+        return eventFacade.getEvents();
     }
 }
