@@ -12,13 +12,13 @@
    <children>
       <TextField fx:id="tfUsername" layoutX="26.0" layoutY="31.0" />
       <TextField fx:id="tfPassword" layoutX="26.0" layoutY="87.0" />
+      <TextField fx:id="tfConfirmPassword" layoutX="26.0" layoutY="139.0" />
+      <CheckBox fx:id="cbIsAdmin" layoutX="26.0" layoutY="176.0" mnemonicParsing="false" text="Admin" />
+      <Button fx:id="btnCreate" layoutX="28.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleCreateUsers" text="Create User" />
+      <Button fx:id="btnDelete" layoutX="28.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleDeleteUsers" text="Delete User" />
       <Label layoutX="28.0" layoutY="14.0" text="Username" />
       <Label layoutX="26.0" layoutY="70.0" text="password" />
-      <Button fx:id="btnCreate" layoutX="28.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleCreateUsers" text="Create Coordinator" />
       <Label layoutX="28.0" layoutY="122.0" text="Confirm password" />
-      <TextField fx:id="tfConfirmPassword" layoutX="26.0" layoutY="139.0" />
-      <Button fx:id="btnDelete" layoutX="28.0" layoutY="381.0" mnemonicParsing="false" onAction="#handleDeleteUsers" text="Delete Coordinator" />
-      <CheckBox fx:id="cbIsAdmin" layoutX="26.0" layoutY="176.0" mnemonicParsing="false" text="Admin" />
       <TableView fx:id="userList" layoutX="220.0" layoutY="14.0" prefHeight="403.0" prefWidth="263.0">
         <columns>
           <TableColumn fx:id="clnUsername" prefWidth="211.0" text="Username" />
