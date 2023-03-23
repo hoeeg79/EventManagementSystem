@@ -33,7 +33,7 @@ public abstract class BaseController {
      * Method called in other controller classes, used to close windows in case of cancel button used.
      * @param btn - the button pressed in the method.
      */
-    public void cancel(Button btn) {
+    public void closeWindow(Button btn) {
         Stage stage = (Stage) btn.getScene().getWindow();
         stage.close();
     }

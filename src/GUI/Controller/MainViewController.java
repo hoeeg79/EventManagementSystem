@@ -59,7 +59,7 @@ public class MainViewController extends BaseController {
         stage.setTitle("Create an Event");
         stage.initModality(Modality.WINDOW_MODAL);
         stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
-        stage.show();
+        stage.showAndWait();
     }
 
     @FXML

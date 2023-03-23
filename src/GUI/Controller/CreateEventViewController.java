@@ -48,12 +48,12 @@ public class CreateEventViewController extends BaseController {
     Time startTime = new Time(hours,minutes,0);
 
     super.getModel().createEvent(name,convertedDate,startTime,location);
-
+    closeWindow(saveEvent);
     }
 
     @FXML
     private void handleCancelEvent(ActionEvent actionEvent) {
-        cancel(cancelEvent);
+        closeWindow(cancelEvent);
     }
 
     private void lockToIntOnly(){
