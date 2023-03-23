@@ -46,20 +46,24 @@ public class MainViewController extends BaseController {
     }
 
     @FXML
-    private void handleCreateEvent(ActionEvent actionEvent) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/CreateEventView.fxml"));
-        Parent root = loader.load();
+    private void handleCreateEvent(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/CreateEventView.fxml"));
+            Parent root = loader.load();
 
-        CreateEventViewController controller = loader.getController();
-        controller.setModel(super.getModel());
-        controller.setup();
+            CreateEventViewController controller = loader.getController();
+            controller.setModel(super.getModel());
+            controller.setup();
 
-        stage.setScene(new Scene(root));
-        stage.setTitle("Create an Event");
-        stage.initModality(Modality.WINDOW_MODAL);
-        stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
-        stage.show();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Create an Event");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
+            stage.show();
+        }catch(Exception e){
+            displayError(e);
+        }
     }
 
     @FXML
@@ -99,5 +103,23 @@ public class MainViewController extends BaseController {
     }
 
     public void handleManageUsers(ActionEvent actionEvent) {
+        try {
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/UsersView.fxml"));
+            Parent root = loader.load();
+
+            UsersController controller = loader.getController();
+            controller.setModel(super.getModel());
+            controller.setup();
+
+            stage.setScene(new Scene(root));
+            stage.setTitle("Create an Event");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
+            stage.show();
+        }catch (Exception e){
+            displayError(e);
+        }
+
     }
 }

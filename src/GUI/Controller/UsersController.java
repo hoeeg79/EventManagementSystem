@@ -39,8 +39,9 @@ public class UsersController extends BaseController{
         boolean isAdmin = cbIsAdmin.isSelected();
         try{
 
-        if(password == confirmPassword)
+        if(password.equals(confirmPassword)){
             userModel.createUsers(username, password, isAdmin);
+            cancel(btnCreate);}
         }catch(Exception e){
             displayError(e);
         }
