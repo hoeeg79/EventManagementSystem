@@ -90,4 +90,7 @@ public class CreateEventViewController extends BaseController {
         idOfEvent = event.getId();
         isEdit = true;
     }
+    public void notEdit() {
+        isEdit = false;
+    }
 }

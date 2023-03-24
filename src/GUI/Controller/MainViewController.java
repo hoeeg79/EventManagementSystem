@@ -122,7 +122,8 @@ public class MainViewController extends BaseController {
             if (editView) {
                 Event chosenEvent = getChosenEvent();
                 controller.setFields(chosenEvent);
-
+            } else {
+                controller.notEdit();
             }
 
             stage.setScene(new Scene(root));
