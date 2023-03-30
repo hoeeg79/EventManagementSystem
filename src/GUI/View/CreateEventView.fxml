@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="439.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.CreateEventViewController">
+<AnchorPane prefHeight="400.0" prefWidth="439.0" stylesheets="@CreateEventView.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.CreateEventViewController">
    <children>
       <Button fx:id="saveEvent" layoutX="262.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleSaveEvent" prefHeight="26.0" prefWidth="85.0" text="Save Event" />
       <Label layoutX="133.0" layoutY="29.0" text="Let's make an Event!">
@@ -16,37 +16,37 @@
          </font>
       </Label>
       <Button fx:id="cancelEvent" layoutX="361.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleCancelEvent" text="Cancel" />
-      <Label layoutX="25.0" layoutY="90.0" prefHeight="18.0" prefWidth="124.0" text="Name of the event?">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="25.0" layoutY="90.0" prefHeight="18.0" prefWidth="130.0" text="Name of the event" textAlignment="RIGHT">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="25.0" layoutY="140.0" text="Time of the event?">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="25.0" layoutY="140.0" prefWidth="130.0" text="Time of the event" textAlignment="RIGHT">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="25.0" layoutY="240.0" text="Participants?">
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="9.0" layoutY="240.0" prefHeight="20.0" prefWidth="146.0" text="Participants" textAlignment="RIGHT">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="25.0" layoutY="290.0" text="Location?">
+      <Label alignment="CENTER_RIGHT" layoutX="25.0" layoutY="290.0" prefWidth="130.0" text="Location" textAlignment="RIGHT">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="txtNameOfEvent" layoutX="167.0" layoutY="86.0" prefHeight="26.0" prefWidth="247.0" />
-      <TextField fx:id="txtNumberOfParticipants" layoutX="167.0" layoutY="236.0" prefHeight="26.0" prefWidth="115.0" />
-      <TextField fx:id="txtLocation" layoutX="108.0" layoutY="286.0" prefHeight="26.0" prefWidth="309.0" />
-      <DatePicker fx:id="selectedDate" layoutX="167.0" layoutY="186.0" prefHeight="26.0" prefWidth="173.0" />
-      <TextField fx:id="txtHours" layoutX="167.0" layoutY="136.0" prefHeight="26.0" prefWidth="44.0" promptText="HH" />
-      <Label layoutX="25.0" layoutY="190.0" text="Date of the event?">
+      <TextField fx:id="txtNameOfEvent" layoutX="170.0" layoutY="86.0" prefHeight="26.0" prefWidth="250.0" />
+      <TextField fx:id="txtNumberOfParticipants" layoutX="170.0" layoutY="237.0" prefHeight="26.0" prefWidth="173.0" />
+      <TextField fx:id="txtLocation" layoutX="170.0" layoutY="287.0" prefHeight="26.0" prefWidth="250.0" />
+      <DatePicker fx:id="selectedDate" layoutX="170.0" layoutY="187.0" prefHeight="26.0" prefWidth="173.0" />
+      <TextField fx:id="txtHours" layoutX="170.0" layoutY="136.0" prefHeight="26.0" prefWidth="44.0" promptText="HH" />
+      <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="25.0" layoutY="190.0" prefWidth="130.0" text="Date of the event" textAlignment="RIGHT">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <TextField fx:id="txtMinutes" layoutX="232.0" layoutY="136.0" prefHeight="26.0" prefWidth="44.0" promptText="MM" />
-      <Label layoutX="221.0" layoutY="140.0" prefHeight="17.0" prefWidth="7.0" text=":" />
+      <Label layoutX="222.0" layoutY="140.0" prefHeight="17.0" prefWidth="7.0" text=":" />
    </children>
 </AnchorPane>

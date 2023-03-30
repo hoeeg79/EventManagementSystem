@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@MainView.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.MainViewController">
-    <Button fx:id="createEvent" layoutX="21.0" layoutY="84.0" mnemonicParsing="false" onAction="#handleCreateEvent" prefHeight="26.0" prefWidth="142.0" text="Create a new Event?" />
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@MainView.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.MainViewController">
+   <Pane layoutX="180.0" prefHeight="600.0" prefWidth="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
     <Label layoutX="244.0" layoutY="22.0" prefHeight="26.0" prefWidth="313.0" text="Welcome back to your EventPlanner!" textAlignment="CENTER">
         <font>
           <Font size="20.0" />
@@ -19,18 +22,27 @@
       <font>
          <Font size="15.0" />
       </font></Label>
-    <TableView fx:id="eventBordet" layoutX="203.0" layoutY="82.0" prefHeight="514.0" prefWidth="394.0">
+    <TableView fx:id="eventBordet" layoutX="194.0" layoutY="82.0" prefHeight="515.0" prefWidth="585.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="75.0">
         <columns>
-          <TableColumn fx:id="clnTitle" prefWidth="127.0" resizable="false" text="Event" />
-         <TableColumn fx:id="clnLocation" prefWidth="132.0" resizable="false" text="Location" />
-         <TableColumn fx:id="clnDate" prefWidth="72.0" resizable="false" text="Date" />
-         <TableColumn fx:id="clnTime" prefWidth="60.0" resizable="false" text="Time" />
+          <TableColumn fx:id="clnTitle" prefWidth="174.0" resizable="false" text="Event" />
+         <TableColumn fx:id="clnLocation" prefWidth="177.0" resizable="false" text="Location" />
+         <TableColumn fx:id="clnDate" prefWidth="123.0" resizable="false" text="Date" />
+         <TableColumn fx:id="clnTime" prefWidth="105.0" resizable="false" text="Time" />
         </columns>
     </TableView>
-    <Button fx:id="deleteEvent" layoutX="620.0" layoutY="546.0" mnemonicParsing="false" onAction="#handleDeleteEvent" text="Delete Event?" />
     <ImageView fitHeight="64.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
     </ImageView>
-   <Button fx:id="sellTickets" layoutX="620.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleSellTickets" text="Sell Tickets" />
-   <Button fx:id="editEvent" layoutX="92.0" layoutY="546.0" mnemonicParsing="false" onAction="#handleEditEvent" text="Edit the Event" />
-   <Button fx:id="btnManageUsers" layoutX="46.0" layoutY="40.0" mnemonicParsing="false" onAction="#handleManageUsers" text="Manage Users" />
+   <VBox fx:id="vbButtons" alignment="TOP_CENTER" layoutY="76.0" prefHeight="524.0" prefWidth="180.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="76.0">
+      <children>
+          <Button fx:id="createEvent" mnemonicParsing="false" onAction="#handleCreateEvent" prefWidth="110.0" text="Create Event" />
+          <Button fx:id="deleteEvent" mnemonicParsing="false" onAction="#handleDeleteEvent" prefWidth="110.0" text="Delete Event" />
+         <Button fx:id="editEvent" mnemonicParsing="false" onAction="#handleEditEvent" prefWidth="110.0" text="Edit Event" />
+         <Button fx:id="sellTickets" mnemonicParsing="false" onAction="#handleSellTickets" prefWidth="110.0" text="Sell Ticket" />
+         <Button fx:id="btnManageUsers" mnemonicParsing="false" onAction="#handleManageUsers" prefWidth="110.0" text="Manage Users" />
+      </children>
+      <padding>
+         <Insets top="10.0" />
+      </padding>
+   </VBox>
+   <Button layoutX="62.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleLogout" text="Log out" />
 </AnchorPane>
