@@ -12,6 +12,7 @@ public class EventModel {
 
     private EventManager eventManager;
     private ObservableList<Event> eventList;
+    private Event selectedEvent;
 
 
     public EventModel() throws Exception {
@@ -40,4 +41,14 @@ public class EventModel {
         Event e = new Event(idOfEvent, name, convertedDate, startTime, location);
         eventManager.editEvent(e);
     }
+
+    public void setSelectedEvent(Event selectedEvent) {
+        this.selectedEvent = selectedEvent;
+    }
+
+    public Event getSelectedEvent() {
+        this.selectedEvent = selectedEvent;
+        return selectedEvent;
+    }
+
 }

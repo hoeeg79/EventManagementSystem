@@ -80,7 +80,26 @@ public class MainViewController extends BaseController {
     }
 
     @FXML
-    private void handleSellTickets(ActionEvent actionEvent) {
+    private void handleSellTickets(ActionEvent actionEvent) throws Exception {
+        Event selectedEvent = eventBordet.getSelectionModel().getSelectedItem();
+        if (selectedEvent != null) {
+
+            eventModel.setSelectedEvent(selectedEvent);
+
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/TicketView.fxml"));
+            Parent root = loader.load();
+
+            TicketView controller = loader.getController();
+            controller.setModel(super.getModel());
+            controller.setup();
+
+            stage.setScene(new Scene(root));
+            stage.setTitle("Ticket");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
+            stage.showAndWait();
+        }
     }
 
     @FXML
