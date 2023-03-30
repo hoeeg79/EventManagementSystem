@@ -14,8 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.sql.SQLException;
-
 public class LoginController {
     @FXML
     private Label lblWarning;
