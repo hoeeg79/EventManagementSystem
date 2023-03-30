@@ -87,7 +87,7 @@ public class MainViewController extends BaseController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/TicketView.fxml"));
             Parent root = loader.load();
 
-            TicketView controller = loader.getController();
+            TicketViewController controller = loader.getController();
             controller.setModel(super.getModel());
             controller.setup();
 
