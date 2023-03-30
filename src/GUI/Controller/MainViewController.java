@@ -3,7 +3,6 @@ package GUI.Controller;
 import BE.Event;
 import BE.User;
 import GUI.Model.EventModel;
-import GUI.Model.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -21,8 +20,6 @@ import java.sql.Time;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
-
-import javax.swing.*;
 
 public class MainViewController extends BaseController {
     @FXML
