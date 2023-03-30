@@ -47,8 +47,9 @@ public class TicketViewController extends BaseController{
         document.add(border);
 
         Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
-        Paragraph title = new Paragraph("Ticket", titleFont);
+        Paragraph title = new Paragraph(getModel().getSelectedEvent().getName() + "!!!", titleFont);
         title.setAlignment(Element.ALIGN_CENTER);
+        title.setSpacingAfter(20);
         document.add(title);
 
         LineSeparator lineSeparator = new LineSeparator();
@@ -56,16 +57,19 @@ public class TicketViewController extends BaseController{
         lineSeparator.setLineWidth(1);
         document.add(lineSeparator);
 
+        Font eventNameFont = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD);
+        Paragraph eventName = new Paragraph("Let's meet at the: " + getModel().getSelectedEvent().getLocation() + "!",  eventNameFont);
+        eventName.setAlignment(Element.ALIGN_CENTER);
+        eventName.setSpacingBefore(5);
+        document.add(eventName);
+
         Font normalFont = new Font(Font.FontFamily.TIMES_ROMAN, 12);
         Paragraph ticketDetails = new Paragraph();
-        ticketDetails.add(new Paragraph("Name: " + getModel().getSelectedEvent().getName()));
-        ticketDetails.add(new Paragraph("Date: " + getModel().getSelectedEvent().getDate()));
-        ticketDetails.add(new Paragraph("Time: " + getModel().getSelectedEvent().getTime()));
-        ticketDetails.add(new Paragraph("Location: " + getModel().getSelectedEvent().getLocation()));
-        ticketDetails.add(new Paragraph("Ticket-code: " + getModel().getSelectedEvent().getId()));
-
-        ticketDetails.add(new Paragraph("Your Name: " + fxName.getText()));
-        ticketDetails.add(new Paragraph("Your Email: " + fxEmail.getText()));
+        ticketDetails.add(new Paragraph(String.valueOf(getModel().getSelectedEvent().getDate())));
+        ticketDetails.add(new Paragraph(String.valueOf(getModel().getSelectedEvent().getTime())));
+        ticketDetails.add(new Paragraph(getModel().getSelectedEvent().getLocation()));
+        ticketDetails.add(new Paragraph(getModel().getSelectedEvent().getId()));
+        ticketDetails.setAlignment(Element.ALIGN_CENTER);
 
         document.add(ticketDetails);
 
