@@ -2,8 +2,18 @@ AnchorPane{
     -fx-background-color: #232428;
 }
 
-Pane{
-    -fx-background-color: #2e3035;
+Label{
+    -fx-text-fill: #959ba4;
+}
+
+TextField{
+    -fx-background-color: #404249;
+    -fx-background-radius: 50px;
+    -fx-text-fill: #959ba4;
+}
+
+TextField:focused{
+    -fx-text-fill: #f2f3f5;
 }
 
 Button{
@@ -21,6 +31,14 @@ Button:hover{
 Button:focused{
     -fx-background-color: #404249;
     -fx-text-fill: #f2f3f5;
+}
+
+.check-box .box{
+    -fx-background-color: #404249;
+}
+
+.check-box{
+    -fx-text-fill: #959ba4;
 }
 
 .table-view{
@@ -48,8 +66,4 @@ Button:focused{
 .table-row-cell:selected{
     -fx-background-color: #404249;
     -fx-text-fill: #f2f3f5;
-}
-
-.label{
-    -fx-text-fill: #959ba4;
 }

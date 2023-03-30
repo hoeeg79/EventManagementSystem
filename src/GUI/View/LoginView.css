@@ -1,0 +1,44 @@
+AnchorPane{
+    -fx-background-color: #232428;
+}
+
+Label{
+    -fx-text-fill: #959ba4;
+}
+
+TextField{
+    -fx-background-color: #404249;
+    -fx-background-radius: 50px;
+    -fx-text-fill: #959ba4;
+}
+
+TextField:focused{
+    -fx-text-fill: #f2f3f5;
+}
+
+PasswordField{
+    -fx-background-color: #404249;
+    -fx-background-radius: 50px;
+    -fx-text-fill: #959ba4;
+}
+
+PasswordField:focused{
+    -fx-text-fill: #f2f3f5;
+}
+
+Button{
+    -fx-border-style: hidden;
+    -fx-background-color: #2b2d31;
+    -fx-background-radius: 50px;
+    -fx-text-fill: #959ba4;
+}
+
+Button:hover{
+    -fx-background-color: #404249;
+    -fx-text-fill: #f2f3f5;
+}
+
+Button:focused{
+    -fx-background-color: #404249;
+    -fx-text-fill: #f2f3f5;
+}

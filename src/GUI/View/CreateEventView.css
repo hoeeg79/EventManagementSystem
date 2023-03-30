@@ -1,0 +1,86 @@
+AnchorPane{
+    -fx-background-color: #232428;
+}
+
+Label{
+    -fx-text-fill: #959ba4;
+}
+
+TextField{
+    -fx-background-color: #404249;
+    -fx-background-radius: 50px;
+    -fx-text-fill: #959ba4;
+}
+
+TextField:focused{
+    -fx-text-fill: #f2f3f5;
+}
+
+Button{
+    -fx-border-style: hidden;
+    -fx-background-color: #2b2d31;
+    -fx-background-radius: 50px;
+    -fx-text-fill: #959ba4;
+}
+
+Button:hover{
+    -fx-background-color: #404249;
+    -fx-text-fill: #f2f3f5;
+}
+
+Button:focused{
+    -fx-background-color: #404249;
+    -fx-text-fill: #f2f3f5;
+}
+
+.date-picker{
+    -fx-background-color: #2e3035;
+    -fx-background-radius: 50px;
+}
+
+.date-picker .text-field{
+    -fx-background-color: #404249;
+    -fx-background-radius: 50px 0px 0px 50px;
+    -fx-text-fill: #959ba4;
+}
+
+.date-picker .text-field:focused{
+    -fx-text-fill: #f2f3f5;
+}
+
+.date-picker .arrow-button{
+    -fx-background-color: #2b2d31;
+    -fx-background-radius: 0px 50px 50px 0px;
+}
+
+.date-picker .arrow-button:hover{
+    -fx-background-color: #34363b;
+}
+
+.date-picker .arrow-button .arrow{
+    -fx-background-color: #959ba4;
+}
+
+.date-picker .day-name-cell,
+.date-picker .week-number-cell,
+.date-picker .month-year-pane{
+    -fx-background-color: #232428;
+    -fx-text-fill: #f2f3f5;
+    -fx-border-color: #2e3035;
+}
+
+.calendar-grid{
+    -fx-background-color: #2e3035;
+}
+
+.date-picker .day-cell{
+    -fx-background-color: #2b2d31;
+    -fx-text-fill: #f2f3f5;
+    -fx-border-color: #2e3035;
+}
+
+.date-picker .day-cell:hover,
+.date-picker .day-cell:selected{
+    -fx-background-color: #404249;
+    -fx-text-fill: #f2f3f5;
+}

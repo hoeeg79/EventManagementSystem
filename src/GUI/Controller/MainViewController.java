@@ -4,6 +4,7 @@ import BE.Event;
 import BE.User;
 import GUI.Model.EventModel;
 import GUI.Model.UserModel;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,12 +13,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
@@ -25,6 +28,7 @@ import javafx.scene.control.TableView;
 import javax.swing.*;
 
 public class MainViewController extends BaseController {
+    public VBox vbButtons;
     @FXML
     private Button btnManageUsers;
     @FXML
@@ -171,6 +175,10 @@ public class MainViewController extends BaseController {
         editEvent.setVisible(false);
         deleteEvent.setVisible(true);
         btnManageUsers.setVisible(true);
+
+        Comparator<Node> byVisibility = (Node b1, Node b2) -> Boolean.compare(b2.isVisible(), b1.isVisible());
+
+        FXCollections.sort(vbButtons.getChildren(), byVisibility);
     }
 
     public void enableCoordinator(){
@@ -179,5 +187,8 @@ public class MainViewController extends BaseController {
         editEvent.setVisible(true);
         deleteEvent.setVisible(true);
         btnManageUsers.setVisible(false);
+    }
+
+    public void handleLogout(ActionEvent actionEvent) {
     }
 }
