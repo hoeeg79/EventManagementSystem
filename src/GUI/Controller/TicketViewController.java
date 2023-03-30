@@ -1,6 +1,8 @@
 package GUI.Controller;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import javafx.event.ActionEvent;
@@ -65,12 +67,9 @@ public class TicketViewController extends BaseController{
 
         Font normalFont = new Font(Font.FontFamily.TIMES_ROMAN, 12);
         Paragraph ticketDetails = new Paragraph();
-        ticketDetails.add(new Paragraph(String.valueOf(getModel().getSelectedEvent().getDate())));
-        ticketDetails.add(new Paragraph(String.valueOf(getModel().getSelectedEvent().getTime())));
-        ticketDetails.add(new Paragraph(getModel().getSelectedEvent().getLocation()));
-        ticketDetails.add(new Paragraph(getModel().getSelectedEvent().getId()));
-        ticketDetails.setAlignment(Element.ALIGN_CENTER);
-
+        ticketDetails.add(new Paragraph(getModel().getSelectedEvent().getLocation() + " / " + getModel().getSelectedEvent().getTime(), normalFont));
+        ticketDetails.add(new Paragraph(String.valueOf(getModel().getSelectedEvent().getId()), normalFont)); //Gonna be a barcode someday
+        ticketDetails.add(new Paragraph("Description: This is a test ticket", normalFont));
         document.add(ticketDetails);
 
         document.close();
