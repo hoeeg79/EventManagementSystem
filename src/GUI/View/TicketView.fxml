@@ -7,12 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.TicketView">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.TicketViewController">
    <children>
-      <TableView layoutX="308.0" prefHeight="400.0" prefWidth="292.0">
+      <TableView fx:id="tblEvent" layoutX="308.0" prefHeight="400.0" prefWidth="292.0">
         <columns>
-          <TableColumn fx:id="fxEventColumn" prefWidth="246.0" text="Event" />
+          <TableColumn fx:id="clnEvent" prefWidth="291.0" text="Event" />
         </columns>
       </TableView>
       <TextField fx:id="fxName" layoutX="72.0" layoutY="60.0" />
