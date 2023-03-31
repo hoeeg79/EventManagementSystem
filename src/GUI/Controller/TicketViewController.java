@@ -49,10 +49,7 @@ public class TicketViewController extends BaseController{
     public void handlePrintTicket(ActionEvent actionEvent) throws IOException, DocumentException {
         FileChooser fileChooser = new FileChooser();
         File fileToSave = fileChooser.showSaveDialog(btnPrint.getScene().getWindow());
-
         Document document = new Document(PageSize.A6.rotate());
-       // PdfWriter.getInstance(document, new FileOutputStream(fileToSave));
-
         PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(fileToSave.getAbsoluteFile()));
         document.open();
 
@@ -94,11 +91,6 @@ public class TicketViewController extends BaseController{
         ticketDetails.setAlignment(Element.ALIGN_MIDDLE);
         document.add(ticketDetails);
 
-        Time time = new Time(14, 30, 0); // Replace with your Time object
-        Date date = new Date(time.getTime()); // Convert Time to Date
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm"); // Format for hours and minutes
-        String formattedTime = formatter.format(date); // Convert date to string
-
         Font personalFont = new Font(Font.FontFamily.TIMES_ROMAN, 9);
         Paragraph personalDetails = new Paragraph();
         personalDetails.add(new Paragraph(fxName.getText(), personalFont));
@@ -114,10 +106,6 @@ public class TicketViewController extends BaseController{
         descriptionDetails.add(new Paragraph("Description: On the backside of this ticket, you will find information about parking.", descriptionFont));
         descriptionDetails.setSpacingBefore(20);
         document.add(descriptionDetails);
-
-        /*Random random = new Random();
-        int codeNumber = random.nextInt(1000000);
-        String codeString = Integer.toString(codeNumber);*/
 
         Barcode128 code128 = new Barcode128();
         code128.setCode(String.valueOf(getModel().getSelectedEvent().getId()));
@@ -135,7 +123,7 @@ public class TicketViewController extends BaseController{
         document.close();
         System.out.println("Ticket generated successfully");
 
-        System.exit(0);
+
         }
 
     public void handleCancel(ActionEvent actionEvent) {
