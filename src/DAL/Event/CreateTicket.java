@@ -1,4 +1,4 @@
-package DAL;
+package DAL.Event;
 
 import BE.Ticket;
 import DAL.DatabaseConnector.DBConnector;
@@ -12,15 +12,15 @@ public class CreateTicket {
         dbc = new DBConnector();
     }
 
-    public Ticket createTicket(int eventId, int customerId)throws SQLException {
-        String sql = "INSERT INTO Ticket (EventID, CustomerID) VALUES (?,?)";
+    public Ticket createTicket(int eventId, int phoneNumber)throws SQLException {
+        String sql = "INSERT INTO Ticket (EventID, PhoneNumber) VALUES (?,?)";
         try (Connection conn = dbc.getConnection()) {
 
 
-            PreparedStatement pstmt = conn.prepareStatement(sql);
+            PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             pstmt.setInt(1, eventId);
-            pstmt.setInt(2, customerId);
+            pstmt.setInt(2, phoneNumber);
 
             pstmt.executeUpdate();
             ResultSet rs = pstmt.executeQuery();
@@ -29,14 +29,15 @@ public class CreateTicket {
             if(rs.next()){
                 ticketId = rs.getInt(1);
             }
+            return new Ticket(ticketId,eventId,phoneNumber);
 
-            //Ticket ticket = new Ticket(ticketId, );
-            return ticket;
         } catch (SQLException e) {
             throw new SQLException();
         }
     }
 }
+
+
 
 
 //        try(Connection conn = dbc.getConnection()){

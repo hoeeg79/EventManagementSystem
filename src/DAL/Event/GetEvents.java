@@ -1,4 +1,4 @@
-package DAL.User;
+package DAL.Event;
 
 import BE.Event;
 import DAL.DatabaseConnector.DBConnector;
