@@ -45,16 +45,17 @@ public class CreateEventViewController extends BaseController {
     LocalDate unconvertedDate = selectedDate.getValue();
     Date convertedDate = Date.valueOf(unconvertedDate);
     String location = txtLocation.getText();
+    int participants = Integer.parseInt(txtNumberOfParticipants.getText());
 
     int hours = Integer.parseInt(txtHours.getText());
     int minutes = Integer.parseInt(txtMinutes.getText());
     Time startTime = new Time(hours,minutes,0);
 
     if (isEdit) {
-        super.getModel().editEvent(idOfEvent, name, convertedDate, startTime,location);
+        super.getModel().editEvent(idOfEvent, name, convertedDate, startTime, location, participants);
         getModel().getObservableEvents();
     } else {
-        super.getModel().createEvent(name, convertedDate, startTime, location);
+        super.getModel().createEvent(name, convertedDate, startTime, location, participants);
     }
     closeWindow(saveEvent);
     }
