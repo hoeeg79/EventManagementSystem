@@ -29,7 +29,6 @@ public class TicketViewController extends BaseController{
     @Override
     public void setup() throws Exception {
 
-        eventList();
 
     }
 
@@ -79,18 +78,6 @@ public class TicketViewController extends BaseController{
     public void handleCancel(ActionEvent actionEvent) {
     }
 
-    public void eventList(){
-        try {
-            clnEvent.setCellValueFactory(new PropertyValueFactory<>("event"));
-
-            tblEvent.getColumns().addAll();
-            //tblEvent.setItems();
-        }catch (Exception e){
-            displayError(e);
-            e.printStackTrace();
-        }
-
-    }
 
 
 }

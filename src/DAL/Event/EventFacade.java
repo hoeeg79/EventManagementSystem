@@ -8,10 +8,10 @@ import java.sql.Time;
 import java.util.List;
 
 public class EventFacade {
-    public Event createEvent(String name, Date date, Time time, String location) throws Exception {
+    public Event createEvent(String name, Date date, Time time, String location, int participants) throws Exception {
         CreateEvent ce = new CreateEvent();
 
-        return ce.createEvent(name,date,time,location);
+        return ce.createEvent(name,date,time,location,participants);
     }
 
     public void deleteEvent(Event deletedEvent) throws Exception{

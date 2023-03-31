@@ -162,8 +162,9 @@ public class MainViewController extends BaseController {
             Date date = eventBordet.getSelectionModel().getSelectedItem().getDate();
             Time time = eventBordet.getSelectionModel().getSelectedItem().getTime();
             String location = eventBordet.getSelectionModel().getSelectedItem().getLocation();
+            int participants = eventBordet.getSelectionModel().getSelectedItem().getParticipants();
 
-            return new Event(id, name, date, time, location);
+            return new Event(id, name, date, time, location, participants);
         }
 
     public void handleManageUsers(ActionEvent actionEvent) {

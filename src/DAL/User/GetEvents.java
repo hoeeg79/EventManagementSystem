@@ -37,9 +37,10 @@ public class GetEvents {
                 String location = rs.getString("location");
                 Date date = rs.getDate("date");
                 Time startTime = rs.getTime("time");
+                int participants = rs.getInt("participants");
 
                 //Create Movie and add to list created in the beginning
-                Event event = new Event(id,name,date,startTime,location);
+                Event event = new Event(id,name,date,startTime,location,participants);
                 allEvents.add(event);
             }
         } catch (Exception e){
