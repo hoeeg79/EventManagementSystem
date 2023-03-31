@@ -1,6 +1,8 @@
 package BLL;
 
+import BE.Customer;
 import BE.Event;
+import BE.Ticket;
 import DAL.Event.EventFacade;
 
 import java.sql.Date;
@@ -26,5 +28,13 @@ public class EventManager {
 
     public void editEvent(Event e) throws Exception {
         eventFacade.editEvent(e);
+    }
+
+    public Customer createCustomer(String firstName, String lastName, String email, int phoneNumber) throws Exception{
+        return eventFacade.createCustomer(firstName, lastName, email, phoneNumber);
+    }
+
+    public Ticket createTicket(int eventId, int phoneNumber) throws Exception {
+        return eventFacade.createTicket(eventId, phoneNumber);
     }
 }
