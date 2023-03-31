@@ -105,11 +105,11 @@ public class TicketViewController extends BaseController{
         document.add(barcodeImage);
 
 
-        document.setMargins(0, 0, 0, 0);
+        document.setMargins(0, 0, -9, 0);
         document.newPage();
-        Image image = Image.getInstance("resources/maps.png");
-        float scaleFactor = Math.max(document.getPageSize().rotate().getWidth() / image.rotate().getWidth(), document.getPageSize().rotate().getHeight() / image.rotate().getHeight());
-        image.scaleAbsolute(image.rotate().getWidth() * scaleFactor, image.rotate().getHeight() * scaleFactor);
+        Image image = Image.getInstance("resources/maps2.png");
+        float scaleFactor = Math.max(document.getPageSize().getWidth() / image.getWidth(), document.getPageSize().getHeight() / image.getHeight());
+        image.scaleAbsolute(image.getWidth() * scaleFactor, image.getHeight() * scaleFactor);
         document.add(image);
 
         document.close();
