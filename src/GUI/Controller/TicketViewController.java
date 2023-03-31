@@ -104,20 +104,13 @@ public class TicketViewController extends BaseController{
         barcodeImage.setRotationDegrees(90);
         document.add(barcodeImage);
 
+
+        document.setMargins(0, 0, 0, 0);
         document.newPage();
         Image image = Image.getInstance("resources/maps.png");
-        //image.scaleAbsolute(PageSize.A6.rotate().getWidth() - image.getScaledWidth(), PageSize.A6.rotate().getHeight() - image.getScaledHeight());
-        float scaleFactor = 0.2f;
-        image.scaleAbsolute(image.getScaledWidth() * scaleFactor, image.getScaledHeight() * scaleFactor);
-        //document.add(image);
-
-        Paragraph text = new Paragraph("This is some text that will appear next to the image.");
-        PdfPTable table = new PdfPTable(3);
-        table.setWidthPercentage(60);
-        table.addCell(new PdfPCell(image));
-        table.addCell(new PdfPCell(text));
-        document.add(table);
-
+        float scaleFactor = Math.max(document.getPageSize().rotate().getWidth() / image.rotate().getWidth(), document.getPageSize().rotate().getHeight() / image.rotate().getHeight());
+        image.scaleAbsolute(image.rotate().getWidth() * scaleFactor, image.rotate().getHeight() * scaleFactor);
+        document.add(image);
 
         document.close();
         System.out.println("Ticket generated successfully");
