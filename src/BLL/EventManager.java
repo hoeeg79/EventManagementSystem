@@ -32,6 +32,7 @@ public class EventManager {
 
     public void sellTicketEvent(Event e) throws Exception {
         eventFacade.sellTicketEvent(e);
+    }
 
     public Customer createCustomer(String firstName, String lastName, String email, int phoneNumber) throws Exception{
         return eventFacade.createCustomer(firstName, lastName, email, phoneNumber);
