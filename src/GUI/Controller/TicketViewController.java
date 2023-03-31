@@ -52,8 +52,8 @@ public class TicketViewController extends BaseController{
         border.setBorderColor(new com.itextpdf.text.BaseColor(0, 0, 0)); // black
         document.add(border);
 
-        Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
-        Paragraph title = new Paragraph(getModel().getSelectedEvent().getName() + "!!!", titleFont);
+        Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.BOLD);
+        Paragraph title = new Paragraph("This is your ticket to " + getModel().getSelectedEvent().getName() + "!", titleFont);
         title.setAlignment(Element.ALIGN_CENTER);
         title.setSpacingAfter(20);
         document.add(title);
@@ -64,7 +64,7 @@ public class TicketViewController extends BaseController{
         document.add(lineSeparator);
 
         Font eventNameFont = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD);
-        Paragraph eventName = new Paragraph("Let's meet at the: " + getModel().getSelectedEvent().getLocation() + "!",  eventNameFont);
+        Paragraph eventName = new Paragraph("Let's meet at the " + getModel().getSelectedEvent().getLocation() + "!",  eventNameFont);
         eventName.setAlignment(Element.ALIGN_CENTER);
         eventName.setSpacingBefore(5);
         document.add(eventName);
@@ -72,26 +72,29 @@ public class TicketViewController extends BaseController{
         Font normalFont = new Font(Font.FontFamily.TIMES_ROMAN, 12);
         Paragraph ticketDetails = new Paragraph();
         ticketDetails.add(new Paragraph(getModel().getSelectedEvent().getLocation() + " / " + getModel().getSelectedEvent().getTime(), normalFont));
-        ticketDetails.add(new Paragraph(String.valueOf(getModel().getSelectedEvent().getId()), normalFont)); //Gonna be a barcode someday
-        ticketDetails.add(new Paragraph("Description: This is a test ticket", normalFont));
         ticketDetails.setSpacingBefore(10);
         ticketDetails.setAlignment(Element.ALIGN_MIDDLE);
         document.add(ticketDetails);
 
+        Font descriptionFont = new Font(Font.FontFamily.TIMES_ROMAN, 8);
+        Paragraph descriptionDetails = new Paragraph();
+        descriptionDetails.add(new Paragraph("Description: On the backside of this ticket, you will find information about parking.", descriptionFont));
+        descriptionDetails.setSpacingBefore(95);
+        //descriptionDetails.setAlignment(Element.ALIGN_BOTTOM);
+        document.add(descriptionDetails);
 
-        Random random = new Random();
+        /*Random random = new Random();
         int codeNumber = random.nextInt(1000000);
-        String codeString = Integer.toString(codeNumber);
-
+        String codeString = Integer.toString(codeNumber);*/
 
         Barcode128 code128 = new Barcode128();
-        code128.setCode(codeString);
+        code128.setCode(String.valueOf(getModel().getSelectedEvent().getId()));
         code128.setSize(9);
         code128.setX(2);
         code128.setN(60);
         PdfContentByte cb = pdfWriter.getDirectContent();
         Image barcodeImage = code128.createImageWithBarcode(cb, null, null);
-        float x = PageSize.A6.rotate().getWidth() - barcodeImage.getScaledHeight() - 10;
+        float x = PageSize.A6.rotate().getWidth() - barcodeImage.getScaledHeight() - 15;
         float y = barcodeImage.getScaledHeight() + 10;
         barcodeImage.setAbsolutePosition(x, y);
         barcodeImage.setRotationDegrees(90);
