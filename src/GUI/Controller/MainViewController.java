@@ -182,7 +182,8 @@ public class MainViewController extends BaseController {
             return new Event(id, name, date, time, location, participants);
         }
 
-    public void handleManageUsers(ActionEvent actionEvent) {
+    @FXML
+    private void handleManageUsers(ActionEvent actionEvent) {
         try {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/UsersView.fxml"));
@@ -202,7 +203,7 @@ public class MainViewController extends BaseController {
         }
     }
 
-    public void enableAdmin(){
+    private void enableAdmin(){
         createEvent.setVisible(false);
         sellTickets.setVisible(false);
         editEvent.setVisible(false);
@@ -214,7 +215,7 @@ public class MainViewController extends BaseController {
         FXCollections.sort(vbButtons.getChildren(), byVisibility);
     }
 
-    public void enableCoordinator(){
+    private void enableCoordinator(){
         createEvent.setVisible(true);
         sellTickets.setVisible(true);
         editEvent.setVisible(true);
@@ -222,6 +223,17 @@ public class MainViewController extends BaseController {
         btnManageUsers.setVisible(false);
     }
 
-    public void handleLogout(ActionEvent actionEvent) {
+    @FXML
+    private void handleLogout(ActionEvent actionEvent) {
+        try {
+            Stage stage = (Stage) btnManageUsers.getScene().getWindow();
+            Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("GUI/View/LoginView.fxml"));
+
+            stage.setScene(new Scene(root));
+            stage.setTitle("Event System");
+            stage.show();
+        } catch (Exception e) {
+            displayError(e);
+        }
     }
 }

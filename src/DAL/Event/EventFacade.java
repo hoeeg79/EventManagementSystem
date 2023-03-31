@@ -1,6 +1,8 @@
 package DAL.Event;
 
+import BE.Customer;
 import BE.Event;
+import BE.Ticket;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -36,4 +38,17 @@ public class EventFacade {
 
         sellT.sellTicketEvent(e);
     }
+
+    public Customer createCustomer(String firstName, String lastName, String email, int phoneNumber) throws Exception {
+        CreateCustomer cc = new CreateCustomer();
+
+        return cc.createCustomer(firstName, lastName, email, phoneNumber);
+    }
+
+    public Ticket createTicket(int eventId, int phoneNumber) throws Exception {
+        CreateTicket ct = new CreateTicket();
+
+        return ct.createTicket(eventId, phoneNumber);
+    }
+
 }
