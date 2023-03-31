@@ -48,7 +48,7 @@ public class LoginController {
                 controller.setup();
 
                 primaryStage.setScene(scene);
-                primaryStage.setTitle("Event System.");
+                primaryStage.setTitle("Event System");
                 primaryStage.show();
             } else if (!user.isAdmin()) {
                 Parent root = loader.load();
