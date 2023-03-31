@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -25,6 +26,7 @@ public class TicketViewController extends BaseController{
     public Button btnCancel;
     public TableColumn clnEvent;
     public TableView tblEvent;
+    public TextField fxPhone;
 
     @Override
     public String toString() {
@@ -84,10 +86,16 @@ public class TicketViewController extends BaseController{
         ticketDetails.setAlignment(Element.ALIGN_MIDDLE);
         document.add(ticketDetails);
 
+        Time time = new Time(14, 30, 0); // Replace with your Time object
+        Date date = new Date(time.getTime()); // Convert Time to Date
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm"); // Format for hours and minutes
+        String formattedTime = formatter.format(date); // Convert date to string
+
         Font personalFont = new Font(Font.FontFamily.TIMES_ROMAN, 9);
         Paragraph personalDetails = new Paragraph();
         personalDetails.add(new Paragraph(fxName.getText(), personalFont));
         personalDetails.add(new Paragraph(fxEmail.getText(), personalFont));
+        personalDetails.add(new Paragraph(fxPhone.getText(), personalFont));
         personalDetails.add(new Paragraph(getModel().getSelectedEvent().getLocation(), personalFont));
         personalDetails.add(new Paragraph(String.valueOf(getModel().getSelectedEvent().getDate()) + " at " + getModel().getSelectedEvent().getTime(), personalFont));
         personalDetails.setSpacingBefore(2);
@@ -96,8 +104,7 @@ public class TicketViewController extends BaseController{
         Font descriptionFont = new Font(Font.FontFamily.TIMES_ROMAN, 8);
         Paragraph descriptionDetails = new Paragraph();
         descriptionDetails.add(new Paragraph("Description: On the backside of this ticket, you will find information about parking.", descriptionFont));
-        descriptionDetails.setSpacingBefore(40);
-        //descriptionDetails.setAlignment(Element.ALIGN_BOTTOM);
+        descriptionDetails.setSpacingBefore(20);
         document.add(descriptionDetails);
 
         /*Random random = new Random();
@@ -122,6 +129,7 @@ public class TicketViewController extends BaseController{
     }
 
     public void handleCancel(ActionEvent actionEvent) {
+        closeWindow(btnCancel);
     }
 
     public void eventList(){
