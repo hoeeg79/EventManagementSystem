@@ -27,6 +27,14 @@ public class TicketViewController extends BaseController{
     public TableView tblEvent;
 
     @Override
+    public String toString() {
+        return "TicketViewController{" +
+                "fxName=" + fxName +
+                ", fxEmail=" + fxEmail +
+                '}';
+    }
+
+    @Override
     public void setup() throws Exception {
 
         eventList();
@@ -69,17 +77,26 @@ public class TicketViewController extends BaseController{
         eventName.setSpacingBefore(5);
         document.add(eventName);
 
-        Font normalFont = new Font(Font.FontFamily.TIMES_ROMAN, 12);
+        Font normalFont = new Font(Font.FontFamily.TIMES_ROMAN, 11);
         Paragraph ticketDetails = new Paragraph();
-        ticketDetails.add(new Paragraph(getModel().getSelectedEvent().getLocation() + " / " + getModel().getSelectedEvent().getTime(), normalFont));
+        ticketDetails.add(new Paragraph("This is your information and what you need to know about the event:", normalFont));
         ticketDetails.setSpacingBefore(10);
         ticketDetails.setAlignment(Element.ALIGN_MIDDLE);
         document.add(ticketDetails);
 
+        Font personalFont = new Font(Font.FontFamily.TIMES_ROMAN, 9);
+        Paragraph personalDetails = new Paragraph();
+        personalDetails.add(new Paragraph(fxName.getText(), personalFont));
+        personalDetails.add(new Paragraph(fxEmail.getText(), personalFont));
+        personalDetails.add(new Paragraph(getModel().getSelectedEvent().getLocation(), personalFont));
+        personalDetails.add(new Paragraph(String.valueOf(getModel().getSelectedEvent().getDate()) + " at " + getModel().getSelectedEvent().getTime(), personalFont));
+        personalDetails.setSpacingBefore(2);
+        document.add(personalDetails);
+
         Font descriptionFont = new Font(Font.FontFamily.TIMES_ROMAN, 8);
         Paragraph descriptionDetails = new Paragraph();
         descriptionDetails.add(new Paragraph("Description: On the backside of this ticket, you will find information about parking.", descriptionFont));
-        descriptionDetails.setSpacingBefore(95);
+        descriptionDetails.setSpacingBefore(40);
         //descriptionDetails.setAlignment(Element.ALIGN_BOTTOM);
         document.add(descriptionDetails);
 
