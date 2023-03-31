@@ -9,13 +9,15 @@ public class Event {
     private Date date;
     private Time time;
     private String location;
+    private int participants;
 
-    public Event(int id, String name, Date date, Time time, String location) {
+    public Event(int id, String name, Date date, Time time, String location, int participants) {
         this.id = id;
         this.name = name;
         this.date = date;
         this.time = time;
         this.location = location;
+        this.participants = participants;
     }
 
     public String getName() {
@@ -58,6 +60,14 @@ public class Event {
         this.id = id;
     }
 
+    public int getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(int participants) {
+        this.participants = participants;
+    }
+
     @Override
     public String toString() {
         return "Event{" +
@@ -65,7 +75,8 @@ public class Event {
                 ", name='" + name + '\'' +
                 ", date=" + date +
                 ", time=" + time +
-                ", location='" + location + '\'' +
+                ", location=" + location + '\'' +
+                ", participants=" + participants +
                 '}';
     }
 }

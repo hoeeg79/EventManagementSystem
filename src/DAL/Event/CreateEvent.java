@@ -14,8 +14,8 @@ public class CreateEvent {
         DBCon = new DBConnector();
     }
 
-    protected Event createEvent(String name, Date date, Time time, String location) throws SQLException {
-        String sql = "INSERT INTO Event (name, date, time, location)VALUES (?,?,?,?);";
+    protected Event createEvent(String name, Date date, Time time, String location, int participants) throws SQLException {
+        String sql = "INSERT INTO Event (name, date, time, location, participants)VALUES (?,?,?,?,?);";
 
         try (Connection connection = DBCon.getConnection()){
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -24,6 +24,7 @@ public class CreateEvent {
             stmt.setDate(2, date);
             stmt.setTime(3, time);
             stmt.setString(4, location);
+            stmt.setInt(5, participants);
 
             stmt.executeUpdate();
 
@@ -34,7 +35,7 @@ public class CreateEvent {
                 id = rs.getInt(1);
             }
 
-            Event event = new Event(id, name, date, time, location);
+            Event event = new Event(id, name, date, time, location, participants);
             return event;
         } catch (SQLException e) {
             throw new SQLException();
