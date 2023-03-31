@@ -5,6 +5,7 @@ import BE.User;
 import GUI.Model.LoginModel;
 import GUI.Model.UserModel;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class LoginController {
@@ -24,6 +27,7 @@ public class LoginController {
     @FXML
     private Button btnLogin;
     private LoginModel loginModel = new LoginModel();
+
 
     private void login(){
 
@@ -72,5 +76,20 @@ public class LoginController {
     @FXML
     private void handleLogin(ActionEvent actionEvent) {
         login();
+    }
+
+    @FXML
+    private void handlePasswordCheckKey(KeyEvent keyEvent) {
+        checkIfEnter(keyEvent);
+    }
+
+    @FXML
+    private void handleUsernameCheckKey(KeyEvent keyEvent) {
+        checkIfEnter(keyEvent);
+    }
+    private void checkIfEnter(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            login();
+        }
     }
 }
