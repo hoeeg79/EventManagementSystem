@@ -32,7 +32,7 @@ public class TicketViewController extends BaseController{
 
     }
 
-    public void handlePrintTicket(ActionEvent actionEvent) throws FileNotFoundException, DocumentException {
+    public void handlePrintTicket(ActionEvent actionEvent) throws Exception {
         Document document = new Document(PageSize.A6.rotate());
         PdfWriter.getInstance(document, new FileOutputStream(fxName.getText() + "_Ticket.pdf"));
         document.open();
@@ -73,9 +73,13 @@ public class TicketViewController extends BaseController{
 
         document.close();
         System.out.println("Ticket generated successfully");
+
+        //-1 participants
+        getModel().sellTicketEvent(getModel().getSelectedEvent());
     }
 
     public void handleCancel(ActionEvent actionEvent) {
+
     }
 
 

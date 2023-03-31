@@ -51,4 +51,8 @@ public class EventModel {
         return selectedEvent;
     }
 
+    public void sellTicketEvent(Event e) throws Exception {
+        eventManager.sellTicketEvent(e);
+    }
+
 }

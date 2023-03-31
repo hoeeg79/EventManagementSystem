@@ -1,7 +1,6 @@
 package DAL.Event;
 
 import BE.Event;
-import DAL.User.GetEvents;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -30,5 +29,11 @@ public class EventFacade {
         EditEvent editE = new EditEvent();
 
         editE.editE(e);
+    }
+
+    public void sellTicketEvent(Event e) throws Exception {
+        SellTicketEvent sellT = new SellTicketEvent();
+
+        sellT.sellTicketEvent(e);
     }
 }

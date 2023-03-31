@@ -87,6 +87,7 @@ public class CreateEventViewController extends BaseController {
         txtHours.setText(String.valueOf(event.getTime().getHours()));
         txtMinutes.setText(String.valueOf(event.getTime().getMinutes()));
         txtLocation.setText(event.getLocation());
+        txtNumberOfParticipants.setText(String.valueOf(event.getParticipants()));
         selectedDate.setValue(event.getDate().toLocalDate());
         idOfEvent = event.getId();
         isEdit = true;

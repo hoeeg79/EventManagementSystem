@@ -27,4 +27,8 @@ public class EventManager {
     public void editEvent(Event e) throws Exception {
         eventFacade.editEvent(e);
     }
+
+    public void sellTicketEvent(Event e) throws Exception {
+        eventFacade.sellTicketEvent(e);
+    }
 }

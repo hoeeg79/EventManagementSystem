@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -26,6 +27,8 @@ import javafx.scene.control.TableView;
 
 public class MainViewController extends BaseController {
     public VBox vbButtons;
+    @FXML
+    private TableColumn clnParticipants;
     @FXML
     private Button btnManageUsers;
     @FXML
@@ -83,7 +86,7 @@ public class MainViewController extends BaseController {
     @FXML
     private void handleSellTickets(ActionEvent actionEvent) throws Exception {
         Event selectedEvent = eventBordet.getSelectionModel().getSelectedItem();
-        if (selectedEvent != null) {
+        if (selectedEvent != null && selectedEvent.getParticipants() > 0) {
 
             eventModel.setSelectedEvent(selectedEvent);
 
@@ -100,7 +103,17 @@ public class MainViewController extends BaseController {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
             stage.showAndWait();
+            fillEventList();
+        } else {
+            participantWarning();
         }
+    }
+
+    private void participantWarning(){
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Participant Warning!");
+        alert.setHeaderText("This event have hit it's limit of participants.");
+        alert.showAndWait();
     }
 
     @FXML
@@ -119,6 +132,8 @@ public class MainViewController extends BaseController {
             clnLocation.setCellValueFactory(new PropertyValueFactory<>("location"));
             clnDate.setCellValueFactory(new PropertyValueFactory<>("date"));
             clnTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+            clnParticipants.setCellValueFactory(new PropertyValueFactory<>("participants"));
+
 
             //Add the Movies to the list
             eventBordet.getColumns().addAll();
