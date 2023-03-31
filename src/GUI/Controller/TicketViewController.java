@@ -4,48 +4,33 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 
-import javax.swing.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Random;
-
 
 public class TicketViewController extends BaseController{
-    public TextField fxName;
-    public TextField fxEmail;
-    public Button btnPrint;
-    public Button btnCancel;
-    public TableColumn clnEvent;
-    public TableView tblEvent;
-    public TextField fxPhone;
-
-    @Override
-    public String toString() {
-        return "TicketViewController{" +
-                "fxName=" + fxName +
-                ", fxEmail=" + fxEmail +
-                '}';
-    }
+    @FXML
+    private TextField fxName;
+    @FXML
+    private TextField fxEmail;
+    @FXML
+    private Button btnPrint;
+    @FXML
+    private Button btnClose;
+    @FXML
+    private TextField fxPhone;
 
     @Override
     public void setup() throws Exception {
-
-
     }
 
-    public void handlePrintTicket(ActionEvent actionEvent) throws IOException, DocumentException {
+    @FXML
+    private void handlePrintTicket(ActionEvent actionEvent) throws IOException, DocumentException {
         FileChooser fileChooser = new FileChooser();
         File fileToSave = fileChooser.showSaveDialog(btnPrint.getScene().getWindow());
         Document document = new Document(PageSize.A6.rotate());
@@ -119,16 +104,28 @@ public class TicketViewController extends BaseController{
         barcodeImage.setRotationDegrees(90);
         document.add(barcodeImage);
 
+        document.newPage();
+        Image image = Image.getInstance("resources/maps.png");
+        //image.scaleAbsolute(PageSize.A6.rotate().getWidth() - image.getScaledWidth(), PageSize.A6.rotate().getHeight() - image.getScaledHeight());
+        float scaleFactor = 0.2f;
+        image.scaleAbsolute(image.getScaledWidth() * scaleFactor, image.getScaledHeight() * scaleFactor);
+        //document.add(image);
+
+        Paragraph text = new Paragraph("This is some text that will appear next to the image.");
+        PdfPTable table = new PdfPTable(3);
+        table.setWidthPercentage(60);
+        table.addCell(new PdfPCell(image));
+        table.addCell(new PdfPCell(text));
+        document.add(table);
+
+
         document.close();
         System.out.println("Ticket generated successfully");
-
-
         }
 
-    public void handleCancel(ActionEvent actionEvent) {
-        closeWindow(btnCancel);
+    @FXML
+    private void handleClose(ActionEvent actionEvent) {
+        closeWindow(btnClose);
     }
-
-
 
 }
