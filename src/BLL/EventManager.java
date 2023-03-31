@@ -14,7 +14,7 @@ public class EventManager {
 
     private EventFacade eventFacade = new EventFacade();
 
-    public Event createEvent(String name, Date date, Time time, String location, int participants) throws Exception{
+    public Event createEvent(String name, Date date, Time time, String location, int participants) throws Exception {
         return eventFacade.createEvent(name, date, time, location, participants);
     }
 
@@ -22,7 +22,7 @@ public class EventManager {
         eventFacade.deleteEvent(deletedEvent);
     }
 
-    public List<Event> getEvents() throws Exception{
+    public List<Event> getEvents() throws Exception {
         return eventFacade.getEvents();
     }
 
@@ -34,12 +34,14 @@ public class EventManager {
         eventFacade.sellTicketEvent(e);
     }
 
-    public Customer createCustomer(String firstName, String lastName, String email, int phoneNumber) throws Exception{
+    public Customer createCustomer (String firstName, String lastName, String email,int phoneNumber) throws
+    Exception {
         return eventFacade.createCustomer(firstName, lastName, email, phoneNumber);
     }
 
-    public Ticket createTicket(int eventId, int phoneNumber) throws Exception {
+    public Ticket createTicket ( int eventId, int phoneNumber) throws Exception {
         return eventFacade.createTicket(eventId, phoneNumber);
 
     }
 }
+
