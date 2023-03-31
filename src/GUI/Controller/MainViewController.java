@@ -111,8 +111,8 @@ public class MainViewController extends BaseController {
 
     private void participantWarning(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Participant Warning!");
-        alert.setHeaderText("This event have hit it's limit of participants.");
+        alert.setTitle("No tickets left!");
+        alert.setHeaderText("This event have hit it's limit of available tickets.");
         alert.showAndWait();
     }
 
