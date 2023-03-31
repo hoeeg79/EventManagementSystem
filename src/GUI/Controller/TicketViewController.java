@@ -30,7 +30,7 @@ public class TicketViewController extends BaseController{
     }
 
     @FXML
-    private void handlePrintTicket(ActionEvent actionEvent) throws IOException, DocumentException {
+    private void handlePrintTicket(ActionEvent actionEvent) throws Exception {
         FileChooser fileChooser = new FileChooser();
         File fileToSave = fileChooser.showSaveDialog(btnPrint.getScene().getWindow());
         Document document = new Document(PageSize.A6.rotate());
@@ -116,7 +116,10 @@ public class TicketViewController extends BaseController{
 
         document.close();
         System.out.println("Ticket generated successfully");
-        }
+
+ //-1 participants
+        getModel().sellTicketEvent(getModel().getSelectedEvent());
+    }
 
     @FXML
     private void handleClose(ActionEvent actionEvent) {

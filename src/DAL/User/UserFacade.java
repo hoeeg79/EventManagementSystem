@@ -1,7 +1,6 @@
 package DAL.User;
 
 import BE.User;
-import DAL.Event.GetUsers;
 
 
 import java.util.List;

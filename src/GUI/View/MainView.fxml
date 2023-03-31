@@ -24,10 +24,11 @@
       </font></Label>
     <TableView fx:id="eventBordet" layoutX="194.0" layoutY="82.0" prefHeight="515.0" prefWidth="585.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="75.0">
         <columns>
-          <TableColumn fx:id="clnTitle" prefWidth="190.0" resizable="false" text="Event" />
-         <TableColumn fx:id="clnLocation" prefWidth="190.0" resizable="false" text="Location" />
-         <TableColumn fx:id="clnDate" prefWidth="100.0" resizable="false" text="Date" />
-         <TableColumn fx:id="clnTime" prefWidth="100.0" resizable="false" text="Time" />
+          <TableColumn fx:id="clnTitle" prefWidth="180.0" resizable="false" text="Event" />
+         <TableColumn fx:id="clnLocation" prefWidth="180.0" resizable="false" text="Location" />
+         <TableColumn fx:id="clnDate" resizable="false" text="Date" />
+         <TableColumn fx:id="clnTime" prefWidth="60.0" resizable="false" text="Time" />
+         <TableColumn fx:id="clnParticipants" resizable="false" text="Tickets Left" />
         </columns>
     </TableView>
     <ImageView fitHeight="64.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
