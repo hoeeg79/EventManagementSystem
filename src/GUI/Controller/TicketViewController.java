@@ -85,10 +85,12 @@ public class TicketViewController extends BaseController{
         personalDetails.setSpacingBefore(2);
         document.add(personalDetails);
 
-        Font descriptionFont = new Font(Font.FontFamily.TIMES_ROMAN, 8);
+        Font descriptionFont = new Font(Font.FontFamily.TIMES_ROMAN, 7);
         Paragraph descriptionDetails = new Paragraph();
-        descriptionDetails.add(new Paragraph("Description: On the backside of this ticket, you will find information about parking.", descriptionFont));
-        descriptionDetails.setSpacingBefore(20);
+        descriptionDetails.add(new Paragraph("Description: On the backside of this ticket, you will find a map of the parkingspace.", descriptionFont));
+        descriptionDetails.add(new Paragraph("Erhvervsakademi Sydvest, Spangsbjerg Kirkevej 103, 6700 Esbjerg", descriptionFont));
+        descriptionDetails.add(new Paragraph("55.488626, 8.445813", descriptionFont));
+        descriptionDetails.setSpacingBefore(9);
         document.add(descriptionDetails);
 
         Barcode128 code128 = new Barcode128();
