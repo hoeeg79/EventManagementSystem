@@ -39,6 +39,7 @@
           <Button fx:id="deleteEvent" mnemonicParsing="false" onAction="#handleDeleteEvent" prefWidth="110.0" text="Delete Event" />
          <Button fx:id="editEvent" mnemonicParsing="false" onAction="#handleEditEvent" prefWidth="110.0" text="Edit Event" />
          <Button fx:id="sellTickets" mnemonicParsing="false" onAction="#handleSellTickets" prefWidth="110.0" text="Sell Ticket" />
+         <Button fx:id="btnExtraTicket" mnemonicParsing="false" onAction="#handleExtraTicket" prefWidth="110.0" text="Extra Ticket" />
          <Button fx:id="btnManageUsers" mnemonicParsing="false" onAction="#handleManageUsers" prefWidth="110.0" text="Manage Users" />
       </children>
       <padding>
