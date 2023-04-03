@@ -6,19 +6,21 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="300.0" prefWidth="200.0" stylesheets="@TicketView.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.TicketViewController">
+<AnchorPane prefHeight="345.0" prefWidth="200.0" stylesheets="@TicketView.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.TicketViewController">
    <children>
-      <Label layoutX="25.0" layoutY="40.0" text="Name" />
-      <Label layoutX="25.0" layoutY="105.0" text="Email" />
+      <Label layoutX="25.0" layoutY="105.0" text="Surname" />
+      <Label layoutX="25.0" layoutY="40.0" text="First name" />
+      <Label layoutX="25.0" layoutY="170.0" text="Email" />
       <VBox fillWidth="false" layoutX="46.0" layoutY="14.0" prefHeight="177.0" prefWidth="145.0" spacing="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0">
          <children>
-            <TextField fx:id="fxName" />
-            <TextField fx:id="fxEmail" />
-            <TextField fx:id="fxPhone" />
+            <TextField fx:id="txtFirstName" />
+            <TextField fx:id="txtLastName" prefHeight="50.0" prefWidth="145.0" />
+            <TextField fx:id="txtEmail" />
+            <TextField fx:id="txtPhone" />
          </children>
       </VBox>
-      <Button fx:id="btnPrint" layoutX="23.0" layoutY="254.0" mnemonicParsing="false" onAction="#handlePrintTicket" text="Sell Ticket" />
-      <Button fx:id="btnClose" layoutX="111.0" layoutY="254.0" mnemonicParsing="false" onAction="#handleClose" text="Close" />
-      <Label layoutX="25.0" layoutY="170.0" text="Phone number" />
+      <Button fx:id="btnPrint" layoutX="23.0" layoutY="289.0" mnemonicParsing="false" onAction="#handlePrintTicket" text="Sell Ticket" />
+      <Button fx:id="btnClose" layoutX="110.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleClose" text="Close" />
+      <Label layoutX="25.0" layoutY="235.0" text="Phone number" />
    </children>
 </AnchorPane>
