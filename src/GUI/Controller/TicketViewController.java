@@ -69,7 +69,6 @@ public class TicketViewController extends BaseController{
             }
         };
         textField3.setTextFormatter(new TextFormatter<>(emailFilter));
-
         textField3.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.length() > 50) {
                 textField3.setText(newValue.substring(0, 50));
