@@ -34,14 +34,12 @@ public class EventManager {
         eventFacade.sellTicketEvent(e);
     }
 
-    public Customer createCustomer (String firstName, String lastName, String email,int phoneNumber) throws
-    Exception {
+    public Customer createCustomer (String firstName, String lastName, String email,int phoneNumber) throws Exception {
         return eventFacade.createCustomer(firstName, lastName, email, phoneNumber);
     }
 
     public Ticket createTicket ( int eventId, int phoneNumber) throws Exception {
         return eventFacade.createTicket(eventId, phoneNumber);
-
     }
 }
 
