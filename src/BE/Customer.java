@@ -4,8 +4,6 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String email;
-
-
     private int phoneNumber;
 
     public Customer(String firstName, String lastName, String email, int phoneNumber) {

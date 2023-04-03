@@ -1,6 +1,7 @@
 package GUI.Controller;
 
 import BE.Customer;
+import BE.Ticket;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.draw.LineSeparator;
@@ -34,6 +35,15 @@ public class TicketViewController extends BaseController{
 
     @FXML
     private void handlePrintTicket(ActionEvent actionEvent) throws Exception {
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        String email = txtEmail.getText();
+        int phone = Integer.parseInt(txtPhone.getText());
+
+        Customer cus = new Customer(firstName, lastName, email, phone);
+        //-1 participants
+        Ticket t = getModel().sellTicketEvent(getModel().getSelectedEvent(),cus);
+
         FileChooser fileChooser = new FileChooser();
         File fileToSave = fileChooser.showSaveDialog(btnPrint.getScene().getWindow());
         Document document = new Document(PageSize.A6.rotate());
@@ -95,9 +105,9 @@ public class TicketViewController extends BaseController{
         descriptionDetails.add(new Paragraph("55.488626, 8.445813", descriptionFont));
         descriptionDetails.setSpacingBefore(9);
         document.add(descriptionDetails);
-
+        //getModel().getSelectedEvent().getId()))
         Barcode128 code128 = new Barcode128();
-        code128.setCode(String.valueOf(getModel().getSelectedEvent().getId()));
+        code128.setCode(String.valueOf(t.getTicketId()));
         code128.setSize(9);
         code128.setX(2);
         code128.setN(60);
@@ -118,15 +128,7 @@ public class TicketViewController extends BaseController{
 
         document.close();
         System.out.println("Ticket generated successfully");
-        String firstName = txtFirstName.getText();
-        String lastName = txtLastName.getText();
-        String email = txtEmail.getText();
-        int phone = Integer.parseInt(txtPhone.getText());
 
-        Customer cus = new Customer(firstName, lastName, email, phone);
-
- //-1 participants
-        getModel().sellTicketEvent(getModel().getSelectedEvent(),cus);
     }
 
     @FXML

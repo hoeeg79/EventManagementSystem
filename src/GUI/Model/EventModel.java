@@ -2,6 +2,7 @@ package GUI.Model;
 
 import BE.Customer;
 import BE.Event;
+import BE.Ticket;
 import BLL.EventManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -52,19 +53,18 @@ public class EventModel {
         return selectedEvent;
     }
 
-    public void sellTicketEvent(Event e, Customer c) throws Exception {
+    public Ticket sellTicketEvent(Event e, Customer c) throws Exception {
         eventManager.sellTicketEvent(e);
         createCustomer(c.getFirstName(), c.getLastName(), c.getEmail(), c.getPhoneNumber());
-        createTicket(e.getId(), c.getPhoneNumber());
+        return createTicket(e.getId(), c.getPhoneNumber());
     }
 
     private void createCustomer(String firstName, String lastName, String email, int phoneNumber) throws Exception {
         eventManager.createCustomer(firstName, lastName, email, phoneNumber);
-
     }
 
-    private void createTicket(int eventId, int phoneNumber) throws Exception{
-        eventManager.createTicket(eventId, phoneNumber);
+    private Ticket createTicket(int eventId, int phoneNumber) throws Exception{
+        return eventManager.createTicket(eventId, phoneNumber);
     }
 
 }
