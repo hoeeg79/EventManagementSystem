@@ -1,5 +1,6 @@
 package GUI.Controller;
 
+import BE.Customer;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.draw.LineSeparator;
@@ -11,19 +12,21 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class TicketViewController extends BaseController{
+    public TextField txtLastName;
     @FXML
-    private TextField fxName;
+    private TextField txtFirstName;
     @FXML
-    private TextField fxEmail;
+    private TextField txtEmail;
     @FXML
     private Button btnPrint;
     @FXML
     private Button btnClose;
     @FXML
-    private TextField fxPhone;
+    private TextField txtPhone;
+
+
 
     @Override
     public void setup() throws Exception {
@@ -77,9 +80,9 @@ public class TicketViewController extends BaseController{
 
         Font personalFont = new Font(Font.FontFamily.TIMES_ROMAN, 9);
         Paragraph personalDetails = new Paragraph();
-        personalDetails.add(new Paragraph(fxName.getText(), personalFont));
-        personalDetails.add(new Paragraph(fxEmail.getText(), personalFont));
-        personalDetails.add(new Paragraph(fxPhone.getText(), personalFont));
+        personalDetails.add(new Paragraph(txtFirstName.getText() + " " + txtLastName.getText(), personalFont));
+        personalDetails.add(new Paragraph(txtEmail.getText(), personalFont));
+        personalDetails.add(new Paragraph(txtPhone.getText(), personalFont));
         personalDetails.add(new Paragraph(getModel().getSelectedEvent().getLocation(), personalFont));
         personalDetails.add(new Paragraph(String.valueOf(getModel().getSelectedEvent().getDate()) + " at " + getModel().getSelectedEvent().getTime(), personalFont));
         personalDetails.setSpacingBefore(2);
@@ -106,7 +109,6 @@ public class TicketViewController extends BaseController{
         barcodeImage.setRotationDegrees(90);
         document.add(barcodeImage);
 
-
         document.setMargins(0, 0, -9, 0);
         document.newPage();
         Image image = Image.getInstance("resources/maps2.png");
@@ -116,9 +118,15 @@ public class TicketViewController extends BaseController{
 
         document.close();
         System.out.println("Ticket generated successfully");
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        String email = txtEmail.getText();
+        int phone = Integer.parseInt(txtPhone.getText());
 
+
+        Customer cus = new Customer(firstName, lastName, email, phone);
  //-1 participants
-        getModel().sellTicketEvent(getModel().getSelectedEvent());
+        getModel().sellTicketEvent(getModel().getSelectedEvent(),cus);
     }
 
     @FXML
