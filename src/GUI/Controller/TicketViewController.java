@@ -9,12 +9,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.function.UnaryOperator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TicketViewController extends BaseController{
+
+    @FXML
     public TextField txtLastName;
     @FXML
     private TextField txtFirstName;
@@ -28,9 +34,50 @@ public class TicketViewController extends BaseController{
     private TextField txtPhone;
 
 
-
     @Override
     public void setup() throws Exception {
+        TextField textField = txtFirstName;
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 15) {
+                textField.setText(newValue.substring(0, 15));
+            }
+        });
+        TextField textField2 = txtLastName;
+        textField2.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 15) {
+                textField2.setText(newValue.substring(0, 15));
+            }
+        });
+        TextField textField4 = txtPhone;
+        textField4.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                textField4.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+            if (newValue.length() > 8) {
+                textField4.setText(newValue.substring(0, 8));
+            }
+        });
+
+        TextField textField3 = txtEmail;
+        Pattern emailPattern = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        UnaryOperator<TextFormatter.Change> emailFilter = c -> {
+            String newText = c.getControlNewText();
+            if (emailPattern.matcher(newText).matches()) {
+                return c;
+            } else {
+                return null;
+            }
+        };
+        textField3.setTextFormatter(new TextFormatter<>(emailFilter));
+
+        textField3.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() > 50) {
+                textField3.setText(newValue.substring(0, 50));
+            }
+            if (emailPattern.matcher(newValue).matches()) {
+                textField3.setStyle("");
+            }
+        });
     }
 
     @FXML
@@ -49,10 +96,6 @@ public class TicketViewController extends BaseController{
         Document document = new Document(PageSize.A6.rotate());
         PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(fileToSave.getAbsoluteFile()));
         document.open();
-
-        /*Image image = Image.getInstance("resources/—Pngtree—3 golden stars_4523648.png");
-        image.scaleAbsolute(PageSize.A6.rotate().getWidth() - image.getScaledWidth() - 10, PageSize.A6.rotate().getHeight() - image.getScaledHeight() - 10);
-        document.add(image);*/
 
         Rectangle background = new Rectangle(0, 0, PageSize.A6.rotate().getWidth(), PageSize.A6.rotate().getHeight());
         background.setBackgroundColor(new com.itextpdf.text.BaseColor(240, 230, 199));
