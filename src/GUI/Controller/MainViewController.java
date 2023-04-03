@@ -211,6 +211,7 @@ public class MainViewController extends BaseController {
         editEvent.setVisible(false);
         deleteEvent.setVisible(true);
         btnManageUsers.setVisible(true);
+        btnExtraTicket.setVisible(false);
 
         Comparator<Node> byVisibility = (Node b1, Node b2) -> Boolean.compare(b2.isVisible(), b1.isVisible());
 
@@ -223,6 +224,7 @@ public class MainViewController extends BaseController {
         editEvent.setVisible(true);
         deleteEvent.setVisible(true);
         btnManageUsers.setVisible(false);
+        btnExtraTicket.setVisible(true);
     }
 
     @FXML
