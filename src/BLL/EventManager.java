@@ -14,8 +14,8 @@ public class EventManager {
 
     private EventFacade eventFacade = new EventFacade();
 
-    public Event createEvent(String name, Date date, Time time, String location, int participants) throws Exception {
-        return eventFacade.createEvent(name, date, time, location, participants);
+    public Event createEvent(String name, Date date, Time time, String location, int participants, boolean VIP, boolean food, boolean frontRow, boolean beer) throws Exception {
+        return eventFacade.createEvent(name, date, time, location, participants, VIP, food, frontRow, beer);
     }
 
     public void deleteEvent(Event deletedEvent) throws Exception {

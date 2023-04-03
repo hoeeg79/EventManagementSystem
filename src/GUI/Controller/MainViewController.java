@@ -180,8 +180,12 @@ public class MainViewController extends BaseController {
             Time time = eventBordet.getSelectionModel().getSelectedItem().getTime();
             String location = eventBordet.getSelectionModel().getSelectedItem().getLocation();
             int participants = eventBordet.getSelectionModel().getSelectedItem().getParticipants();
+            boolean VIP = eventBordet.getSelectionModel().getSelectedItem().isVIP();
+            boolean food = eventBordet.getSelectionModel().getSelectedItem().isFood();
+            boolean frontRow = eventBordet.getSelectionModel().getSelectedItem().isFrontRow();
+            boolean beer = eventBordet.getSelectionModel().getSelectedItem().isBeer();
 
-            return new Event(id, name, date, time, location, participants);
+            return new Event(id, name, date, time, location, participants, VIP, food, frontRow, beer);
         }
 
     @FXML

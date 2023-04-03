@@ -16,7 +16,7 @@ public class EditEvent {
     public void editE(Event event) throws Exception {
         try (Connection con = DBCon.getConnection()) {
 
-            String sql = "UPDATE Event SET name=?, date=?, time=?, location=?, participants=? WHERE id=?";
+            String sql = "UPDATE Event SET name=?, date=?, time=?, location=?, participants=?, VIP = ?, food = ?, frontRow = ?, beer = ? WHERE id=?";
             PreparedStatement stmt = con.prepareStatement(sql);
 
             stmt.setString(1, event.getName());
@@ -24,7 +24,11 @@ public class EditEvent {
             stmt.setTime(3, event.getTime());
             stmt.setString(4, event.getLocation());
             stmt.setInt(5, event.getParticipants());
-            stmt.setInt(6, event.getId());
+            stmt.setBoolean(6, event.isVIP());
+            stmt.setBoolean(7, event.isFood());
+            stmt.setBoolean(8, event.isFrontRow());
+            stmt.setBoolean(9, event.isBeer());
+            stmt.setInt(10, event.getId());
 
             stmt.executeUpdate();
 
