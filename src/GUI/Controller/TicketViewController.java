@@ -1,6 +1,7 @@
 package GUI.Controller;
 
 import BE.Customer;
+import BE.Event;
 import BE.Ticket;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
@@ -8,6 +9,7 @@ import com.itextpdf.text.pdf.draw.LineSeparator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.stage.FileChooser;
@@ -21,7 +23,15 @@ import java.util.regex.Pattern;
 public class TicketViewController extends BaseController{
 
     @FXML
-    public TextField txtLastName;
+    private CheckBox cbVIP;
+    @FXML
+    private CheckBox cbFood;
+    @FXML
+    private CheckBox cbFrontRow;
+    @FXML
+    private CheckBox cbFreeBeer;
+    @FXML
+    private TextField txtLastName;
     @FXML
     private TextField txtFirstName;
     @FXML
@@ -77,6 +87,7 @@ public class TicketViewController extends BaseController{
                 textField3.setStyle("");
             }
         });
+        setExtra();
     }
 
     @FXML
@@ -135,7 +146,7 @@ public class TicketViewController extends BaseController{
         personalDetails.add(new Paragraph(txtFirstName.getText() + " " + txtLastName.getText(), personalFont));
         personalDetails.add(new Paragraph(txtEmail.getText(), personalFont));
         personalDetails.add(new Paragraph(txtPhone.getText(), personalFont));
-        personalDetails.add(new Paragraph(getModel().getSelectedEvent().getLocation(), personalFont));
+        personalDetails.add(new Paragraph(cbString(),  personalFont));
         personalDetails.add(new Paragraph(String.valueOf(getModel().getSelectedEvent().getDate()) + " at " + getModel().getSelectedEvent().getTime(), personalFont));
         personalDetails.setSpacingBefore(2);
         document.add(personalDetails);
@@ -168,6 +179,7 @@ public class TicketViewController extends BaseController{
         image.scaleAbsolute(image.getWidth() * scaleFactor, image.getHeight() * scaleFactor);
         document.add(image);
 
+
         document.close();
         System.out.println("Ticket generated successfully");
 
@@ -176,6 +188,54 @@ public class TicketViewController extends BaseController{
     @FXML
     private void handleClose(ActionEvent actionEvent) {
         closeWindow(btnClose);
+    }
+
+    private void setExtra(){
+        Event e = getModel().getSelectedEvent();
+        if(e.isVIP()){
+            cbVIP.setVisible(true);
+        }else {
+            cbVIP.setVisible(false);
+        }
+
+        if(e.isBeer()){
+            cbFreeBeer.setVisible(true);
+        }else{
+            cbFreeBeer.setVisible(false);
+        }
+
+        if(e.isFood()){
+            cbFood.setVisible(true);
+        }else{
+            cbFood.setVisible(false);
+        }
+
+        if(e.isFrontRow()){
+            cbFrontRow.setVisible(true);
+        }else{
+            cbFrontRow.setVisible(false);
+        }
+    }
+
+    private String cbString(){
+
+        String s = "This ticket includes:" ;
+        if(cbVIP.isSelected()){
+            s = s + " vip";
+        }
+        if(cbFood.isSelected()){
+            s = s + " free food";
+        }
+        if(cbFreeBeer.isSelected()){
+            s = s + " free beer";
+        }
+        if(cbFrontRow.isSelected()){
+            s = s + " front row seats";
+        }
+        if(s.equals("This ticket includes:")){
+            s = "";
+        }
+        return s;
     }
 
 }
