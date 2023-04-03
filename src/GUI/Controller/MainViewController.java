@@ -28,6 +28,8 @@ import javafx.scene.control.TableView;
 public class MainViewController extends BaseController {
     public VBox vbButtons;
     @FXML
+    private Button btnExtraTicket;
+    @FXML
     private TableColumn clnParticipants;
     @FXML
     private Button btnManageUsers;
@@ -234,6 +236,28 @@ public class MainViewController extends BaseController {
             stage.show();
         } catch (Exception e) {
             displayError(e);
+        }
+    }
+
+    public void handleExtraTicket(ActionEvent actionEvent) throws Exception {
+        Event selectedEvent = eventBordet.getSelectionModel().getSelectedItem();
+        if (selectedEvent != null) {
+
+            eventModel.setSelectedEvent(selectedEvent);
+
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/ExtraTicketView.fxml"));
+            Parent root = loader.load();
+
+            ExtraTicketViewController controller = loader.getController();
+            controller.setModel(super.getModel());
+            controller.setup();
+
+            stage.setScene(new Scene(root));
+            stage.setTitle("Extra Ticket");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
+            stage.showAndWait();
         }
     }
 }
