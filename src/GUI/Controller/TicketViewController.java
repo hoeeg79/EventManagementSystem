@@ -48,12 +48,18 @@ public class TicketViewController extends BaseController{
     public void setup() throws Exception {
         TextField textField = txtFirstName;
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-Z]*")) {
+                textField.setText(newValue.replaceAll("[^a-zA-Z]", ""));
+            }
             if (newValue.length() > 15) {
                 textField.setText(newValue.substring(0, 15));
             }
         });
         TextField textField2 = txtLastName;
         textField2.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-Z]*")) {
+                textField2.setText(newValue.replaceAll("[^a-zA-Z]", ""));
+            }
             if (newValue.length() > 15) {
                 textField2.setText(newValue.substring(0, 15));
             }
