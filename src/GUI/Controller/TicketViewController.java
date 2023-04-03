@@ -109,7 +109,7 @@ public class TicketViewController extends BaseController{
 
         document.setMargins(0, 0, -9, 0);
         document.newPage();
-        Image image = Image.getInstance("resources/maps2.png");
+        Image image = Image.getInstance("resources/maps3.png");
         float scaleFactor = Math.max(document.getPageSize().getWidth() / image.getWidth(), document.getPageSize().getHeight() / image.getHeight());
         image.scaleAbsolute(image.getWidth() * scaleFactor, image.getHeight() * scaleFactor);
         document.add(image);
@@ -117,6 +117,7 @@ public class TicketViewController extends BaseController{
         document.close();
         System.out.println("Ticket generated successfully");
 
+        
  //-1 participants
         getModel().sellTicketEvent(getModel().getSelectedEvent());
     }
