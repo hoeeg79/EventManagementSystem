@@ -14,8 +14,8 @@ public class CreateEvent {
         DBCon = new DBConnector();
     }
 
-    protected Event createEvent(String name, Date date, Time time, String location, int participants) throws SQLException {
-        String sql = "INSERT INTO Event (name, date, time, location, participants)VALUES (?,?,?,?,?);";
+    protected Event createEvent(String name, Date date, Time time, String location, int participants, boolean VIP, boolean food, boolean frontRow, boolean beer) throws SQLException {
+        String sql = "INSERT INTO Event (name, date, time, location, participants, VIP, food, frontRow, beer)VALUES (?,?,?,?,?,?,?,?,?);";
 
         try (Connection connection = DBCon.getConnection()){
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -25,6 +25,10 @@ public class CreateEvent {
             stmt.setTime(3, time);
             stmt.setString(4, location);
             stmt.setInt(5, participants);
+            stmt.setBoolean(6, VIP);
+            stmt.setBoolean(7, food);
+            stmt.setBoolean(8, frontRow);
+            stmt.setBoolean(9, beer);
 
             stmt.executeUpdate();
 
@@ -35,7 +39,7 @@ public class CreateEvent {
                 id = rs.getInt(1);
             }
 
-            Event event = new Event(id, name, date, time, location, participants);
+            Event event = new Event(id, name, date, time, location, participants, VIP, food, frontRow, beer);
             return event;
         } catch (SQLException e) {
             throw new SQLException();

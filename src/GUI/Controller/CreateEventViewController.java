@@ -3,10 +3,7 @@ package GUI.Controller;
 import BE.Event;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.util.converter.IntegerStringConverter;
 
 import java.sql.Date;
@@ -15,6 +12,14 @@ import java.time.LocalDate;
 
 
 public class CreateEventViewController extends BaseController {
+    @FXML
+    private CheckBox cbFood;
+    @FXML
+    private CheckBox cbFrontRow;
+    @FXML
+    private CheckBox cbBeer;
+    @FXML
+    private CheckBox cbVIP;
     @FXML
     private TextField txtMinutes;
     @FXML
@@ -46,16 +51,19 @@ public class CreateEventViewController extends BaseController {
     Date convertedDate = Date.valueOf(unconvertedDate);
     String location = txtLocation.getText();
     int participants = Integer.parseInt(txtNumberOfParticipants.getText());
-
     int hours = Integer.parseInt(txtHours.getText());
     int minutes = Integer.parseInt(txtMinutes.getText());
     Time startTime = new Time(hours,minutes,0);
+    boolean VIP = cbVIP.isSelected();
+    boolean food = cbFood.isSelected();
+    boolean frontRow = cbFrontRow.isSelected();
+    boolean beer = cbBeer.isSelected();
 
     if (isEdit) {
-        super.getModel().editEvent(idOfEvent, name, convertedDate, startTime, location, participants);
+        super.getModel().editEvent(idOfEvent, name, convertedDate, startTime, location, participants, VIP, food, frontRow, beer);
         getModel().getObservableEvents();
     } else {
-        super.getModel().createEvent(name, convertedDate, startTime, location, participants);
+        super.getModel().createEvent(name, convertedDate, startTime, location, participants, VIP, food, frontRow, beer);
     }
     closeWindow(saveEvent);
     }
@@ -91,6 +99,10 @@ public class CreateEventViewController extends BaseController {
         selectedDate.setValue(event.getDate().toLocalDate());
         idOfEvent = event.getId();
         isEdit = true;
+        cbVIP.setSelected(event.isVIP());
+        cbBeer.setSelected(event.isBeer());
+        cbFood.setSelected(event.isFood());
+        cbFrontRow.setSelected(event.isFrontRow());
     }
     public void notEdit() {
         isEdit = false;
