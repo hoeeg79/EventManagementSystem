@@ -19,7 +19,6 @@ public class EventModel {
 
     public EventModel() throws Exception {
         eventManager = new EventManager();
-
         eventList = FXCollections.observableArrayList();
     }
 
