@@ -46,11 +46,18 @@ public class TicketViewController extends BaseController{
 
     @Override
     public void setup() throws Exception {
+        try {
         setExtra();
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void handlePrintTicket(ActionEvent actionEvent) throws Exception {
+
+        try{
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
         String email = txtEmail.getText();
@@ -147,7 +154,10 @@ public class TicketViewController extends BaseController{
 
         document.close();
         System.out.println("Ticket generated successfully");
-
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -158,29 +168,26 @@ public class TicketViewController extends BaseController{
     private void setExtra(){
         Event e = getModel().getSelectedEvent();
         cbVIP.setVisible(e.isVIP());
-
         cbFreeBeer.setVisible(e.isBeer());
-
         cbFood.setVisible(e.isFood());
-
         cbFrontRow.setVisible(e.isFrontRow());
     }
 
-    private String cbString(){
+    private String cbString() {
         StringBuilder sb = new StringBuilder();
         List<String> items = new ArrayList<>();
-        String s = "This ticket includes: " ;
+        String s = "This ticket includes: ";
 
-        if(cbVIP.isSelected()){
+        if (cbVIP.isSelected()) {
             items.add("vip");
         }
-        if(cbFood.isSelected()){
+        if (cbFood.isSelected()) {
             items.add("free food");
         }
-        if(cbFreeBeer.isSelected()){
+        if (cbFreeBeer.isSelected()) {
             items.add("free beer");
         }
-        if(cbFrontRow.isSelected()){
+        if (cbFrontRow.isSelected()) {
             items.add("front row seats");
         }
 
@@ -188,24 +195,23 @@ public class TicketViewController extends BaseController{
 
         for (int i = 0; i < items.size(); i++) {
             sb.append(items.get(i));
-            if (i == items.size()-2) {
+            if (i == items.size() - 2) {
                 sb.append(" and ");
-            } else if (i < items.size() -1) {
+            } else if (i < items.size() - 1) {
                 sb.append(", ");
             }
 
-            if (i == items.size()-1){
+            if (i == items.size() - 1) {
                 sb.append(".");
             }
         }
 
         s = sb.toString();
 
-        if (s.equals("This ticket includes: ")){
+        if (s.equals("This ticket includes: ")) {
             s = "";
         }
 
         return s;
     }
-
 }
