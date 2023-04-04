@@ -40,6 +40,9 @@ public class UsersController extends BaseController{
         }
     }
 
+    /**
+     * Creates a new user for the application.
+     */
     public void handleCreateUsers(ActionEvent actionEvent) throws Exception {
         String username = tfUsername.getText();
         String password = tfPassword.getText();
@@ -57,7 +60,9 @@ public class UsersController extends BaseController{
 
     }
 
-
+    /**
+     * Deletes a user from the application.
+     */
     public void handleDeleteUsers(ActionEvent actionEvent) throws Exception {
         try{
             User deletedUser = userList.getSelectionModel().getSelectedItem();
@@ -69,6 +74,9 @@ public class UsersController extends BaseController{
 
     }
 
+    /**
+     * Fills the column with the specified information
+     */
     public void fillList(){
             clnUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
             clnAdmin.setCellValueFactory(new PropertyValueFactory<>("admin"));
