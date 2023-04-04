@@ -39,7 +39,8 @@ public class UsersController extends BaseController{
         }
     }
 
-    public void handleCreateUsers(ActionEvent actionEvent) {
+    @FXML
+    private void handleCreateUsers(ActionEvent actionEvent) {
         String username = tfUsername.getText();
         String password = tfPassword.getText();
         String confirmPassword = tfConfirmPassword.getText();
@@ -57,7 +58,8 @@ public class UsersController extends BaseController{
     }
 
 
-    public void handleDeleteUsers(ActionEvent actionEvent) {
+    @FXML
+    private void handleDeleteUsers(ActionEvent actionEvent) {
         try {
             User deletedUser = userList.getSelectionModel().getSelectedItem();
             userModel.deleteUsers(deletedUser);
