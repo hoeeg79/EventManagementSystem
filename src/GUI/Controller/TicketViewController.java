@@ -46,31 +46,18 @@ public class TicketViewController extends BaseController{
 
     @Override
     public void setup() throws Exception {
-        TextField textField = txtFirstName;
-        textField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("[a-zA-Z]*")) {
-                textField.setText(newValue.replaceAll("[^a-zA-Z]", ""));
-            }
-            if (newValue.length() > 15) {
-                textField.setText(newValue.substring(0, 15));
-            }
-        });
-        TextField textField2 = txtLastName;
+        setExtra();
+
+        addAlphabeticListener(txtFirstName);
+        addAlphabeticListener(txtLastName);
+
+        TextField textField2 = txtPhone;
         textField2.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("[a-zA-Z]*")) {
-                textField2.setText(newValue.replaceAll("[^a-zA-Z]", ""));
-            }
-            if (newValue.length() > 15) {
-                textField2.setText(newValue.substring(0, 15));
-            }
-        });
-        TextField textField4 = txtPhone;
-        textField4.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
-                textField4.setText(newValue.replaceAll("[^\\d]", ""));
+                textField2.setText(newValue.replaceAll("[^\\d]", ""));
             }
             if (newValue.length() > 8) {
-                textField4.setText(newValue.substring(0, 8));
+                textField2.setText(newValue.substring(0, 8));
             }
         });
 
@@ -91,10 +78,23 @@ public class TicketViewController extends BaseController{
             }
             if (emailPattern.matcher(newValue).matches()) {
                 textField3.setStyle("");
+            } else {
+                textField3.setStyle("-fx-border-color: red;");
             }
         });
-        setExtra();
     }
+
+    private void addAlphabeticListener(TextField textField) {
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-Z]*")) {
+                textField.setText(newValue.replaceAll("[^a-zA-Z]", ""));
+            }
+            if (newValue.length() > 15) {
+                textField.setText(newValue.substring(0, 15));
+            }
+        });
+    }
+
 
     @FXML
     private void handlePrintTicket(ActionEvent actionEvent) throws Exception {
