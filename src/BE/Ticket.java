@@ -5,11 +5,9 @@ import java.sql.Time;
 
 public class Ticket{
     private int ticketId;
-
     private boolean isScanned;
     private int eventId;
     private int phoneNumber;
-
 
 
     public Ticket(int ticketId, int eventId, int phoneNumber) {

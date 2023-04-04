@@ -217,8 +217,7 @@ public class MainViewController extends BaseController {
     }
 
     /**
-     * 
-     * @return
+     * Gets the chosen event.
      */
     private Event getChosenEvent() {
             int id = eventBordet.getSelectionModel().getSelectedItem().getId();
@@ -235,6 +234,9 @@ public class MainViewController extends BaseController {
             return new Event(id, name, date, time, location, participants, VIP, food, frontRow, beer);
         }
 
+    /**
+     * Opens the users view, to add or delete users
+     */
     @FXML
     private void handleManageUsers(ActionEvent actionEvent) {
         try {
@@ -256,6 +258,9 @@ public class MainViewController extends BaseController {
         }
     }
 
+    /**
+     * Disables buttons the admin user does not need.
+     */
     private void enableAdmin(){
         try{
         createEvent.setVisible(false);
@@ -274,6 +279,9 @@ public class MainViewController extends BaseController {
         }
     }
 
+    /**
+     * Disables buttons the coordinator does not need.
+     */
     private void enableCoordinator(){
         try{
         createEvent.setVisible(true);
@@ -288,6 +296,9 @@ public class MainViewController extends BaseController {
         }
     }
 
+    /**
+     * Logs the admin or coordinator out, so you can log onto a different account
+     */
     @FXML
     private void handleLogout(ActionEvent actionEvent) {
         try {
@@ -301,8 +312,10 @@ public class MainViewController extends BaseController {
             displayError(e);
         }
     }
-
-    public void handleExtraTicket(ActionEvent actionEvent) {
+    /**
+     * Opens the extra ticket view
+     */
+    public void handleExtraTicket(ActionEvent actionEvent) throws Exception {
         try{
         Event selectedEvent = eventBordet.getSelectionModel().getSelectedItem();
         if (selectedEvent != null) {
