@@ -13,10 +13,17 @@ public class GetUsers {
 
     private DBConnector DBCon;
 
+    /**
+     * Constructor of the GetUsers class, used to instantiate the DBConnector.
+     */
     public GetUsers() throws Exception {
         DBCon = new DBConnector();
     }
 
+    /**
+     * returnUsers is a method that uses an SQL string to select everything from the User_credentials table
+     * and return all the users
+     */
     public List<User> returnUsers() throws Exception{
 
         ArrayList<User> allUsers = new ArrayList<>();

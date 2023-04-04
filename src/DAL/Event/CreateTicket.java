@@ -8,10 +8,17 @@ import java.sql.*;
 public class CreateTicket {
     private DBConnector dbc;
 
+    /**
+     * Constructor of the CreateTicket class, used to instantiate the DBConnector.
+     */
     public CreateTicket() throws Exception{
         dbc = new DBConnector();
     }
 
+    /**
+     * createTicket is a method that creates a ticket in our Ticket table,
+     * by taking the eventId and phoneNumber of said ticket, and adding a ticketId to it
+     */
     public Ticket createTicket(int eventId, int phoneNumber)throws SQLException {
         String sql = "INSERT INTO Ticket (EventID, PhoneNumber) VALUES (?,?)";
         try (Connection conn = dbc.getConnection()) {

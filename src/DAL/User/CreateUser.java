@@ -9,10 +9,16 @@ import java.sql.*;
 public class CreateUser {
     private final DBConnector dbc;
 
+    /**
+     * Constructor of the CreateUser class, used to instantiate the DBConnector.
+     */
     public CreateUser() throws Exception {
         dbc = new DBConnector();
     }
 
+    /**
+     * createUser is a method that uses an SQL string to insert specified information into the User_credentials table.
+     */
     protected User createUser(String username, String password, boolean isAdmin){
         String sql = "INSERT INTO User_credentials (username, password, admin) VALUES (?,?,?);";
 
