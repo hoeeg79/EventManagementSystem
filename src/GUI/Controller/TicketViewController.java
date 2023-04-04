@@ -46,22 +46,26 @@ public class TicketViewController extends BaseController{
     @Override
     public void setup() throws Exception {
         setExtra();
-
         addAlphabeticListener(txtFirstName);
         addAlphabeticListener(txtLastName);
+        addNumericalListener(txtPhone);
+        checkEmailPattern(txtEmail);
+    }
 
-        TextField textField2 = txtPhone;
-        textField2.textProperty().addListener((observable, oldValue, newValue) -> {
+    // Defines a pattern which mail should be
+    private void checkEmailPattern(TextField textField) {
+        emailPattern = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    }
+
+    private void addNumericalListener(TextField textField) {
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
-                textField2.setText(newValue.replaceAll("[^\\d]", ""));
+                textField.setText(newValue.replaceAll("[^\\d]", ""));
             }
-            if (newValue.length() > 8) {
-                textField2.setText(newValue.substring(8, 8));
+            if (newValue.length() >= 8) {
+                textField.setText(newValue.substring(0, 8));
             }
         });
-
-        // Defines a pattern which mail should be
-        emailPattern = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$", Pattern.CASE_INSENSITIVE);
     }
 
     private void addAlphabeticListener(TextField textField) {
@@ -70,11 +74,10 @@ public class TicketViewController extends BaseController{
                 textField.setText(newValue.replaceAll("[^a-zA-Z]", ""));
             }
             if (newValue.length() > 15) {
-                textField.setText(newValue.substring(2, 15));
+                textField.setText(newValue.substring(0, 15));
             }
         });
     }
-
 
     @FXML
     private void handlePrintTicket(ActionEvent actionEvent) throws Exception {
