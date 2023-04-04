@@ -20,8 +20,8 @@
             <TextField fx:id="txtPhone" />
          </children>
       </VBox>
-      <Button fx:id="btnPrint" layoutX="23.0" layoutY="289.0" mnemonicParsing="false" onAction="#handlePrintTicket" text="Sell Ticket" />
-      <Button fx:id="btnClose" layoutX="110.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleClose" text="Close" />
+      <Button fx:id="btnPrint" layoutX="23.0" layoutY="289.0" mnemonicParsing="false" onAction="#handlePrintTicket" text="Sell Ticket" AnchorPane.bottomAnchor="10.0" />
+      <Button fx:id="btnClose" layoutX="110.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleClose" text="Close" AnchorPane.bottomAnchor="10.0" />
       <Label layoutX="25.0" layoutY="235.0" text="Phone number" />
       <VBox layoutX="196.0" layoutY="49.0" prefHeight="220.0" prefWidth="100.0" spacing="50.0" AnchorPane.topAnchor="60.0">
          <children>
