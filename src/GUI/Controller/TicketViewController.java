@@ -8,10 +8,8 @@ import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.*;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -42,6 +40,7 @@ public class TicketViewController extends BaseController{
     private Button btnClose;
     @FXML
     private TextField txtPhone;
+    private Pattern emailPattern;
 
 
     @Override
@@ -61,27 +60,8 @@ public class TicketViewController extends BaseController{
             }
         });
 
-        TextField textField3 = txtEmail;
-        Pattern emailPattern = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$", Pattern.CASE_INSENSITIVE);
-        UnaryOperator<TextFormatter.Change> emailFilter = c -> {
-            String newText = c.getControlNewText();
-            if (emailPattern.matcher(newText).matches()) {
-                return c;
-            } else {
-                return null;
-            }
-        };
-        textField3.setTextFormatter(new TextFormatter<>(emailFilter));
-        textField3.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.length() > 50) {
-                textField3.setText(newValue.substring(0, 50));
-            }
-            if (emailPattern.matcher(newValue).matches()) {
-                textField3.setStyle("");
-            } else {
-                textField3.setStyle("-fx-border-color: red;");
-            }
-        });
+        // Defines a pattern which mail should be
+        emailPattern = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$", Pattern.CASE_INSENSITIVE);
     }
 
     private void addAlphabeticListener(TextField textField) {
@@ -98,6 +78,12 @@ public class TicketViewController extends BaseController{
 
     @FXML
     private void handlePrintTicket(ActionEvent actionEvent) throws Exception {
+        if(!emailPattern.matcher(txtEmail.getText()).matches()){
+            String alertString = "Email is not typed corrected";
+            Alert alert = new Alert(Alert.AlertType.WARNING,alertString);
+            alert.showAndWait();
+            return;
+        }
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
         String email = txtEmail.getText();
