@@ -8,15 +8,14 @@ import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.regex.Pattern;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class TicketViewController extends BaseController{
@@ -41,22 +40,53 @@ public class TicketViewController extends BaseController{
     private Button btnClose;
     @FXML
     private TextField txtPhone;
-
+    private Pattern emailPattern;
 
 
     @Override
     public void setup() throws Exception {
-        try {
         setExtra();
-        } catch(Exception e){
-            displayError(e);
-            e.printStackTrace();
-        }
+        addAlphabeticListener(txtFirstName);
+        addAlphabeticListener(txtLastName);
+        addNumericalListener(txtPhone);
+        checkEmailPattern(txtEmail);
+    }
+
+    // Defines a pattern which mail should be
+    private void checkEmailPattern(TextField textField) {
+        emailPattern = Pattern.compile("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    }
+
+    private void addNumericalListener(TextField textField) {
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("\\d*")) {
+                textField.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+            if (newValue.length() >= 8) {
+                textField.setText(newValue.substring(0, 8));
+            }
+        });
+    }
+
+    private void addAlphabeticListener(TextField textField) {
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue.matches("[a-zA-Z]*")) {
+                textField.setText(newValue.replaceAll("[^a-zA-Z]", ""));
+            }
+            if (newValue.length() > 15) {
+                textField.setText(newValue.substring(0, 15));
+            }
+        });
     }
 
     @FXML
     private void handlePrintTicket(ActionEvent actionEvent) throws Exception {
-
+        if(!emailPattern.matcher(txtEmail.getText()).matches()){
+            String alertString = "Email is not typed corrected";
+            Alert alert = new Alert(Alert.AlertType.WARNING,alertString);
+            alert.showAndWait();
+            return;
+        }
         try{
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
@@ -74,10 +104,6 @@ public class TicketViewController extends BaseController{
         Document document = new Document(PageSize.A6.rotate());
         PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(fileToSave.getAbsoluteFile()));
         document.open();
-
-        /*Image image = Image.getInstance("resources/—Pngtree—3 golden stars_4523648.png");
-        image.scaleAbsolute(PageSize.A6.rotate().getWidth() - image.getScaledWidth() - 10, PageSize.A6.rotate().getHeight() - image.getScaledHeight() - 10);
-        document.add(image);*/
 
         Rectangle background = new Rectangle(0, 0, PageSize.A6.rotate().getWidth(), PageSize.A6.rotate().getHeight());
         background.setBackgroundColor(new com.itextpdf.text.BaseColor(240, 230, 199));
