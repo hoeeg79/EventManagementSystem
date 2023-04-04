@@ -34,32 +34,3 @@ public class CreateTicket {
         }
     }
 }
-
-
-
-
-//        try(Connection conn = dbc.getConnection()){
-//            String sql = "SELECT e.name, e.date, e.time, e.location, c.FirstName, c.LastName, c.Email, t.TicketID " +
-//                    "FROM Event e " +
-//                    "INNER JOIN Ticket t ON e.id = t.id " +
-//                    "INNER JOIN Customer c ON t.CustomerID = c.CustomerID";
-//            PreparedStatement stmt = conn.prepareStatement(sql);
-//            ResultSet rs = stmt.executeQuery();
-//
-//            while(rs.next()){
-//                String eventName = rs.getString("name");
-//                Date eventDate = rs.getDate("date");
-//                Time eventTime = rs.getTime("time");
-//                String eventLocation = rs.getString("location");
-//                String customerFirstName = rs.getString("FirstName");
-//                String customerLastName = rs.getString("LastName");
-//                String customerEmail = rs.getString("Email");
-//                int ticketID = rs.getInt("TicketID");
-//
-//                Tickets _ticket = new Tickets(ticketID, eventName, eventDate, eventTime, eventLocation);
-//                return _ticket;
-//            }
-//
-//        }catch (SQLException e){
-//            throw new SQLException();
-//        }
