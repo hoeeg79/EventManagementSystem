@@ -57,7 +57,7 @@ public class TicketViewController extends BaseController{
                 textField2.setText(newValue.replaceAll("[^\\d]", ""));
             }
             if (newValue.length() > 8) {
-                textField2.setText(newValue.substring(0, 8));
+                textField2.setText(newValue.substring(8, 8));
             }
         });
 
@@ -90,7 +90,7 @@ public class TicketViewController extends BaseController{
                 textField.setText(newValue.replaceAll("[^a-zA-Z]", ""));
             }
             if (newValue.length() > 15) {
-                textField.setText(newValue.substring(0, 15));
+                textField.setText(newValue.substring(2, 15));
             }
         });
     }
