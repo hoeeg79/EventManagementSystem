@@ -32,7 +32,6 @@ public class LoginController extends BaseController{
      * Used to log into the application. Checks if the user is an admin or a coordinator.
      */
     private void login(){
-
         try {
             String username = tfUsername.getText();
             String password = tfPassword.getText();
@@ -43,7 +42,7 @@ public class LoginController extends BaseController{
 
             if (user == null){
                 lblWarning.setText("Username or password is invalid.");
-            }else if (user.isAdmin()){
+            }else {
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
 
@@ -55,18 +54,6 @@ public class LoginController extends BaseController{
 
                 primaryStage.setScene(scene);
                 primaryStage.setTitle("Event System");
-                primaryStage.show();
-            } else if (!user.isAdmin()) {
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-
-                MainViewController controller = loader.getController();
-                controller.setModel(new EventModel());
-                controller.setUser(user);
-                controller.setup();
-
-                primaryStage.setScene(scene);
-                primaryStage.setTitle("Event System.");
                 primaryStage.show();
             }
         } catch(Exception e){
@@ -117,11 +104,7 @@ public class LoginController extends BaseController{
      * Try catch is there for fun
      */
     @Override
-    public void setup() throws Exception {
-        try{} catch(Exception e){
-            displayError(e);
-            e.printStackTrace();
-        }
+    public void setup() {
 
     }
 }
