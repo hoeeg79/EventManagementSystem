@@ -23,8 +23,8 @@ public class EventModel {
         eventList = FXCollections.observableArrayList();
     }
 
-    public void createEvent(String name, Date date, Time time, String location, int participants) throws Exception{
-        Event e = eventManager.createEvent(name, date, time, location, participants);
+    public void createEvent(String name, Date date, Time time, String location, int participants, boolean VIP, boolean food, boolean frontRow, boolean beer) throws Exception{
+        Event e = eventManager.createEvent(name, date, time, location, participants, VIP, food, frontRow, beer);
         eventList.add(e);
     }
 
@@ -39,8 +39,8 @@ public class EventModel {
         return eventList;
     }
 
-    public void editEvent(int idOfEvent, String name, Date convertedDate, Time startTime, String location, int participants) throws Exception {
-        Event e = new Event(idOfEvent, name, convertedDate, startTime, location, participants);
+    public void editEvent(int idOfEvent, String name, Date convertedDate, Time startTime, String location, int participants, boolean VIP, boolean food, boolean frontRow, boolean beer) throws Exception {
+        Event e = new Event(idOfEvent, name, convertedDate, startTime, location, participants, VIP, food, frontRow, beer);
         eventManager.editEvent(e);
     }
 
@@ -53,17 +53,18 @@ public class EventModel {
         return selectedEvent;
     }
 
-    public void sellTicketEvent(Event e) throws Exception {
+    public Ticket sellTicketEvent(Event e, Customer c) throws Exception {
         eventManager.sellTicketEvent(e);
+        createCustomer(c.getFirstName(), c.getLastName(), c.getEmail(), c.getPhoneNumber());
+        return createTicket(e.getId(), c.getPhoneNumber());
     }
 
-    public void createCustomer(String firstName, String lastName, String email, int phoneNumber) throws Exception {
-        Customer c = eventManager.createCustomer(firstName, lastName, email, phoneNumber);
-
+    private void createCustomer(String firstName, String lastName, String email, int phoneNumber) throws Exception {
+        eventManager.createCustomer(firstName, lastName, email, phoneNumber);
     }
 
-    public void createTicket(int eventId, int phoneNumber) throws Exception{
-        Ticket t = eventManager.createTicket(eventId, phoneNumber);
+    private Ticket createTicket(int eventId, int phoneNumber) throws Exception{
+        return eventManager.createTicket(eventId, phoneNumber);
     }
 
 }

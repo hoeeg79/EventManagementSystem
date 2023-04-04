@@ -1,51 +1,62 @@
 package GUI.Controller;
 
+import BE.Customer;
+import BE.Event;
+import BE.Ticket;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 
-import javax.swing.*;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Random;
-
 
 public class TicketViewController extends BaseController{
-    public TextField fxName;
-    public TextField fxEmail;
-    public Button btnPrint;
-    public Button btnCancel;
-    public TableColumn clnEvent;
-    public TableView tblEvent;
-    public TextField fxPhone;
 
-    @Override
-    public String toString() {
-        return "TicketViewController{" +
-                "fxName=" + fxName +
-                ", fxEmail=" + fxEmail +
-                '}';
-    }
+    @FXML
+    private CheckBox cbVIP;
+    @FXML
+    private CheckBox cbFood;
+    @FXML
+    private CheckBox cbFrontRow;
+    @FXML
+    private CheckBox cbFreeBeer;
+    @FXML
+    private TextField txtLastName;
+    @FXML
+    private TextField txtFirstName;
+    @FXML
+    private TextField txtEmail;
+    @FXML
+    private Button btnPrint;
+    @FXML
+    private Button btnClose;
+    @FXML
+    private TextField txtPhone;
+
+
 
     @Override
     public void setup() throws Exception {
-
-
+        setExtra();
     }
 
-    public void handlePrintTicket(ActionEvent actionEvent) throws Exception {
+    @FXML
+    private void handlePrintTicket(ActionEvent actionEvent) throws Exception {
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        String email = txtEmail.getText();
+        int phone = Integer.parseInt(txtPhone.getText());
+
+        Customer cus = new Customer(firstName, lastName, email, phone);
+        //-1 participants
+        Ticket t = getModel().sellTicketEvent(getModel().getSelectedEvent(),cus);
+
         FileChooser fileChooser = new FileChooser();
         File fileToSave = fileChooser.showSaveDialog(btnPrint.getScene().getWindow());
         Document document = new Document(PageSize.A6.rotate());
@@ -92,22 +103,24 @@ public class TicketViewController extends BaseController{
 
         Font personalFont = new Font(Font.FontFamily.TIMES_ROMAN, 9);
         Paragraph personalDetails = new Paragraph();
-        personalDetails.add(new Paragraph(fxName.getText(), personalFont));
-        personalDetails.add(new Paragraph(fxEmail.getText(), personalFont));
-        personalDetails.add(new Paragraph(fxPhone.getText(), personalFont));
-        personalDetails.add(new Paragraph(getModel().getSelectedEvent().getLocation(), personalFont));
+        personalDetails.add(new Paragraph(txtFirstName.getText() + " " + txtLastName.getText(), personalFont));
+        personalDetails.add(new Paragraph(txtEmail.getText(), personalFont));
+        personalDetails.add(new Paragraph(txtPhone.getText(), personalFont));
+        personalDetails.add(new Paragraph(cbString(),  personalFont));
         personalDetails.add(new Paragraph(String.valueOf(getModel().getSelectedEvent().getDate()) + " at " + getModel().getSelectedEvent().getTime(), personalFont));
         personalDetails.setSpacingBefore(2);
         document.add(personalDetails);
 
-        Font descriptionFont = new Font(Font.FontFamily.TIMES_ROMAN, 8);
+        Font descriptionFont = new Font(Font.FontFamily.TIMES_ROMAN, 7);
         Paragraph descriptionDetails = new Paragraph();
-        descriptionDetails.add(new Paragraph("Description: On the backside of this ticket, you will find information about parking.", descriptionFont));
-        descriptionDetails.setSpacingBefore(20);
+        descriptionDetails.add(new Paragraph("Description: On the backside of this ticket, you will find a map of the parkingspace.", descriptionFont));
+        descriptionDetails.add(new Paragraph("Erhvervsakademi Sydvest, Spangsbjerg Kirkevej 103, 6700 Esbjerg", descriptionFont));
+        descriptionDetails.add(new Paragraph("55.488626, 8.445813", descriptionFont));
+        descriptionDetails.setSpacingBefore(9);
         document.add(descriptionDetails);
-
+        //getModel().getSelectedEvent().getId()))
         Barcode128 code128 = new Barcode128();
-        code128.setCode(String.valueOf(getModel().getSelectedEvent().getId()));
+        code128.setCode(String.valueOf(t.getTicketId()));
         code128.setSize(9);
         code128.setX(2);
         code128.setN(60);
@@ -119,18 +132,70 @@ public class TicketViewController extends BaseController{
         barcodeImage.setRotationDegrees(90);
         document.add(barcodeImage);
 
+        document.setMargins(0, 0, -9, 0);
+        document.newPage();
+        Image image = Image.getInstance("resources/maps3.png");
+        float scaleFactor = Math.max(document.getPageSize().getWidth() / image.getWidth(), document.getPageSize().getHeight() / image.getHeight());
+        image.scaleAbsolute(image.getWidth() * scaleFactor, image.getHeight() * scaleFactor);
+        document.add(image);
+
+
         document.close();
         System.out.println("Ticket generated successfully");
 
-        //-1 participants
-        getModel().sellTicketEvent(getModel().getSelectedEvent());
     }
 
-
-    public void handleCancel(ActionEvent actionEvent) {
-        closeWindow(btnCancel);
+    @FXML
+    private void handleClose(ActionEvent actionEvent) {
+        closeWindow(btnClose);
     }
 
+    private void setExtra(){
+        Event e = getModel().getSelectedEvent();
+        if(e.isVIP()){
+            cbVIP.setVisible(true);
+        }else {
+            cbVIP.setVisible(false);
+        }
 
+        if(e.isBeer()){
+            cbFreeBeer.setVisible(true);
+        }else{
+            cbFreeBeer.setVisible(false);
+        }
+
+        if(e.isFood()){
+            cbFood.setVisible(true);
+        }else{
+            cbFood.setVisible(false);
+        }
+
+        if(e.isFrontRow()){
+            cbFrontRow.setVisible(true);
+        }else{
+            cbFrontRow.setVisible(false);
+        }
+    }
+
+    private String cbString(){
+
+        String s = "This ticket includes:" ;
+        if(cbVIP.isSelected()){
+            s = s + " vip";
+        }
+        if(cbFood.isSelected()){
+            s = s + " free food";
+        }
+        if(cbFreeBeer.isSelected()){
+            s = s + " free beer";
+        }
+        if(cbFrontRow.isSelected()){
+            s = s + " front row seats";
+        }
+        if(s.equals("This ticket includes:")){
+            s = "";
+        }
+        return s;
+    }
 
 }

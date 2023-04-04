@@ -28,6 +28,8 @@ import javafx.scene.control.TableView;
 public class MainViewController extends BaseController {
     public VBox vbButtons;
     @FXML
+    private Button btnExtraTicket;
+    @FXML
     private TableColumn clnParticipants;
     @FXML
     private Button btnManageUsers;
@@ -111,8 +113,8 @@ public class MainViewController extends BaseController {
 
     private void participantWarning(){
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Participant Warning!");
-        alert.setHeaderText("This event have hit it's limit of participants.");
+        alert.setTitle("No tickets left!");
+        alert.setHeaderText("This event have hit it's limit of available tickets.");
         alert.showAndWait();
     }
 
@@ -178,8 +180,12 @@ public class MainViewController extends BaseController {
             Time time = eventBordet.getSelectionModel().getSelectedItem().getTime();
             String location = eventBordet.getSelectionModel().getSelectedItem().getLocation();
             int participants = eventBordet.getSelectionModel().getSelectedItem().getParticipants();
+            boolean VIP = eventBordet.getSelectionModel().getSelectedItem().isVIP();
+            boolean food = eventBordet.getSelectionModel().getSelectedItem().isFood();
+            boolean frontRow = eventBordet.getSelectionModel().getSelectedItem().isFrontRow();
+            boolean beer = eventBordet.getSelectionModel().getSelectedItem().isBeer();
 
-            return new Event(id, name, date, time, location, participants);
+            return new Event(id, name, date, time, location, participants, VIP, food, frontRow, beer);
         }
 
     @FXML
@@ -209,6 +215,7 @@ public class MainViewController extends BaseController {
         editEvent.setVisible(false);
         deleteEvent.setVisible(true);
         btnManageUsers.setVisible(true);
+        btnExtraTicket.setVisible(false);
 
         Comparator<Node> byVisibility = (Node b1, Node b2) -> Boolean.compare(b2.isVisible(), b1.isVisible());
 
@@ -221,6 +228,7 @@ public class MainViewController extends BaseController {
         editEvent.setVisible(true);
         deleteEvent.setVisible(true);
         btnManageUsers.setVisible(false);
+        btnExtraTicket.setVisible(true);
     }
 
     @FXML
@@ -234,6 +242,28 @@ public class MainViewController extends BaseController {
             stage.show();
         } catch (Exception e) {
             displayError(e);
+        }
+    }
+
+    public void handleExtraTicket(ActionEvent actionEvent) throws Exception {
+        Event selectedEvent = eventBordet.getSelectionModel().getSelectedItem();
+        if (selectedEvent != null) {
+
+            eventModel.setSelectedEvent(selectedEvent);
+
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/ExtraTicketView.fxml"));
+            Parent root = loader.load();
+
+            ExtraTicketViewController controller = loader.getController();
+            controller.setModel(super.getModel());
+            controller.setup();
+
+            stage.setScene(new Scene(root));
+            stage.setTitle("Extra Ticket");
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
+            stage.showAndWait();
         }
     }
 }

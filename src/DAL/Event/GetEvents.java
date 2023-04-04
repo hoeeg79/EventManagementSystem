@@ -38,9 +38,13 @@ public class GetEvents {
                 Date date = rs.getDate("date");
                 Time startTime = rs.getTime("time");
                 int participants = rs.getInt("participants");
+                boolean VIP = rs.getBoolean("VIP");
+                boolean food = rs.getBoolean("food");
+                boolean frontRow = rs.getBoolean("frontRow");
+                boolean beer = rs.getBoolean("beer");
 
                 //Create Movie and add to list created in the beginning
-                Event event = new Event(id,name,date,startTime,location,participants);
+                Event event = new Event(id,name,date,startTime,location,participants, VIP, food, frontRow, beer);
                 allEvents.add(event);
             }
         } catch (Exception e){

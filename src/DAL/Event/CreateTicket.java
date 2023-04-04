@@ -16,13 +16,11 @@ public class CreateTicket {
         String sql = "INSERT INTO Ticket (EventID, PhoneNumber) VALUES (?,?)";
         try (Connection conn = dbc.getConnection()) {
 
-
             PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             pstmt.setInt(1, eventId);
             pstmt.setInt(2, phoneNumber);
 
-            pstmt.executeUpdate();
             ResultSet rs = pstmt.executeQuery();
 
             int ticketId = 0;
