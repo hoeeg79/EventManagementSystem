@@ -43,11 +43,18 @@ public class TicketViewController extends BaseController{
 
     @Override
     public void setup() throws Exception {
+        try {
         setExtra();
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void handlePrintTicket(ActionEvent actionEvent) throws Exception {
+
+        try{
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
         String email = txtEmail.getText();
@@ -142,7 +149,10 @@ public class TicketViewController extends BaseController{
 
         document.close();
         System.out.println("Ticket generated successfully");
-
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -151,51 +161,56 @@ public class TicketViewController extends BaseController{
     }
 
     private void setExtra(){
-        Event e = getModel().getSelectedEvent();
-        if(e.isVIP()){
-            cbVIP.setVisible(true);
-        }else {
-            cbVIP.setVisible(false);
-        }
+        try {
+            Event e = getModel().getSelectedEvent();
+            if (e.isVIP()) {
+                cbVIP.setVisible(true);
+            } else {
+                cbVIP.setVisible(false);
+            }
 
-        if(e.isBeer()){
-            cbFreeBeer.setVisible(true);
-        }else{
-            cbFreeBeer.setVisible(false);
-        }
+            if (e.isBeer()) {
+                cbFreeBeer.setVisible(true);
+            } else {
+                cbFreeBeer.setVisible(false);
+            }
 
-        if(e.isFood()){
-            cbFood.setVisible(true);
-        }else{
-            cbFood.setVisible(false);
-        }
+            if (e.isFood()) {
+                cbFood.setVisible(true);
+            } else {
+                cbFood.setVisible(false);
+            }
 
-        if(e.isFrontRow()){
-            cbFrontRow.setVisible(true);
-        }else{
-            cbFrontRow.setVisible(false);
-        }
+            if (e.isFrontRow()) {
+                cbFrontRow.setVisible(true);
+            } else {
+                cbFrontRow.setVisible(false);
+            }
+            }catch (Exception e){
+                  displayError(e);
+                  e.printStackTrace();
+            }
     }
 
-    private String cbString(){
+    private String cbString() throws Exception{
 
-        String s = "This ticket includes:" ;
-        if(cbVIP.isSelected()){
-            s = s + " vip";
-        }
-        if(cbFood.isSelected()){
-            s = s + " free food";
-        }
-        if(cbFreeBeer.isSelected()){
-            s = s + " free beer";
-        }
-        if(cbFrontRow.isSelected()){
-            s = s + " front row seats";
-        }
-        if(s.equals("This ticket includes:")){
-            s = "";
-        }
-        return s;
+            String s = "This ticket includes:";
+            if (cbVIP.isSelected()) {
+                s = s + " vip";
+            }
+            if (cbFood.isSelected()) {
+                s = s + " free food";
+            }
+            if (cbFreeBeer.isSelected()) {
+                s = s + " free beer";
+            }
+            if (cbFrontRow.isSelected()) {
+                s = s + " front row seats";
+            }
+            if (s.equals("This ticket includes:")) {
+                s = "";
+            }
+            return s;
+
     }
-
 }

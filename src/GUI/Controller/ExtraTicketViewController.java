@@ -38,6 +38,7 @@ public class ExtraTicketViewController extends BaseController{
 
 
     public void handlePrint(ActionEvent actionEvent) throws Exception {
+        try{
         Toggle selectedToggle = RadioGroup.getSelectedToggle();
         String toggleString = "";
         if (selectedToggle == rbFreeBeer){
@@ -46,8 +47,8 @@ public class ExtraTicketViewController extends BaseController{
             toggleString = "50% off a drink";
         } else if (selectedToggle == rbFreeEarplugs) {
             toggleString = "free earplugs";
-        }
 
+        }
 
         FileChooser fileChooser = new FileChooser();
         File fileToSave = fileChooser.showSaveDialog(btnPrint.getScene().getWindow());
@@ -101,10 +102,19 @@ public class ExtraTicketViewController extends BaseController{
         document.add(barcodeImage);
 
         document.close();
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
 
     }
 
     public void handleCancel(ActionEvent actionEvent) {
+        try{
         closeWindow(btnCancel);
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 }

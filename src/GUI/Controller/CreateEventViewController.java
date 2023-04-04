@@ -46,6 +46,7 @@ public class CreateEventViewController extends BaseController {
 
     @FXML
     private void handleSaveEvent(ActionEvent actionEvent) throws Exception {
+        try{
     String name = txtNameOfEvent.getText();
     LocalDate unconvertedDate = selectedDate.getValue();
     Date convertedDate = Date.valueOf(unconvertedDate);
@@ -66,14 +67,24 @@ public class CreateEventViewController extends BaseController {
         super.getModel().createEvent(name, convertedDate, startTime, location, participants, VIP, food, frontRow, beer);
     }
     closeWindow(saveEvent);
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void handleCancelEvent(ActionEvent actionEvent) {
+        try{
         closeWindow(cancelEvent);
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 
     private void lockToIntOnly(){
+        try{
         txtHours.setTextFormatter(new TextFormatter<>(new IntegerStringConverter(), 0, c -> {
             if (c.getControlNewText().matches("\\d*") && c.getControlNewText().length() <= 2) {
                 return c;
@@ -88,9 +99,14 @@ public class CreateEventViewController extends BaseController {
                 return null;
             }
         }));
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 
     public void setFields(Event event) {
+        try{
         txtNameOfEvent.setText(event.getName());
         txtHours.setText(String.valueOf(event.getTime().getHours()));
         txtMinutes.setText(String.valueOf(event.getTime().getMinutes()));
@@ -103,8 +119,17 @@ public class CreateEventViewController extends BaseController {
         cbBeer.setSelected(event.isBeer());
         cbFood.setSelected(event.isFood());
         cbFrontRow.setSelected(event.isFrontRow());
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
     public void notEdit() {
+        try{
         isEdit = false;
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 }

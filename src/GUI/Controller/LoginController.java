@@ -17,7 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-public class LoginController {
+public class LoginController extends BaseController{
     @FXML
     private Label lblWarning;
     @FXML
@@ -67,8 +67,8 @@ public class LoginController {
                 primaryStage.setTitle("Event System.");
                 primaryStage.show();
             }
-        } catch (Exception e) {
-            System.out.println("something went fuck");
+        } catch(Exception e){
+            displayError(e);
             e.printStackTrace();
         }
     }
@@ -88,8 +88,21 @@ public class LoginController {
         checkIfEnter(keyEvent);
     }
     private void checkIfEnter(KeyEvent event) {
+        try{
         if (event.getCode() == KeyCode.ENTER) {
             login();
+        }} catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
         }
+    }
+
+    @Override
+    public void setup() throws Exception {
+        try{} catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
+
     }
 }

@@ -36,10 +36,11 @@ public class UsersController extends BaseController{
         }
         catch(Exception e){
             displayError(e);
+            e.printStackTrace();
         }
     }
 
-    public void handleCreateUsers(ActionEvent actionEvent) {
+    public void handleCreateUsers(ActionEvent actionEvent) throws Exception {
         String username = tfUsername.getText();
         String password = tfPassword.getText();
         String confirmPassword = tfConfirmPassword.getText();
@@ -49,33 +50,31 @@ public class UsersController extends BaseController{
         if(password.equals(confirmPassword)){
             userModel.createUsers(username, password, isAdmin);
             closeWindow(btnCreate);
+        }}catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
         }
+
+    }
+
+
+    public void handleDeleteUsers(ActionEvent actionEvent) throws Exception {
+        try{
+            User deletedUser = userList.getSelectionModel().getSelectedItem();
+            userModel.deleteUsers(deletedUser);
         }catch(Exception e){
             displayError(e);
             e.printStackTrace();
         }
-    }
 
-
-    public void handleDeleteUsers(ActionEvent actionEvent) {
-        try {
-            User deletedUser = userList.getSelectionModel().getSelectedItem();
-            userModel.deleteUsers(deletedUser);
-        } catch (Exception e) {
-            displayError(e);
-        }
     }
 
     public void fillList(){
-        try {
             clnUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
             clnAdmin.setCellValueFactory(new PropertyValueFactory<>("admin"));
 
             userList.getColumns().addAll();
             userList.setItems(userModel.getObservableUsers());
-        }catch (Exception e){
-            displayError(e);
-            e.printStackTrace();
-        }
+
     }
 }

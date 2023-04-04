@@ -56,12 +56,17 @@ public class MainViewController extends BaseController {
 
     @Override
     public void setup() {
+        try{
         eventModel = super.getModel();
         fillEventList();
         if (user.isAdmin()){
             enableAdmin();
         } else {
             enableCoordinator();
+        }
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
         }
 
     }
@@ -72,7 +77,12 @@ public class MainViewController extends BaseController {
 
     @FXML
     private void handleCreateEvent(ActionEvent actionEvent) throws IOException {
+        try{
         openEventView(actionEvent, "Create an Event", false);
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -87,6 +97,7 @@ public class MainViewController extends BaseController {
 
     @FXML
     private void handleSellTickets(ActionEvent actionEvent) throws Exception {
+        try{
         Event selectedEvent = eventBordet.getSelectionModel().getSelectedItem();
         if (selectedEvent != null && selectedEvent.getParticipants() > 0) {
 
@@ -109,18 +120,32 @@ public class MainViewController extends BaseController {
         } else {
             participantWarning();
         }
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 
     private void participantWarning(){
+        try{
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("No tickets left!");
         alert.setHeaderText("This event have hit it's limit of available tickets.");
         alert.showAndWait();
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void handleEditEvent(ActionEvent actionEvent) {
+        try{
         openEventView(actionEvent, "Edit Event", true);
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -210,6 +235,7 @@ public class MainViewController extends BaseController {
     }
 
     private void enableAdmin(){
+        try{
         createEvent.setVisible(false);
         sellTickets.setVisible(false);
         editEvent.setVisible(false);
@@ -219,14 +245,23 @@ public class MainViewController extends BaseController {
         Comparator<Node> byVisibility = (Node b1, Node b2) -> Boolean.compare(b2.isVisible(), b1.isVisible());
 
         FXCollections.sort(vbButtons.getChildren(), byVisibility);
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 
     private void enableCoordinator(){
+        try{
         createEvent.setVisible(true);
         sellTickets.setVisible(true);
         editEvent.setVisible(true);
         deleteEvent.setVisible(true);
         btnManageUsers.setVisible(false);
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -244,6 +279,7 @@ public class MainViewController extends BaseController {
     }
 
     public void handleExtraTicket(ActionEvent actionEvent) throws Exception {
+        try{
         Event selectedEvent = eventBordet.getSelectionModel().getSelectedItem();
         if (selectedEvent != null) {
 
@@ -262,6 +298,11 @@ public class MainViewController extends BaseController {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
             stage.showAndWait();
+
+        }
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
         }
     }
 }
