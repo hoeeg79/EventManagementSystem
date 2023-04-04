@@ -36,6 +36,7 @@ public class UsersController extends BaseController{
         }
         catch(Exception e){
             displayError(e);
+            e.printStackTrace();
         }
     }
 
@@ -50,13 +51,12 @@ public class UsersController extends BaseController{
         if(password.equals(confirmPassword)){
             userModel.createUsers(username, password, isAdmin);
             closeWindow(btnCreate);
-        }
-        }catch(Exception e){
+        }}catch(Exception e){
             displayError(e);
             e.printStackTrace();
         }
-    }
 
+    }
 
     @FXML
     private void handleDeleteUsers(ActionEvent actionEvent) {
@@ -69,15 +69,11 @@ public class UsersController extends BaseController{
     }
 
     public void fillList(){
-        try {
             clnUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
             clnAdmin.setCellValueFactory(new PropertyValueFactory<>("admin"));
 
             userList.getColumns().addAll();
             userList.setItems(userModel.getObservableUsers());
-        }catch (Exception e){
-            displayError(e);
-            e.printStackTrace();
-        }
+
     }
 }
