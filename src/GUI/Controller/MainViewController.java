@@ -316,7 +316,8 @@ public class MainViewController extends BaseController {
     /**
      * Opens the extra ticket view
      */
-    public void handleExtraTicket(ActionEvent actionEvent) throws Exception {
+    @FXML
+    private void handleExtraTicket(ActionEvent actionEvent) throws Exception {
         try{
         Event selectedEvent = eventBordet.getSelectionModel().getSelectedItem();
         if (selectedEvent != null) {
