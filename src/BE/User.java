@@ -5,6 +5,10 @@ public class User {
     private int id;
     private boolean admin;
 
+    /**
+     * This class contains setters and getters used for the User, which is necessary in other layers of the application
+     */
+
     public User(String username, int id, boolean admin) {
         this.username = username;
         this.admin = admin;
