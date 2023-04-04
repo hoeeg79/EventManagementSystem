@@ -79,7 +79,7 @@ public class MainViewController extends BaseController {
      * Opens the CreateEventView, to create a new event.
      */
     @FXML
-    private void handleCreateEvent(ActionEvent actionEvent) throws IOException {
+    private void handleCreateEvent(ActionEvent actionEvent) {
         try{
         openEventView(actionEvent, "Create an Event", false);
         } catch(Exception e){
@@ -105,7 +105,7 @@ public class MainViewController extends BaseController {
      * Opens the TicketView, where you can sell tickets from
      */
     @FXML
-    private void handleSellTickets(ActionEvent actionEvent) throws Exception {
+    private void handleSellTickets(ActionEvent actionEvent) {
         try{
         Event selectedEvent = eventBordet.getSelectionModel().getSelectedItem();
         if (selectedEvent != null && selectedEvent.getParticipants() > 0) {
@@ -142,7 +142,7 @@ public class MainViewController extends BaseController {
         try{
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("No tickets left!");
-        alert.setHeaderText("This event have hit it's limit of available tickets.");
+        alert.setHeaderText("This event have hit its limit of available tickets.");
         alert.showAndWait();
         } catch(Exception e){
             displayError(e);
@@ -302,7 +302,7 @@ public class MainViewController extends BaseController {
         }
     }
 
-    public void handleExtraTicket(ActionEvent actionEvent) throws Exception {
+    public void handleExtraTicket(ActionEvent actionEvent) {
         try{
         Event selectedEvent = eventBordet.getSelectionModel().getSelectedItem();
         if (selectedEvent != null) {

@@ -50,26 +50,26 @@ public class CreateEventViewController extends BaseController {
     @FXML
     private void handleSaveEvent(ActionEvent actionEvent) throws Exception {
         try{
-    String name = txtNameOfEvent.getText();
-    LocalDate unconvertedDate = selectedDate.getValue();
-    Date convertedDate = Date.valueOf(unconvertedDate);
-    String location = txtLocation.getText();
-    int participants = Integer.parseInt(txtNumberOfParticipants.getText());
-    int hours = Integer.parseInt(txtHours.getText());
-    int minutes = Integer.parseInt(txtMinutes.getText());
-    Time startTime = new Time(hours,minutes,0);
-    boolean VIP = cbVIP.isSelected();
-    boolean food = cbFood.isSelected();
-    boolean frontRow = cbFrontRow.isSelected();
-    boolean beer = cbBeer.isSelected();
+            String name = txtNameOfEvent.getText();
+            LocalDate unconvertedDate = selectedDate.getValue();
+            Date convertedDate = Date.valueOf(unconvertedDate);
+            String location = txtLocation.getText();
+            int participants = Integer.parseInt(txtNumberOfParticipants.getText());
+            int hours = Integer.parseInt(txtHours.getText());
+            int minutes = Integer.parseInt(txtMinutes.getText());
+            Time startTime = new Time(hours,minutes,0);
+            boolean VIP = cbVIP.isSelected();
+            boolean food = cbFood.isSelected();
+            boolean frontRow = cbFrontRow.isSelected();
+            boolean beer = cbBeer.isSelected();
 
-    if (isEdit) {
-        super.getModel().editEvent(idOfEvent, name, convertedDate, startTime, location, participants, VIP, food, frontRow, beer);
-        getModel().getObservableEvents();
-    } else {
-        super.getModel().createEvent(name, convertedDate, startTime, location, participants, VIP, food, frontRow, beer);
-    }
-    closeWindow(saveEvent);
+            if (isEdit) {
+                super.getModel().editEvent(idOfEvent, name, convertedDate, startTime, location, participants, VIP, food, frontRow, beer);
+                getModel().getObservableEvents();
+            } else {
+                super.getModel().createEvent(name, convertedDate, startTime, location, participants, VIP, food, frontRow, beer);
+            }
+            closeWindow(saveEvent);
         } catch(Exception e){
             displayError(e);
             e.printStackTrace();

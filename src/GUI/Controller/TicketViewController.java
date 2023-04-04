@@ -45,7 +45,7 @@ public class TicketViewController extends BaseController{
 
 
     @Override
-    public void setup() throws Exception {
+    public void setup() {
         try {
         setExtra();
         } catch(Exception e){
@@ -55,7 +55,7 @@ public class TicketViewController extends BaseController{
     }
 
     @FXML
-    private void handlePrintTicket(ActionEvent actionEvent) throws Exception {
+    private void handlePrintTicket(ActionEvent actionEvent) {
 
         try{
         String firstName = txtFirstName.getText();
