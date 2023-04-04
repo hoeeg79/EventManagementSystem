@@ -30,16 +30,8 @@ public class EventManager {
         eventFacade.editEvent(e);
     }
 
-    public void sellTicketEvent(Event e) throws Exception {
-        eventFacade.sellTicketEvent(e);
-    }
-
-    public Customer createCustomer (String firstName, String lastName, String email,int phoneNumber) throws Exception {
-        return eventFacade.createCustomer(firstName, lastName, email, phoneNumber);
-    }
-
-    public Ticket createTicket ( int eventId, int phoneNumber) throws Exception {
-        return eventFacade.createTicket(eventId, phoneNumber);
+    public Ticket sellTicketEvent(Event e, Customer c) throws Exception {
+        return eventFacade.sellTicketEvent(e, c);
     }
 }
 

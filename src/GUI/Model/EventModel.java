@@ -49,22 +49,11 @@ public class EventModel {
     }
 
     public Event getSelectedEvent() {
-        this.selectedEvent = selectedEvent;
         return selectedEvent;
     }
 
     public Ticket sellTicketEvent(Event e, Customer c) throws Exception {
-        eventManager.sellTicketEvent(e);
-        createCustomer(c.getFirstName(), c.getLastName(), c.getEmail(), c.getPhoneNumber());
-        return createTicket(e.getId(), c.getPhoneNumber());
-    }
-
-    private void createCustomer(String firstName, String lastName, String email, int phoneNumber) throws Exception {
-        eventManager.createCustomer(firstName, lastName, email, phoneNumber);
-    }
-
-    private Ticket createTicket(int eventId, int phoneNumber) throws Exception{
-        return eventManager.createTicket(eventId, phoneNumber);
+        return eventManager.sellTicketEvent(e, c);
     }
 
 }

@@ -33,22 +33,13 @@ public class EventFacade {
         editE.editE(e);
     }
 
-    public void sellTicketEvent(Event e) throws Exception {
-        SellTicketEvent sellT = new SellTicketEvent();
+    public Ticket sellTicketEvent(Event e,Customer c) throws Exception {
+        CreateCustomer cC = new CreateCustomer();
+        CreateTicket cT = new CreateTicket();
+        SellTicketEvent sT = new SellTicketEvent();
 
-        sellT.sellTicketEvent(e);
+        cC.createCustomer(c.getFirstName(), c.getLastName(), c.getEmail(), c.getPhoneNumber());
+        sT.sellTicketEvent(e);
+        return cT.createTicket(e.getId(), c.getPhoneNumber());
     }
-
-    public Customer createCustomer(String firstName, String lastName, String email, int phoneNumber) throws Exception {
-        CreateCustomer cc = new CreateCustomer();
-
-        return cc.createCustomer(firstName, lastName, email, phoneNumber);
-    }
-
-    public Ticket createTicket(int eventId, int phoneNumber) throws Exception {
-        CreateTicket ct = new CreateTicket();
-
-        return ct.createTicket(eventId, phoneNumber);
-    }
-
 }
