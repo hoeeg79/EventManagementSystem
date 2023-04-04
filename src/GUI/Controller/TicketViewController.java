@@ -79,6 +79,9 @@ public class TicketViewController extends BaseController{
         });
     }
 
+    /**
+     * Creates a PDF ticket with the specified information.
+     */
     @FXML
     private void handlePrintTicket(ActionEvent actionEvent) throws Exception {
         if(!emailPattern.matcher(txtEmail.getText()).matches()){
@@ -186,11 +189,17 @@ public class TicketViewController extends BaseController{
         }
     }
 
+    /**
+     * Closes the ticket view
+     */
     @FXML
     private void handleClose(ActionEvent actionEvent) {
         closeWindow(btnClose);
     }
 
+    /**
+     * Sets extra options on the ticket such as VIP, free beer, food or front row.
+     */
     private void setExtra(){
         Event e = getModel().getSelectedEvent();
         cbVIP.setVisible(e.isVIP());
@@ -199,6 +208,9 @@ public class TicketViewController extends BaseController{
         cbFrontRow.setVisible(e.isFrontRow());
     }
 
+    /**
+     * Adds text to the ticket, about it containing the extras.
+     */
     private String cbString() {
         StringBuilder sb = new StringBuilder();
         List<String> items = new ArrayList<>();
