@@ -9,10 +9,18 @@ import java.sql.PreparedStatement;
 public class EditEvent {
     private DBConnector DBCon;
 
+    /**
+     * Constructor of the EditEvent class, used to instantiate the DBConnector.
+     */
     public EditEvent() throws Exception {
         DBCon = new DBConnector();
     }
 
+    /**
+     * editE is a method that uses an SQL string to update an event with new specifications.
+     * @param event
+     * @throws Exception
+     */
     public void editE(Event event) throws Exception {
         try (Connection con = DBCon.getConnection()) {
 

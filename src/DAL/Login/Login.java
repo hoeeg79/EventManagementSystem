@@ -12,10 +12,18 @@ public class Login {
 
     private final DBConnector dbc;
 
+    /**
+     * Constructor of the Login class, used to instantiate the DBConnector.
+     */
     protected Login() throws Exception {
         dbc = new DBConnector();
     }
 
+    /**
+     * login is a method that uses and SQL string to select all from the User_credentials table where
+     * username is what's specified, and password is what is specified
+     * its functionality is to log onto the application
+     */
     protected User login(String username, String password) throws SQLException {
         String sql = "SELECT * FROM User_credentials WHERE username=? AND password=?;";
 

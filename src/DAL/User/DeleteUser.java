@@ -11,10 +11,17 @@ import java.sql.SQLException;
 public class DeleteUser {
     private final DBConnector dbc;
 
+    /**
+     * Constructor of the DeleteUser class, used to instantiate the DBConnector.
+     */
     public DeleteUser() throws Exception {
         this.dbc = new DBConnector();
     }
 
+    /**
+     * deleteUser is a method that uses an SQL string to delete specified id from the User_credentials table.
+     * @param user
+     */
     protected void deleteUser(User user){
         String sql = "DELETE FROM User_credentials WHERE id = ?;";
 

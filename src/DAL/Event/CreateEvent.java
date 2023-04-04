@@ -10,10 +10,16 @@ public class CreateEvent {
 
     private DBConnector DBCon;
 
+    /**
+     * Constructor of the CreateEvent class, used to instantiate the DBConnector.
+     */
     protected CreateEvent() throws Exception {
         DBCon = new DBConnector();
     }
 
+    /**
+     * createEvent is a method which uses an SQL string to insert information required on an event, into our Event table, to create a new event.
+     */
     protected Event createEvent(String name, Date date, Time time, String location, int participants, boolean VIP, boolean food, boolean frontRow, boolean beer) throws SQLException {
         String sql = "INSERT INTO Event (name, date, time, location, participants, VIP, food, frontRow, beer)VALUES (?,?,?,?,?,?,?,?,?);";
 

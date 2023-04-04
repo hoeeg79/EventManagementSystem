@@ -10,10 +10,16 @@ public class DeleteEvent {
 
     private DBConnector DBCon;
 
+    /**
+     * Constructor of the DeleteEvent class, used to instantiate the DBConnector.
+     */
     protected DeleteEvent() throws Exception {
         DBCon = new DBConnector();
     }
 
+    /**
+     * deleteEvent is a method that uses a SQL string to delete an event from the event table with a specified id.
+     */
     protected void deleteEvent(Event event) throws Exception{
         try(Connection conn = DBCon.getConnection()){
 

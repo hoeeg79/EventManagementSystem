@@ -5,6 +5,9 @@ import BE.User;
 
 import java.util.List;
 
+/**
+ * A Facade pattern for the User package, used to provide a simplified version of the entire package.
+ */
 public class UserFacade {
     public User createUser(String username, String password, boolean isAdmin) throws Exception {
         CreateUser cu = new CreateUser();
