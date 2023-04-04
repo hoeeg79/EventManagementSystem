@@ -28,7 +28,9 @@ public class LoginController extends BaseController{
     private Button btnLogin;
     private LoginModel loginModel = new LoginModel();
 
-
+    /**
+     * Used to log into the application. Checks if the user is an admin or a coordinator.
+     */
     private void login(){
 
         try {
@@ -73,20 +75,33 @@ public class LoginController extends BaseController{
         }
     }
 
+    /**
+     * Calls the login(); method, making you log into the application on click.
+     */
     @FXML
     private void handleLogin(ActionEvent actionEvent) {
         login();
     }
 
+    /**
+     * Clicks the login button, by a press of the enter key.
+     */
     @FXML
     private void handlePasswordCheckKey(KeyEvent keyEvent) {
         checkIfEnter(keyEvent);
     }
 
+    /**
+     * Clicks the login button, by a press of the enter key.
+     */
     @FXML
     private void handleUsernameCheckKey(KeyEvent keyEvent) {
         checkIfEnter(keyEvent);
     }
+
+    /**
+     * Clicks the login button, by a press of the enter key.
+     */
     private void checkIfEnter(KeyEvent event) {
         try{
         if (event.getCode() == KeyCode.ENTER) {
@@ -97,6 +112,10 @@ public class LoginController extends BaseController{
         }
     }
 
+    /**
+     * Does nothing, it is however required, to extend BaseController.
+     * Try catch is there for fun
+     */
     @Override
     public void setup() throws Exception {
         try{} catch(Exception e){

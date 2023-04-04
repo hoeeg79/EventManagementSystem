@@ -36,7 +36,9 @@ public class ExtraTicketViewController extends BaseController{
 
     }
 
-
+    /**
+     * Creates a new ticket which contains free beer, free ear plugs or 50% off a drink.
+     */
     public void handlePrint(ActionEvent actionEvent) throws Exception {
         try{
         Toggle selectedToggle = RadioGroup.getSelectedToggle();
@@ -109,6 +111,9 @@ public class ExtraTicketViewController extends BaseController{
 
     }
 
+    /**
+     * Cancels the creation of an extra ticket
+     */
     public void handleCancel(ActionEvent actionEvent) {
         try{
         closeWindow(btnCancel);

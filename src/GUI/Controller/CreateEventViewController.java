@@ -44,6 +44,9 @@ public class CreateEventViewController extends BaseController {
         lockToIntOnly();
     }
 
+    /**
+     * A method used to save an event in the event management system.
+     */
     @FXML
     private void handleSaveEvent(ActionEvent actionEvent) throws Exception {
         try{
@@ -73,6 +76,10 @@ public class CreateEventViewController extends BaseController {
         }
     }
 
+    /**
+     * A method used to close the event window, in case you do not want to save your current event.
+     * @param actionEvent
+     */
     @FXML
     private void handleCancelEvent(ActionEvent actionEvent) {
         try{
@@ -83,6 +90,9 @@ public class CreateEventViewController extends BaseController {
         }
     }
 
+    /**
+     * TextFormatter that makes us able to only type in int values in time, when creating an event.
+     */
     private void lockToIntOnly(){
         try{
         txtHours.setTextFormatter(new TextFormatter<>(new IntegerStringConverter(), 0, c -> {
@@ -105,6 +115,9 @@ public class CreateEventViewController extends BaseController {
         }
     }
 
+    /**
+     * Sets the event information.
+     */
     public void setFields(Event event) {
         try{
         txtNameOfEvent.setText(event.getName());
@@ -124,6 +137,10 @@ public class CreateEventViewController extends BaseController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Sets the isEdit boolean to false
+     */
     public void notEdit() {
         try{
         isEdit = false;

@@ -75,6 +75,9 @@ public class MainViewController extends BaseController {
         this.user = user;
     }
 
+    /**
+     * Opens the CreateEventView, to create a new event.
+     */
     @FXML
     private void handleCreateEvent(ActionEvent actionEvent) throws IOException {
         try{
@@ -85,6 +88,9 @@ public class MainViewController extends BaseController {
         }
     }
 
+    /**
+     * Deletes the selected event
+     */
     @FXML
     private void handleDeleteEvent(ActionEvent actionEvent){
         try{
@@ -95,6 +101,9 @@ public class MainViewController extends BaseController {
         }
     }
 
+    /**
+     * Opens the TicketView, where you can sell tickets from
+     */
     @FXML
     private void handleSellTickets(ActionEvent actionEvent) throws Exception {
         try{
@@ -126,6 +135,9 @@ public class MainViewController extends BaseController {
         }
     }
 
+    /**
+     * A warning about reaching the max limit of participants.
+     */
     private void participantWarning(){
         try{
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -138,6 +150,9 @@ public class MainViewController extends BaseController {
         }
     }
 
+    /**
+     * A button used to open the event view and edit events.
+     */
     @FXML
     private void handleEditEvent(ActionEvent actionEvent) {
         try{
@@ -171,6 +186,9 @@ public class MainViewController extends BaseController {
         }
     }
 
+    /**
+     * a method used to open the CreateEventView
+     */
     private void openEventView(ActionEvent actionEvent, String title, boolean editView) {
         try {
             Stage stage = new Stage();
@@ -198,6 +216,10 @@ public class MainViewController extends BaseController {
         }
     }
 
+    /**
+     * 
+     * @return
+     */
     private Event getChosenEvent() {
             int id = eventBordet.getSelectionModel().getSelectedItem().getId();
             String name = eventBordet.getSelectionModel().getSelectedItem().getName();
