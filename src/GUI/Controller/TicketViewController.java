@@ -156,7 +156,7 @@ public class TicketViewController extends BaseController{
         Paragraph descriptionDetails = new Paragraph();
         descriptionDetails.add(new Paragraph("Description: On the backside of this ticket, you will find a map of the parkingspace.", descriptionFont));
         descriptionDetails.add(new Paragraph("Erhvervsakademi Sydvest, Spangsbjerg Kirkevej 103, 6700 Esbjerg", descriptionFont));
-        descriptionDetails.add(new Paragraph("55.488626, 8.445813", descriptionFont));
+        descriptionDetails.add(new Paragraph("N55.488626, E8.445813", descriptionFont));
         descriptionDetails.setSpacingBefore(9);
         document.add(descriptionDetails);
         //getModel().getSelectedEvent().getId()))
@@ -249,7 +249,6 @@ public class TicketViewController extends BaseController{
         if (s.equals("This ticket includes: ")) {
             s = "";
         }
-
         return s;
     }
 }
