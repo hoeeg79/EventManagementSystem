@@ -6,9 +6,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="526.0" prefWidth="439.0" stylesheets="@CreateEventView.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.CreateEventViewController">
+<AnchorPane prefHeight="410.0" prefWidth="439.0" stylesheets="@CreateEventView.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.CreateEventViewController">
    <children>
       <Button fx:id="saveEvent" layoutX="262.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleSaveEvent" prefHeight="26.0" prefWidth="85.0" text="Save Event" AnchorPane.bottomAnchor="10.0" />
       <Label layoutX="133.0" layoutY="29.0" text="Let's make an Event!">
@@ -49,9 +50,13 @@
       </Label>
       <TextField fx:id="txtMinutes" layoutX="232.0" layoutY="136.0" prefHeight="26.0" prefWidth="44.0" promptText="MM" />
       <Label layoutX="222.0" layoutY="140.0" prefHeight="17.0" prefWidth="7.0" text=":" />
-      <CheckBox fx:id="cbFood" layoutX="9.0" layoutY="495.0" mnemonicParsing="false" text="Free food" />
-      <CheckBox fx:id="cbFrontRow" layoutX="90.0" layoutY="495.0" mnemonicParsing="false" text="Front row" />
-      <CheckBox fx:id="cbBeer" layoutX="178.0" layoutY="495.0" mnemonicParsing="false" text="Free beer" />
-      <CheckBox fx:id="cbVIP" layoutX="178.0" layoutY="473.0" mnemonicParsing="false" text="VIP" />
+      <HBox layoutX="102.0" layoutY="329.0" prefHeight="30.0" prefWidth="320.0" spacing="20.0">
+         <children>
+            <CheckBox fx:id="cbFood" mnemonicParsing="false" text="Free food" />
+            <CheckBox fx:id="cbFrontRow" mnemonicParsing="false" text="Front row" />
+            <CheckBox fx:id="cbVIP" mnemonicParsing="false" text="VIP" />
+            <CheckBox fx:id="cbBeer" mnemonicParsing="false" text="Free beer" />
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

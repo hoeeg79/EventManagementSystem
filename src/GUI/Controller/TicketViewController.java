@@ -14,9 +14,9 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.function.UnaryOperator;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TicketViewController extends BaseController{
 
@@ -87,6 +87,7 @@ public class TicketViewController extends BaseController{
             alert.showAndWait();
             return;
         }
+        try{
         String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
         String email = txtEmail.getText();
@@ -97,6 +98,8 @@ public class TicketViewController extends BaseController{
         Ticket t = getModel().sellTicketEvent(getModel().getSelectedEvent(),cus);
 
         FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Pdf",".pdf"));
+        fileChooser.setInitialFileName("Ticket");
         File fileToSave = fileChooser.showSaveDialog(btnPrint.getScene().getWindow());
         Document document = new Document(PageSize.A6.rotate());
         PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(fileToSave.getAbsoluteFile()));
@@ -177,7 +180,10 @@ public class TicketViewController extends BaseController{
 
         document.close();
         System.out.println("Ticket generated successfully");
-
+        } catch(Exception e){
+            displayError(e);
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -187,50 +193,51 @@ public class TicketViewController extends BaseController{
 
     private void setExtra(){
         Event e = getModel().getSelectedEvent();
-        if(e.isVIP()){
-            cbVIP.setVisible(true);
-        }else {
-            cbVIP.setVisible(false);
-        }
-
-        if(e.isBeer()){
-            cbFreeBeer.setVisible(true);
-        }else{
-            cbFreeBeer.setVisible(false);
-        }
-
-        if(e.isFood()){
-            cbFood.setVisible(true);
-        }else{
-            cbFood.setVisible(false);
-        }
-
-        if(e.isFrontRow()){
-            cbFrontRow.setVisible(true);
-        }else{
-            cbFrontRow.setVisible(false);
-        }
+        cbVIP.setVisible(e.isVIP());
+        cbFreeBeer.setVisible(e.isBeer());
+        cbFood.setVisible(e.isFood());
+        cbFrontRow.setVisible(e.isFrontRow());
     }
 
-    private String cbString(){
+    private String cbString() {
+        StringBuilder sb = new StringBuilder();
+        List<String> items = new ArrayList<>();
+        String s = "This ticket includes: ";
 
-        String s = "This ticket includes:" ;
-        if(cbVIP.isSelected()){
-            s = s + " vip";
+        if (cbVIP.isSelected()) {
+            items.add("vip");
         }
-        if(cbFood.isSelected()){
-            s = s + " free food";
+        if (cbFood.isSelected()) {
+            items.add("free food");
         }
-        if(cbFreeBeer.isSelected()){
-            s = s + " free beer";
+        if (cbFreeBeer.isSelected()) {
+            items.add("free beer");
         }
-        if(cbFrontRow.isSelected()){
-            s = s + " front row seats";
+        if (cbFrontRow.isSelected()) {
+            items.add("front row seats");
         }
-        if(s.equals("This ticket includes:")){
+
+        sb.append(s);
+
+        for (int i = 0; i < items.size(); i++) {
+            sb.append(items.get(i));
+            if (i == items.size() - 2) {
+                sb.append(" and ");
+            } else if (i < items.size() - 1) {
+                sb.append(", ");
+            }
+
+            if (i == items.size() - 1) {
+                sb.append(".");
+            }
+        }
+
+        s = sb.toString();
+
+        if (s.equals("This ticket includes: ")) {
             s = "";
         }
+
         return s;
     }
-
 }

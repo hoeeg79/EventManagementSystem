@@ -32,3 +32,15 @@ Button:focused{
     -fx-background-color: #404249;
     -fx-text-fill: #f2f3f5;
 }
+
+.check-box .box{
+    -fx-background-color: #404249;
+}
+
+.check-box{
+    -fx-text-fill: #959ba4;
+}
+
+.table-view{
+    -fx-background-color: #313338;
+}
