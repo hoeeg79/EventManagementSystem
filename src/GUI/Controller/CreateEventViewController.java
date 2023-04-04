@@ -48,7 +48,7 @@ public class CreateEventViewController extends BaseController {
      * A method used to save an event in the event management system.
      */
     @FXML
-    private void handleSaveEvent(ActionEvent actionEvent) throws Exception {
+    private void handleSaveEvent(ActionEvent actionEvent) {
         try{
             String name = txtNameOfEvent.getText();
             LocalDate unconvertedDate = selectedDate.getValue();
