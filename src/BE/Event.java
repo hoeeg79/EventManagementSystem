@@ -15,6 +15,10 @@ public class Event {
     private boolean frontRow;
     private boolean beer;
 
+    /**
+     * This class contains setters and getters used for the Event, which is necessary in other layers of the application
+     */
+
     public Event(int id, String name, Date date, Time time, String location, int participants, boolean VIP, boolean food, boolean frontRow, boolean beer) {
         this.id = id;
         this.name = name;

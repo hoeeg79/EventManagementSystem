@@ -9,6 +9,10 @@ public class Ticket{
     private int eventId;
     private int phoneNumber;
 
+    /**
+     * This class contains setters and getters used for the Ticket, which is necessary in other layers of the application
+     */
+
 
     public Ticket(int ticketId, int eventId, int phoneNumber) {
         this.ticketId = ticketId;
