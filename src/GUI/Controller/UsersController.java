@@ -8,7 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class UsersController extends BaseController{
-    public TableColumn clnAdmin;
+    @FXML
+    private TableColumn clnAdmin;
     @FXML
     private TableColumn clnUsername;
     @FXML
@@ -46,16 +47,15 @@ public class UsersController extends BaseController{
         String password = tfPassword.getText();
         String confirmPassword = tfConfirmPassword.getText();
         boolean isAdmin = cbIsAdmin.isSelected();
-        try{
-
+        try {
         if(password.equals(confirmPassword)){
             userModel.createUsers(username, password, isAdmin);
             closeWindow(btnCreate);
-        }}catch(Exception e){
+        }
+        } catch(Exception e){
             displayError(e);
             e.printStackTrace();
         }
-
     }
 
     @FXML
@@ -69,11 +69,10 @@ public class UsersController extends BaseController{
     }
 
     public void fillList(){
-            clnUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
-            clnAdmin.setCellValueFactory(new PropertyValueFactory<>("admin"));
+        clnUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
+        clnAdmin.setCellValueFactory(new PropertyValueFactory<>("admin"));
 
-            userList.getColumns().addAll();
-            userList.setItems(userModel.getObservableUsers());
-
+        userList.getColumns().addAll();
+        userList.setItems(userModel.getObservableUsers());
     }
 }
