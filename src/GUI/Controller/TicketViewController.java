@@ -70,8 +70,8 @@ public class TicketViewController extends BaseController{
 
     private void addAlphabeticListener(TextField textField) {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("[a-åA-Å]*")) {
-                textField.setText(newValue.replaceAll("[^a-åA-Å]", ""));
+            if (!newValue.matches("[a-æøåA-ÆØÅ]*")) {
+                textField.setText(newValue.replaceAll("[^a-æøåA-ÆØÅ]", ""));
             }
             if (newValue.length() > 15) {
                 textField.setText(newValue.substring(0, 15));
