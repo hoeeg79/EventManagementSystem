@@ -67,3 +67,25 @@ Button:focused{
     -fx-background-color: #404249;
     -fx-text-fill: #f2f3f5;
 }
+
+.scroll-bar{
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb{
+    -fx-background-color: #313338;
+    -fx-background-radius: 50px;
+}
+
+.scroll-bar .track{
+    -fx-background-color: #404249;
+    -fx-background-radius: 50px;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-opacity: 0;
+    -fx-min-width: 0;
+    -fx-max-width: 0;
+    -fx-pref-width: 0;
+}

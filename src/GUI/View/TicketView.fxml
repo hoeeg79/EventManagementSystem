@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="345.0" prefWidth="323.0" stylesheets="@TicketView.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.TicketViewController">
+<AnchorPane prefHeight="345.0" prefWidth="323.0" stylesheets="@TicketView.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller.TicketViewController">
    <children>
-      <Label layoutX="25.0" layoutY="105.0" text="Surname" />
-      <Label layoutX="25.0" layoutY="40.0" text="First name" />
-      <Label layoutX="25.0" layoutY="170.0" text="Email" />
-      <VBox fillWidth="false" layoutX="46.0" layoutY="14.0" prefHeight="177.0" prefWidth="145.0" spacing="40.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0">
+      <Label layoutX="29.0" layoutY="90.0" text="Surname" />
+      <Label layoutX="29.0" layoutY="25.0" text="First name" />
+      <Label layoutX="29.0" layoutY="155.0" text="Email" />
+      <VBox fillWidth="false" layoutX="24.0" layoutY="45.0" prefHeight="177.0" prefWidth="145.0" spacing="40.0" AnchorPane.leftAnchor="24.0" AnchorPane.topAnchor="45.0">
          <children>
             <TextField fx:id="txtFirstName" />
             <TextField fx:id="txtLastName" prefHeight="50.0" prefWidth="145.0" />
@@ -20,10 +20,10 @@
             <TextField fx:id="txtPhone" />
          </children>
       </VBox>
-      <Button fx:id="btnPrint" layoutX="23.0" layoutY="289.0" mnemonicParsing="false" onAction="#handlePrintTicket" text="Sell Ticket" AnchorPane.bottomAnchor="10.0" />
-      <Button fx:id="btnClose" layoutX="110.0" layoutY="289.0" mnemonicParsing="false" onAction="#handleClose" text="Close" AnchorPane.bottomAnchor="10.0" />
-      <Label layoutX="25.0" layoutY="235.0" text="Phone number" />
-      <VBox layoutX="196.0" layoutY="49.0" prefHeight="220.0" prefWidth="100.0" spacing="50.0" AnchorPane.topAnchor="60.0">
+      <Button fx:id="btnPrint" layoutX="27.0" layoutY="294.0" mnemonicParsing="false" onAction="#handlePrintTicket" text="Sell Ticket" AnchorPane.bottomAnchor="25.399999999999977" />
+      <Button fx:id="btnClose" layoutX="114.0" layoutY="294.0" mnemonicParsing="false" onAction="#handleClose" text="Close" AnchorPane.bottomAnchor="25.399999999999977" />
+      <Label layoutX="29.0" layoutY="220.0" text="Phone number" />
+      <VBox layoutX="200.0" layoutY="45.0" prefHeight="220.0" prefWidth="100.0" spacing="50.0" AnchorPane.topAnchor="45.0">
          <children>
             <CheckBox fx:id="cbVIP" mnemonicParsing="false" text="VIP" textFill="WHITE" />
             <CheckBox fx:id="cbFood" mnemonicParsing="false" text="Food included" textFill="WHITE" />
