@@ -102,7 +102,7 @@ public class TicketViewController extends BaseController{
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF","*.pdf"));
-        fileChooser.setInitialFileName("Ticket");
+        fileChooser.setInitialFileName(lastName+ " " + getModel().getSelectedEvent().getName());
         File fileToSave = fileChooser.showSaveDialog(btnPrint.getScene().getWindow());
         Document document = new Document(PageSize.A6.rotate());
         PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(fileToSave.getAbsoluteFile()));
