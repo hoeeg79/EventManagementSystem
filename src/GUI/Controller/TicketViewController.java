@@ -71,7 +71,7 @@ public class TicketViewController extends BaseController{
     private void addAlphabeticListener(TextField textField) {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("[a-zA-Z]*")) {
-                textField.setText(newValue.replaceAll("[^a-zA-Z]", ""));
+                textField.setText(newValue.replaceAll("[^a-åA-Å]", ""));
             }
             if (newValue.length() > 15) {
                 textField.setText(newValue.substring(0, 15));
@@ -129,7 +129,7 @@ public class TicketViewController extends BaseController{
         lineSeparator.setLineWidth(1);
         document.add(lineSeparator);
 
-        Font eventNameFont = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD);
+        Font eventNameFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
         Paragraph eventName = new Paragraph("Let's meet at the " + getModel().getSelectedEvent().getLocation() + "!", eventNameFont);
         eventName.setAlignment(Element.ALIGN_CENTER);
         eventName.setSpacingBefore(5);
