@@ -118,7 +118,7 @@ public class TicketViewController extends BaseController{
         border.setBorderColor(new com.itextpdf.text.BaseColor(0, 0, 0)); // black
         document.add(border);
 
-        Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.BOLD);
+        Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
         Paragraph title = new Paragraph("This is your ticket to " + getModel().getSelectedEvent().getName() + "!", titleFont);
         title.setAlignment(Element.ALIGN_CENTER);
         title.setSpacingAfter(20);
