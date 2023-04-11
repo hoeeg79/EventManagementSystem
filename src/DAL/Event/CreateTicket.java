@@ -8,10 +8,17 @@ import java.sql.*;
 public class CreateTicket {
     private DBConnector dbc;
 
+    /**
+     * Constructor of the CreateTicket class, used to instantiate the DBConnector.
+     */
     public CreateTicket() throws Exception{
         dbc = new DBConnector();
     }
 
+    /**
+     * createTicket is a method that creates a ticket in our Ticket table,
+     * by taking the eventId and phoneNumber of said ticket, and adding a ticketId to it
+     */
     public Ticket createTicket(int eventId, int phoneNumber)throws SQLException {
         String sql = "INSERT INTO Ticket (EventID, PhoneNumber) VALUES (?,?)";
         try (Connection conn = dbc.getConnection()) {
@@ -34,32 +41,3 @@ public class CreateTicket {
         }
     }
 }
-
-
-
-
-//        try(Connection conn = dbc.getConnection()){
-//            String sql = "SELECT e.name, e.date, e.time, e.location, c.FirstName, c.LastName, c.Email, t.TicketID " +
-//                    "FROM Event e " +
-//                    "INNER JOIN Ticket t ON e.id = t.id " +
-//                    "INNER JOIN Customer c ON t.CustomerID = c.CustomerID";
-//            PreparedStatement stmt = conn.prepareStatement(sql);
-//            ResultSet rs = stmt.executeQuery();
-//
-//            while(rs.next()){
-//                String eventName = rs.getString("name");
-//                Date eventDate = rs.getDate("date");
-//                Time eventTime = rs.getTime("time");
-//                String eventLocation = rs.getString("location");
-//                String customerFirstName = rs.getString("FirstName");
-//                String customerLastName = rs.getString("LastName");
-//                String customerEmail = rs.getString("Email");
-//                int ticketID = rs.getInt("TicketID");
-//
-//                Tickets _ticket = new Tickets(ticketID, eventName, eventDate, eventTime, eventLocation);
-//                return _ticket;
-//            }
-//
-//        }catch (SQLException e){
-//            throw new SQLException();
-//        }

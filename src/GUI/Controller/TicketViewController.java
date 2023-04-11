@@ -70,8 +70,8 @@ public class TicketViewController extends BaseController{
 
     private void addAlphabeticListener(TextField textField) {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("[a-zA-Z]*")) {
-                textField.setText(newValue.replaceAll("[^a-zA-Z]", ""));
+            if (!newValue.matches("[a-æøåA-ÆØÅ]*")) {
+                textField.setText(newValue.replaceAll("[^a-æøåA-ÆØÅ]", ""));
             }
             if (newValue.length() > 15) {
                 textField.setText(newValue.substring(0, 15));
@@ -101,8 +101,8 @@ public class TicketViewController extends BaseController{
         Ticket t = getModel().sellTicketEvent(getModel().getSelectedEvent(),cus);
 
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Pdf",".pdf"));
-        fileChooser.setInitialFileName("Ticket");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF","*.pdf"));
+        fileChooser.setInitialFileName(lastName+ " " + getModel().getSelectedEvent().getName());
         File fileToSave = fileChooser.showSaveDialog(btnPrint.getScene().getWindow());
         Document document = new Document(PageSize.A6.rotate());
         PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(fileToSave.getAbsoluteFile()));
@@ -129,7 +129,7 @@ public class TicketViewController extends BaseController{
         lineSeparator.setLineWidth(1);
         document.add(lineSeparator);
 
-        Font eventNameFont = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD);
+        Font eventNameFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD);
         Paragraph eventName = new Paragraph("Let's meet at the " + getModel().getSelectedEvent().getLocation() + "!", eventNameFont);
         eventName.setAlignment(Element.ALIGN_CENTER);
         eventName.setSpacingBefore(5);
@@ -156,7 +156,7 @@ public class TicketViewController extends BaseController{
         Paragraph descriptionDetails = new Paragraph();
         descriptionDetails.add(new Paragraph("Description: On the backside of this ticket, you will find a map of the parkingspace.", descriptionFont));
         descriptionDetails.add(new Paragraph("Erhvervsakademi Sydvest, Spangsbjerg Kirkevej 103, 6700 Esbjerg", descriptionFont));
-        descriptionDetails.add(new Paragraph("55.488626, 8.445813", descriptionFont));
+        descriptionDetails.add(new Paragraph("N55.488626, E8.445813", descriptionFont));
         descriptionDetails.setSpacingBefore(9);
         document.add(descriptionDetails);
         //getModel().getSelectedEvent().getId()))
@@ -249,7 +249,6 @@ public class TicketViewController extends BaseController{
         if (s.equals("This ticket includes: ")) {
             s = "";
         }
-
         return s;
     }
 }

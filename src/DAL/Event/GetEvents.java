@@ -12,18 +12,25 @@ public class GetEvents {
 
     private DBConnector DBCon;
 
+    /**
+     * Constructor of the getEvents class, used to instantiate the DBConnector.
+     */
     public GetEvents() throws Exception {
         DBCon = new DBConnector();
     }
 
+    /**
+     * returnEvents is a method that uses an SQL string to select all events from the database,
+     * then returns all events from the database.
+     */
     public List<Event> returnEvents() throws Exception{
-        //Make a list called allMovies, to store movies in, and return in the end
+        //Make a list called allEvents, to store events in, and return in the end
         ArrayList<Event> allEvents = new ArrayList<>();
 
         //Try with resources to connect to DB
         try (Connection conn = DBCon.getConnection()){
 
-            //SQL string, selects all movies from DB
+            //SQL string, selects all events from DB
             String sql = "SELECT * FROM Event;";
 
             Statement stmt = conn.createStatement();
@@ -31,7 +38,7 @@ public class GetEvents {
 
             //Loop through rows from database result set
             while (rs.next()){
-                //Map DB row to Movie object
+                //Map DB row to events object
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String location = rs.getString("location");
@@ -43,7 +50,7 @@ public class GetEvents {
                 boolean frontRow = rs.getBoolean("frontRow");
                 boolean beer = rs.getBoolean("beer");
 
-                //Create Movie and add to list created in the beginning
+                //Create event and add to list created in the beginning
                 Event event = new Event(id,name,date,startTime,location,participants, VIP, food, frontRow, beer);
                 allEvents.add(event);
             }

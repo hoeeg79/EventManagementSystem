@@ -3,7 +3,10 @@ package GUI.Controller;
 import BE.Event;
 import BE.User;
 import GUI.Model.EventModel;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.SetChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -53,6 +56,7 @@ public class MainViewController extends BaseController {
     private TableView<Event> eventBordet;
     private EventModel eventModel;
     private User user;
+    private boolean itemSelected;
 
     @Override
     public void setup() {
@@ -93,11 +97,13 @@ public class MainViewController extends BaseController {
      */
     @FXML
     private void handleDeleteEvent(ActionEvent actionEvent){
-        try{
-            Event deletedEvent = eventBordet.getSelectionModel().getSelectedItem();
-            eventModel.deleteEvent(deletedEvent);
-        }catch (Exception e){
-            displayError(e);
+        if(itemSelected) {
+            try {
+                Event deletedEvent = eventBordet.getSelectionModel().getSelectedItem();
+                eventModel.deleteEvent(deletedEvent);
+            } catch (Exception e) {
+                displayError(e);
+            }
         }
     }
 
@@ -290,6 +296,7 @@ public class MainViewController extends BaseController {
         deleteEvent.setVisible(true);
         btnManageUsers.setVisible(false);
         btnExtraTicket.setVisible(true);
+        eventListListener();
         } catch(Exception e){
             displayError(e);
             e.printStackTrace();
@@ -315,7 +322,8 @@ public class MainViewController extends BaseController {
     /**
      * Opens the extra ticket view
      */
-    public void handleExtraTicket(ActionEvent actionEvent) throws Exception {
+    @FXML
+    private void handleExtraTicket(ActionEvent actionEvent) throws Exception {
         try{
         Event selectedEvent = eventBordet.getSelectionModel().getSelectedItem();
         if (selectedEvent != null) {
@@ -341,5 +349,29 @@ public class MainViewController extends BaseController {
             displayError(e);
             e.printStackTrace();
         }
+    }
+
+    private void eventListListener() {
+
+        editEvent.setDisable(true);
+        sellTickets.setDisable(true);
+        btnExtraTicket.setDisable(true);
+        eventBordet.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Event>() {
+            @Override
+            public void changed(ObservableValue<? extends Event> observable, Event oldValue, Event newValue) {
+                if (newValue != null) {
+                    sellTickets.setDisable(false);
+                    editEvent.setDisable(false);
+                    btnExtraTicket.setDisable(false);
+                    itemSelected = true;
+
+                } else {
+                    sellTickets.setDisable(true);
+                    editEvent.setDisable(true);
+                    btnExtraTicket.setDisable(true);
+                    itemSelected = false;
+                }
+            }
+        });
     }
 }

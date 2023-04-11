@@ -6,6 +6,10 @@ public class Customer {
     private String email;
     private int phoneNumber;
 
+
+    /**
+     * This class contains setters and getters used for the Customer, which is necessary in other layers of the application
+     */
     public Customer(String firstName, String lastName, String email, int phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;

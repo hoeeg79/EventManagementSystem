@@ -13,6 +13,9 @@ public class DBConnector {
     private static final String PROP_FILE = "Config/database.settings";
     private SQLServerDataSource ds;
 
+    /**
+     * Constructor of the DBConnector class, used to declare the database information.
+     */
     public DBConnector() throws Exception{
         Properties databaseProperties = new Properties();
         databaseProperties.load(new FileInputStream(new File(PROP_FILE)));
@@ -30,6 +33,9 @@ public class DBConnector {
         ds.setTrustServerCertificate(true);
     }
 
+    /**
+     * Method used to get connection to the database.
+     */
     public Connection getConnection() throws SQLServerException {
         return ds.getConnection();
     }

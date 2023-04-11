@@ -10,10 +10,17 @@ import java.sql.SQLException;
 public class TicketScan {
     private final DBConnector dbc;
 
+    /**
+     * Constructor of the TicketScan class, used to instantiate the DBConnector.
+     */
     public TicketScan() throws Exception{
         dbc = new DBConnector();
     }
 
+    /**
+     * scanTickets is a method that should be used for changing the boolean of a scanned ticket from 0 to 1
+     * meaning the ticket has been used - Although we do not have an actual scanner, therefore the method is never in use.
+     */
     public void scanTicket(int ticketID){
         String sql = "UPDATE Tickets SET Scanned = 1 WHERE TicketID = ?";
 
