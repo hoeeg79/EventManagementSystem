@@ -41,8 +41,9 @@ public class GetUsers {
                 String username = rs.getString("username");
                 int id = rs.getInt("id");
                 Boolean admin = rs.getBoolean("admin");
+                String password = rs.getString("password");
 
-                User users = new User(username, id, admin);
+                User users = new User(username, id, admin, password);
                 allUsers.add(users);}
             }catch(Exception e){
                 throw new Exception("Could not get Users from database", e);
