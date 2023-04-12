@@ -9,8 +9,8 @@
     </content>
     <orderEntry type="jdk" jdkName="liberica-19" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="microsoft.sqlserver.mssql.jdbc" level="project" />
     <orderEntry type="library" name="itextpdf" level="project" />
     <orderEntry type="library" name="junit.jupiter" level="project" />
+    <orderEntry type="library" name="microsoft.sqlserver.mssql.jdbc" level="project" />
   </component>
 </module>
