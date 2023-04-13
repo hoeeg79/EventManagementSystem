@@ -28,7 +28,7 @@ public class UsersController extends BaseController{
     @FXML
     private TextField tfConfirmPassword;
     private UserModel userModel;
-    
+
     @Override
     public void setup() {
         try{
