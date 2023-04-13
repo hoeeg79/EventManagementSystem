@@ -51,7 +51,7 @@ public class UsersController extends BaseController{
         String password = tfPassword.getText();
         String confirmPassword = tfConfirmPassword.getText();
 
-        String salt = BCrypt.gensalt(7);
+        String salt = BCrypt.gensalt(10);
         String hashedPassword1 = BCrypt.hashpw(password, salt);
         String hashedPassword2 = BCrypt.hashpw(confirmPassword, salt);
 
