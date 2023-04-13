@@ -24,20 +24,20 @@ public class Login {
      * username is what's specified, and password is what is specified
      * its functionality is to log onto the application
      */
-    protected User login(String username, String password) throws SQLException {
-        String sql = "SELECT * FROM User_credentials WHERE username=? AND password=?;";
+    protected User login(String username) throws SQLException {
+        String sql = "SELECT * FROM User_credentials WHERE username=?;";
 
         try(Connection conn = dbc.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, username);
-            stmt.setString(2, password);
 
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
                 System.out.println("Login successful!");
-                return new User(rs.getString(2),rs.getInt(1), rs.getBoolean("admin"));
+                return new User(rs.getString(2),rs.getInt(1),
+                        rs.getBoolean("admin"), rs.getString(3));
             } else {
                 System.out.println("Invalid username or password.");
             }

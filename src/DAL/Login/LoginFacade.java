@@ -7,8 +7,8 @@ import BE.User;
  */
 
 public class LoginFacade {
-    public User login(String username, String password) throws Exception {
+    public User login(String username) throws Exception {
         Login login = new Login();
-        return login.login(username, password);
+        return login.login(username);
     }
 }

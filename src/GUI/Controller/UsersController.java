@@ -1,6 +1,7 @@
 package GUI.Controller;
 
 import BE.User;
+import BLL.util.BCrypt;
 import GUI.Model.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,12 +47,18 @@ public class UsersController extends BaseController{
      */
     public void handleCreateUsers(ActionEvent actionEvent) throws Exception {
         String username = tfUsername.getText();
+
         String password = tfPassword.getText();
         String confirmPassword = tfConfirmPassword.getText();
+
+        String salt = BCrypt.gensalt(7);
+        String hashedPassword1 = BCrypt.hashpw(password, salt);
+        String hashedPassword2 = BCrypt.hashpw(confirmPassword, salt);
+
         boolean isAdmin = cbIsAdmin.isSelected();
         try {
-        if(password.equals(confirmPassword)){
-            userModel.createUsers(username, password, isAdmin);
+        if(hashedPassword1.equals(hashedPassword2)){
+            userModel.createUsers(username, hashedPassword1, isAdmin);
             closeWindow(btnCreate);
         }
         } catch(Exception e){

@@ -39,7 +39,7 @@ public class CreateUser {
                 id = rs.getInt(1);
             }
 
-            return new User(username, id, isAdmin);
+            return new User(username, id, isAdmin, password);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
