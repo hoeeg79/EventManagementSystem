@@ -28,8 +28,7 @@ public class UsersController extends BaseController{
     @FXML
     private TextField tfConfirmPassword;
     private UserModel userModel;
-
-
+    
     @Override
     public void setup() {
         try{
@@ -66,7 +65,6 @@ public class UsersController extends BaseController{
             e.printStackTrace();
         }
     }
-
 
     /**
      * Deletes a user from the application.
