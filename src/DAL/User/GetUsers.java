@@ -24,11 +24,11 @@ public class GetUsers {
      * returnUsers is a method that uses an SQL string to select everything from the User_credentials table
      * and return all the users
      */
-    public List<User> returnUsers() throws Exception{
+    public List<User> returnUsers() throws Exception {
 
         ArrayList<User> allUsers = new ArrayList<>();
 
-        try(Connection conn = DBCon.getConnection()){
+        try (Connection conn = DBCon.getConnection()) {
 
             String sql = "SELECT * FROM User_credentials;";
 
@@ -36,7 +36,7 @@ public class GetUsers {
             ResultSet rs = stmt.executeQuery(sql);
 
 
-            while(rs.next()){
+            while (rs.next()) {
 
                 String username = rs.getString("username");
                 int id = rs.getInt("id");
@@ -44,10 +44,11 @@ public class GetUsers {
                 String password = rs.getString("password");
 
                 User users = new User(username, id, admin, password);
-                allUsers.add(users);}
-            }catch(Exception e){
-                throw new Exception("Could not get Users from database", e);
+                allUsers.add(users);
             }
+        } catch (Exception e) {
+            throw new Exception("Could not get Users from database", e);
+        }
         return allUsers;
     }
 }

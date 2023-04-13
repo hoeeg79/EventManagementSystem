@@ -18,6 +18,7 @@ public class EditEvent {
 
     /**
      * editE is a method that uses an SQL string to update an event with new specifications.
+     *
      * @param event
      * @throws Exception
      */

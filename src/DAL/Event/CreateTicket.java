@@ -11,7 +11,7 @@ public class CreateTicket {
     /**
      * Constructor of the CreateTicket class, used to instantiate the DBConnector.
      */
-    public CreateTicket() throws Exception{
+    public CreateTicket() throws Exception {
         dbc = new DBConnector();
     }
 
@@ -19,7 +19,7 @@ public class CreateTicket {
      * createTicket is a method that creates a ticket in our Ticket table,
      * by taking the eventId and phoneNumber of said ticket, and adding a ticketId to it
      */
-    public Ticket createTicket(int eventId, int phoneNumber)throws SQLException {
+    public Ticket createTicket(int eventId, int phoneNumber) throws SQLException {
         String sql = "INSERT INTO Ticket (EventID, PhoneNumber) VALUES (?,?)";
         try (Connection conn = dbc.getConnection()) {
 
@@ -31,10 +31,10 @@ public class CreateTicket {
             ResultSet rs = pstmt.executeQuery();
 
             int ticketId = 0;
-            if(rs.next()){
+            if (rs.next()) {
                 ticketId = rs.getInt(1);
             }
-            return new Ticket(ticketId,eventId,phoneNumber);
+            return new Ticket(ticketId, eventId, phoneNumber);
 
         } catch (SQLException e) {
             throw new SQLException();

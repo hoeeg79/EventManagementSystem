@@ -29,7 +29,7 @@ public class UsersManager {
     /**
      * A method used to send the getUsers method through the layers to the GUI
      */
-    public List<User> getUsers() throws Exception{
+    public List<User> getUsers() throws Exception {
         return uf.getUsers();
     }
 }

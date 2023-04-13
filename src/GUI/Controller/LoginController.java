@@ -17,7 +17,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-public class LoginController extends BaseController{
+public class LoginController extends BaseController {
     @FXML
     private Label lblWarning;
     @FXML
@@ -31,7 +31,7 @@ public class LoginController extends BaseController{
     /**
      * Used to log into the application. Checks if the user is an admin or a coordinator.
      */
-    private void login(){
+    private void login() {
         try {
             String username = tfUsername.getText();
             String password = tfPassword.getText();
@@ -40,9 +40,9 @@ public class LoginController extends BaseController{
             System.out.println(user);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/MainView.fxml"));
 
-            if (user == null){
+            if (user == null) {
                 lblWarning.setText("Username or password is invalid.");
-            }else {
+            } else {
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
 
@@ -56,7 +56,7 @@ public class LoginController extends BaseController{
                 primaryStage.setTitle("Event System");
                 primaryStage.show();
             }
-        } catch(Exception e){
+        } catch (Exception e) {
             displayError(e);
             e.printStackTrace();
         }
@@ -90,10 +90,11 @@ public class LoginController extends BaseController{
      * Clicks the login button, by a press of the enter key.
      */
     private void checkIfEnter(KeyEvent event) {
-        try{
-        if (event.getCode() == KeyCode.ENTER) {
-            login();
-        }} catch(Exception e){
+        try {
+            if (event.getCode() == KeyCode.ENTER) {
+                login();
+            }
+        } catch (Exception e) {
             displayError(e);
             e.printStackTrace();
         }

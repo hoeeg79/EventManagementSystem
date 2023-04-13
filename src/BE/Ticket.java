@@ -3,7 +3,7 @@ package BE;
 import java.sql.Date;
 import java.sql.Time;
 
-public class Ticket{
+public class Ticket {
     private int ticketId;
     private boolean isScanned;
     private int eventId;
@@ -45,6 +45,7 @@ public class Ticket{
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
     public int getTicketId() {
         return ticketId;
     }
@@ -53,7 +54,6 @@ public class Ticket{
         this.ticketId = ticketId;
     }
 }
-
 
 
 // QR code - id of the ticket

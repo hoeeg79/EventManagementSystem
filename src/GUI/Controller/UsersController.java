@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class UsersController extends BaseController{
+public class UsersController extends BaseController {
     @FXML
     private TableColumn clnAdmin;
     @FXML
@@ -31,11 +31,10 @@ public class UsersController extends BaseController{
 
     @Override
     public void setup() {
-        try{
-        userModel = super.getUModel();
-        fillList();
-        }
-        catch(Exception e){
+        try {
+            userModel = super.getUModel();
+            fillList();
+        } catch (Exception e) {
             displayError(e);
             e.printStackTrace();
         }
@@ -44,7 +43,7 @@ public class UsersController extends BaseController{
     /**
      * Creates a new user for the application.
      */
-    public void handleCreateUsers(ActionEvent actionEvent) throws Exception {
+    public void handleCreateUsers(ActionEvent actionEvent) {
         String username = tfUsername.getText();
 
         String password = tfPassword.getText();
@@ -56,11 +55,11 @@ public class UsersController extends BaseController{
 
         boolean isAdmin = cbIsAdmin.isSelected();
         try {
-        if(hashedPassword1.equals(hashedPassword2)){
-            userModel.createUsers(username, hashedPassword1, isAdmin);
-            closeWindow(btnCreate);
-        }
-        } catch(Exception e){
+            if (hashedPassword1.equals(hashedPassword2)) {
+                userModel.createUsers(username, hashedPassword1, isAdmin);
+                closeWindow(btnCreate);
+            }
+        } catch (Exception e) {
             displayError(e);
             e.printStackTrace();
         }
@@ -69,8 +68,8 @@ public class UsersController extends BaseController{
     /**
      * Deletes a user from the application.
      */
-    public void handleDeleteUsers(ActionEvent actionEvent) throws Exception {
-        try{
+    public void handleDeleteUsers(ActionEvent actionEvent) {
+        try {
             User deletedUser = userList.getSelectionModel().getSelectedItem();
             userModel.deleteUsers(deletedUser);
         } catch (Exception e) {
@@ -81,7 +80,7 @@ public class UsersController extends BaseController{
     /**
      * Fills the column with the specified information
      */
-    public void fillList(){
+    public void fillList() {
         clnUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         clnAdmin.setCellValueFactory(new PropertyValueFactory<>("admin"));
 

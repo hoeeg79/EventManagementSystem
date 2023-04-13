@@ -24,15 +24,15 @@ public class CreateCustomer {
      * If the phoneNumber already exists it does nothing. If the phoneNumber does not exist, it runs a new SQL STRING
      * that adds a persons information into our database.
      */
-    public Customer createCustomer(String firstName, String lastName, String email, int phoneNumber){
+    public Customer createCustomer(String firstName, String lastName, String email, int phoneNumber) {
         // Checks if a customer with the specified phone number exists in our Customer table
-        try(Connection conn = dbc.getConnection()){
+        try (Connection conn = dbc.getConnection()) {
             String sql = "SELECT COUNT(*) FROM Customer Where phoneNumber = ?";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, phoneNumber);
 
             ResultSet rs = pstmt.executeQuery();
-            if(rs.next() && rs.getInt(1) > 0){
+            if (rs.next() && rs.getInt(1) > 0) {
                 return null;
             }
 
@@ -40,7 +40,7 @@ public class CreateCustomer {
             throw new RuntimeException(e);
         }
 
-        try(Connection conn = dbc.getConnection()){
+        try (Connection conn = dbc.getConnection()) {
             // If the customer does not exist in the database, it will add the customer.
             String sql = "INSERT INTO Customer (firstName, lastName, email, phoneNumber) VALUES (?,?,?,?);";
 
@@ -54,7 +54,7 @@ public class CreateCustomer {
             pstmt.executeUpdate();
 
             return new Customer(firstName, lastName, email, phoneNumber);
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }

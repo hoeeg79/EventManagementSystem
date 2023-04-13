@@ -17,7 +17,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
-public class ExtraTicketViewController extends BaseController{
+public class ExtraTicketViewController extends BaseController {
     @FXML
     private Button btnPrint;
     @FXML
@@ -32,79 +32,78 @@ public class ExtraTicketViewController extends BaseController{
     private RadioButton rbFreeEarplugs;
 
     @Override
-    public void setup() throws Exception {
+    public void setup() {
 
     }
 
     /**
      * Creates a new ticket which contains free beer, free ear plugs or 50% off a drink.
      */
-    public void handlePrint(ActionEvent actionEvent) throws Exception {
-        try{
-        Toggle selectedToggle = RadioGroup.getSelectedToggle();
-        String toggleString = "";
-        if (selectedToggle == rbFreeBeer){
-            toggleString = "a free beer";
-        } else if (selectedToggle == rb50Off) {
-            toggleString = "50% off a drink";
-        } else if (selectedToggle == rbFreeEarplugs) {
-            toggleString = "free earplugs";
+    public void handlePrint(ActionEvent actionEvent) {
+        try {
+            Toggle selectedToggle = RadioGroup.getSelectedToggle();
+            String toggleString = "";
+            if (selectedToggle == rbFreeBeer) {
+                toggleString = "a free beer";
+            } else if (selectedToggle == rb50Off) {
+                toggleString = "50% off a drink";
+            } else if (selectedToggle == rbFreeEarplugs) {
+                toggleString = "free earplugs";
+            }
 
-        }
+            FileChooser fileChooser = new FileChooser();
+            File fileToSave = fileChooser.showSaveDialog(btnPrint.getScene().getWindow());
+            Document document = new Document(PageSize.A6.rotate());
+            PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(fileToSave.getAbsoluteFile()));
+            document.open();
 
-        FileChooser fileChooser = new FileChooser();
-        File fileToSave = fileChooser.showSaveDialog(btnPrint.getScene().getWindow());
-        Document document = new Document(PageSize.A6.rotate());
-        PdfWriter pdfWriter = PdfWriter.getInstance(document, new FileOutputStream(fileToSave.getAbsoluteFile()));
-        document.open();
+            Rectangle background = new Rectangle(0, 0, PageSize.A6.rotate().getWidth(), PageSize.A6.rotate().getHeight());
+            background.setBackgroundColor(new com.itextpdf.text.BaseColor(240, 230, 199));
+            document.add(background);
 
-        Rectangle background = new Rectangle(0, 0, PageSize.A6.rotate().getWidth(), PageSize.A6.rotate().getHeight());
-        background.setBackgroundColor(new com.itextpdf.text.BaseColor(240, 230, 199));
-        document.add(background);
+            Rectangle border = new Rectangle(10, 10, PageSize.A6.rotate().getWidth() - 10, PageSize.A6.rotate().getHeight() - 10);
+            border.setBorder(Rectangle.BOX);
+            border.setBorderWidth(2);
+            border.setBorderColor(new com.itextpdf.text.BaseColor(0, 0, 0)); // black
+            document.add(border);
 
-        Rectangle border = new Rectangle(10, 10, PageSize.A6.rotate().getWidth() - 10, PageSize.A6.rotate().getHeight() - 10);
-        border.setBorder(Rectangle.BOX);
-        border.setBorderWidth(2);
-        border.setBorderColor(new com.itextpdf.text.BaseColor(0, 0, 0)); // black
-        document.add(border);
+            Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.BOLD);
+            Paragraph title = new Paragraph("This is your bonus ticket to \n" + getModel().getSelectedEvent().getName() + "!", titleFont);
+            title.setAlignment(Element.ALIGN_CENTER);
+            title.setSpacingAfter(20);
+            document.add(title);
 
-        Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 22, Font.BOLD);
-        Paragraph title = new Paragraph("This is your bonus ticket to \n" + getModel().getSelectedEvent().getName() + "!", titleFont);
-        title.setAlignment(Element.ALIGN_CENTER);
-        title.setSpacingAfter(20);
-        document.add(title);
+            LineSeparator lineSeparator = new LineSeparator();
+            lineSeparator.setLineColor(new com.itextpdf.text.BaseColor(0, 0, 0)); // black
+            lineSeparator.setLineWidth(1);
+            document.add(lineSeparator);
 
-        LineSeparator lineSeparator = new LineSeparator();
-        lineSeparator.setLineColor(new com.itextpdf.text.BaseColor(0, 0, 0)); // black
-        lineSeparator.setLineWidth(1);
-        document.add(lineSeparator);
+            Font eventNameFont = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD);
+            Paragraph eventName = new Paragraph("This ticket will give you " + toggleString + "!", eventNameFont);
+            eventName.setAlignment(Element.ALIGN_CENTER);
+            eventName.setSpacingBefore(5);
+            document.add(eventName);
 
-        Font eventNameFont = new Font(Font.FontFamily.TIMES_ROMAN, 17, Font.BOLD);
-        Paragraph eventName = new Paragraph("This ticket will give you " + toggleString + "!", eventNameFont);
-        eventName.setAlignment(Element.ALIGN_CENTER);
-        eventName.setSpacingBefore(5);
-        document.add(eventName);
+            Font personalFont = new Font(Font.FontFamily.TIMES_ROMAN, 12);
+            Paragraph details = new Paragraph();
+            details.add(new Paragraph("Date of the event: " + String.valueOf(getModel().getSelectedEvent().getDate()) + " at " + getModel().getSelectedEvent().getTime(), personalFont));
+            details.add(new Paragraph("This ticket is only valid for this event."));
+            document.add(details);
 
-        Font personalFont = new Font(Font.FontFamily.TIMES_ROMAN, 12);
-        Paragraph details = new Paragraph();
-        details.add(new Paragraph("Date of the event: " + String.valueOf(getModel().getSelectedEvent().getDate()) + " at " + getModel().getSelectedEvent().getTime(), personalFont));
-        details.add(new Paragraph("This ticket is only valid for this event."));
-        document.add(details);
+            Barcode128 code128 = new Barcode128();
+            code128.setCode(String.valueOf(getModel().getSelectedEvent().getId()));
+            code128.setSize(9);
+            code128.setX(2);
+            code128.setN(60);
+            PdfContentByte cb = pdfWriter.getDirectContent();
+            Image barcodeImage = code128.createImageWithBarcode(cb, null, null);
+            float x = PageSize.A6.rotate().getWidth() / 2 - 30;
+            float y = barcodeImage.getScaledHeight() - 13;
+            barcodeImage.setAbsolutePosition(x, y);
+            document.add(barcodeImage);
 
-        Barcode128 code128 = new Barcode128();
-        code128.setCode(String.valueOf(getModel().getSelectedEvent().getId()));
-        code128.setSize(9);
-        code128.setX(2);
-        code128.setN(60);
-        PdfContentByte cb = pdfWriter.getDirectContent();
-        Image barcodeImage = code128.createImageWithBarcode(cb, null, null);
-        float x = PageSize.A6.rotate().getWidth() / 2 - 30;
-        float y = barcodeImage.getScaledHeight() - 13;
-        barcodeImage.setAbsolutePosition(x, y);
-        document.add(barcodeImage);
-
-        document.close();
-        } catch(Exception e){
+            document.close();
+        } catch (Exception e) {
             displayError(e);
             e.printStackTrace();
         }
@@ -115,9 +114,9 @@ public class ExtraTicketViewController extends BaseController{
      * Cancels the creation of an extra ticket
      */
     public void handleCancel(ActionEvent actionEvent) {
-        try{
-        closeWindow(btnCancel);
-        } catch(Exception e){
+        try {
+            closeWindow(btnCancel);
+        } catch (Exception e) {
             displayError(e);
             e.printStackTrace();
         }

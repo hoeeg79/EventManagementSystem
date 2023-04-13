@@ -15,10 +15,10 @@ public class EventFacade {
 
     public Event createEvent(String name, Date date, Time time, String location, int participants, boolean VIP, boolean food, boolean frontRow, boolean beer) throws Exception {
         CreateEvent ce = new CreateEvent();
-        return ce.createEvent(name,date,time,location,participants, VIP, food, frontRow, beer);
+        return ce.createEvent(name, date, time, location, participants, VIP, food, frontRow, beer);
     }
 
-    public void deleteEvent(Event deletedEvent) throws Exception{
+    public void deleteEvent(Event deletedEvent) throws Exception {
         DeleteEvent de = new DeleteEvent();
         de.deleteEvent(deletedEvent);
     }
@@ -33,7 +33,7 @@ public class EventFacade {
         editE.editE(e);
     }
 
-    public Ticket sellTicketEvent(Event e,Customer c) throws Exception {
+    public Ticket sellTicketEvent(Event e, Customer c) throws Exception {
         CreateCustomer cC = new CreateCustomer();
         CreateTicket cT = new CreateTicket();
         SellTicketEvent sT = new SellTicketEvent();

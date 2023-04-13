@@ -20,7 +20,7 @@ public class EventModel {
     /**
      * Constructor of the eventModel class
      */
-    public EventModel(){
+    public EventModel() {
         eventManager = new EventManager();
         eventList = FXCollections.observableArrayList();
     }
@@ -28,7 +28,7 @@ public class EventModel {
     /**
      * Makes a variable of createEvent, and adds it to the ObservableList<Event>
      */
-    public void createEvent(String name, Date date, Time time, String location, int participants, boolean VIP, boolean food, boolean frontRow, boolean beer) throws Exception{
+    public void createEvent(String name, Date date, Time time, String location, int participants, boolean VIP, boolean food, boolean frontRow, boolean beer) throws Exception {
         Event e = eventManager.createEvent(name, date, time, location, participants, VIP, food, frontRow, beer);
         eventList.add(e);
     }

@@ -23,12 +23,12 @@ public class GetEvents {
      * returnEvents is a method that uses an SQL string to select all events from the database,
      * then returns all events from the database.
      */
-    public List<Event> returnEvents() throws Exception{
+    public List<Event> returnEvents() throws Exception {
         //Make a list called allEvents, to store events in, and return in the end
         ArrayList<Event> allEvents = new ArrayList<>();
 
         //Try with resources to connect to DB
-        try (Connection conn = DBCon.getConnection()){
+        try (Connection conn = DBCon.getConnection()) {
 
             //SQL string, selects all events from DB
             String sql = "SELECT * FROM Event;";
@@ -37,7 +37,7 @@ public class GetEvents {
             ResultSet rs = stmt.executeQuery(sql);
 
             //Loop through rows from database result set
-            while (rs.next()){
+            while (rs.next()) {
                 //Map DB row to events object
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
@@ -51,10 +51,10 @@ public class GetEvents {
                 boolean beer = rs.getBoolean("beer");
 
                 //Create event and add to list created in the beginning
-                Event event = new Event(id,name,date,startTime,location,participants, VIP, food, frontRow, beer);
+                Event event = new Event(id, name, date, startTime, location, participants, VIP, food, frontRow, beer);
                 allEvents.add(event);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new Exception("Could not get Events from database", e);
         }
         return allEvents;

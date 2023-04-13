@@ -10,6 +10,7 @@ public abstract class BaseController {
 
     private EventModel model;
     private UserModel uModel;
+
     public abstract void setup() throws Exception;
 
     public void setModel(EventModel model) {
@@ -20,16 +21,17 @@ public abstract class BaseController {
         return model;
     }
 
-    public void setUModel(UserModel uModel){
+    public void setUModel(UserModel uModel) {
         this.uModel = uModel;
     }
 
-    public UserModel getUModel(){
+    public UserModel getUModel() {
         return uModel;
     }
 
     /**
      * Method used to display errors in the other controller classes
+     *
      * @param t - the error that have been caught
      */
     public void displayError(Throwable t) {
@@ -41,6 +43,7 @@ public abstract class BaseController {
 
     /**
      * Method called in other controller classes, used to close windows in case of cancel button used.
+     *
      * @param btn - the button pressed in the method.
      */
     public void closeWindow(Button btn) {

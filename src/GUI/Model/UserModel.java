@@ -33,7 +33,7 @@ public class UserModel {
     /**
      * Deletes a user from the observableList<User>
      */
-    public void deleteUsers(User deletedUsers) throws Exception{
+    public void deleteUsers(User deletedUsers) throws Exception {
         usersManager.deleteUser(deletedUsers);
         usersList.remove(deletedUsers);
     }
@@ -41,7 +41,7 @@ public class UserModel {
     /**
      * a getter for the observableUsers list
      */
-    public ObservableList<User> getObservableUsers(){
+    public ObservableList<User> getObservableUsers() {
         return usersList;
     }
 }

@@ -23,7 +23,7 @@ public class CreateEvent {
     protected Event createEvent(String name, Date date, Time time, String location, int participants, boolean VIP, boolean food, boolean frontRow, boolean beer) throws SQLException {
         String sql = "INSERT INTO Event (name, date, time, location, participants, VIP, food, frontRow, beer)VALUES (?,?,?,?,?,?,?,?,?);";
 
-        try (Connection connection = DBCon.getConnection()){
+        try (Connection connection = DBCon.getConnection()) {
             PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
             stmt.setString(1, name);
@@ -41,7 +41,7 @@ public class CreateEvent {
             ResultSet rs = stmt.getGeneratedKeys();
             int id = 0;
 
-            if(rs.next()){
+            if (rs.next()) {
                 id = rs.getInt(1);
             }
 

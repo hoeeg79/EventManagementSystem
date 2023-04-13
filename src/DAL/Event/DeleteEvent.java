@@ -20,8 +20,8 @@ public class DeleteEvent {
     /**
      * deleteEvent is a method that uses a SQL string to delete an event from the event table with a specified id.
      */
-    protected void deleteEvent(Event event) throws Exception{
-        try(Connection conn = DBCon.getConnection()){
+    protected void deleteEvent(Event event) throws Exception {
+        try (Connection conn = DBCon.getConnection()) {
 
             String sql = "DELETE FROM Event WHERE id = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -29,7 +29,7 @@ public class DeleteEvent {
             stmt.setInt(1, event.getId());
 
             stmt.executeUpdate();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new Exception(e);
         }
 
