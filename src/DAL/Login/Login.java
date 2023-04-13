@@ -27,7 +27,7 @@ public class Login {
     protected User login(String username) throws SQLException {
         String sql = "SELECT * FROM User_credentials WHERE username=?;";
 
-        try(Connection conn = dbc.getConnection()) {
+        try (Connection conn = dbc.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, username);
@@ -36,7 +36,7 @@ public class Login {
 
             if (rs.next()) {
                 System.out.println("Login successful!");
-                return new User(rs.getString(2),rs.getInt(1),
+                return new User(rs.getString(2), rs.getInt(1),
                         rs.getBoolean("admin"), rs.getString(3));
             } else {
                 System.out.println("Invalid username or password.");

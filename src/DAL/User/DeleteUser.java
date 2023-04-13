@@ -20,12 +20,13 @@ public class DeleteUser {
 
     /**
      * deleteUser is a method that uses an SQL string to delete specified id from the User_credentials table.
+     *
      * @param user
      */
-    protected void deleteUser(User user){
+    protected void deleteUser(User user) {
         String sql = "DELETE FROM User_credentials WHERE id = ?;";
 
-        try (Connection conn = dbc.getConnection()){
+        try (Connection conn = dbc.getConnection()) {
 
             PreparedStatement stmt = conn.prepareStatement(sql);
 

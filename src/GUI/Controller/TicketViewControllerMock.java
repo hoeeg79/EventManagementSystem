@@ -3,7 +3,7 @@ package GUI.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TicketViewControllerMock{
+public class TicketViewControllerMock {
     boolean cbVIP;
     boolean cbFood;
     boolean cbFreeBeer;
@@ -25,7 +25,7 @@ public class TicketViewControllerMock{
         this.cbFrontRow = cbFrontRow;
     }
 
-    public String cbString(){
+    public String cbString() {
         StringBuilder sb = new StringBuilder();
         List<String> items = new ArrayList<>();
         String s = "This ticket includes: ";

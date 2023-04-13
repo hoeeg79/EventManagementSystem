@@ -60,22 +60,22 @@ public class MainViewController extends BaseController {
 
     @Override
     public void setup() {
-        try{
-        eventModel = super.getModel();
-        fillEventList();
-        if (user.isAdmin()){
-            enableAdmin();
-        } else {
-            enableCoordinator();
-        }
-        } catch(Exception e){
+        try {
+            eventModel = super.getModel();
+            fillEventList();
+            if (user.isAdmin()) {
+                enableAdmin();
+            } else {
+                enableCoordinator();
+            }
+        } catch (Exception e) {
             displayError(e);
             e.printStackTrace();
         }
 
     }
 
-    public void setUser(User user){
+    public void setUser(User user) {
         this.user = user;
     }
 
@@ -83,10 +83,10 @@ public class MainViewController extends BaseController {
      * Opens the CreateEventView, to create a new event.
      */
     @FXML
-    private void handleCreateEvent(ActionEvent actionEvent) throws IOException {
-        try{
-        openEventView(actionEvent, "Create an Event", false);
-        } catch(Exception e){
+    private void handleCreateEvent(ActionEvent actionEvent) {
+        try {
+            openEventView(actionEvent, "Create an Event", false);
+        } catch (Exception e) {
             displayError(e);
             e.printStackTrace();
         }
@@ -96,8 +96,8 @@ public class MainViewController extends BaseController {
      * Deletes the selected event
      */
     @FXML
-    private void handleDeleteEvent(ActionEvent actionEvent){
-        if(itemSelected) {
+    private void handleDeleteEvent(ActionEvent actionEvent) {
+        if (itemSelected) {
             try {
                 Event deletedEvent = eventBordet.getSelectionModel().getSelectedItem();
                 eventModel.deleteEvent(deletedEvent);
@@ -111,31 +111,31 @@ public class MainViewController extends BaseController {
      * Opens the TicketView, where you can sell tickets from
      */
     @FXML
-    private void handleSellTickets(ActionEvent actionEvent) throws Exception {
-        try{
-        Event selectedEvent = eventBordet.getSelectionModel().getSelectedItem();
-        if (selectedEvent != null && selectedEvent.getParticipants() > 0) {
+    private void handleSellTickets(ActionEvent actionEvent) {
+        try {
+            Event selectedEvent = eventBordet.getSelectionModel().getSelectedItem();
+            if (selectedEvent != null && selectedEvent.getParticipants() > 0) {
 
-            eventModel.setSelectedEvent(selectedEvent);
+                eventModel.setSelectedEvent(selectedEvent);
 
-            Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/TicketView.fxml"));
-            Parent root = loader.load();
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/TicketView.fxml"));
+                Parent root = loader.load();
 
-            TicketViewController controller = loader.getController();
-            controller.setModel(super.getModel());
-            controller.setup();
+                TicketViewController controller = loader.getController();
+                controller.setModel(super.getModel());
+                controller.setup();
 
-            stage.setScene(new Scene(root));
-            stage.setTitle("Ticket");
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
-            stage.showAndWait();
-            fillEventList();
-        } else {
-            participantWarning();
-        }
-        } catch(Exception e){
+                stage.setScene(new Scene(root));
+                stage.setTitle("Ticket");
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
+                stage.showAndWait();
+                fillEventList();
+            } else {
+                participantWarning();
+            }
+        } catch (Exception e) {
             displayError(e);
             e.printStackTrace();
         }
@@ -144,13 +144,13 @@ public class MainViewController extends BaseController {
     /**
      * A warning about reaching the max limit of participants.
      */
-    private void participantWarning(){
-        try{
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("No tickets left!");
-        alert.setHeaderText("This event have hit it's limit of available tickets.");
-        alert.showAndWait();
-        } catch(Exception e){
+    private void participantWarning() {
+        try {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No tickets left!");
+            alert.setHeaderText("This event have hit it's limit of available tickets.");
+            alert.showAndWait();
+        } catch (Exception e) {
             displayError(e);
             e.printStackTrace();
         }
@@ -161,9 +161,9 @@ public class MainViewController extends BaseController {
      */
     @FXML
     private void handleEditEvent(ActionEvent actionEvent) {
-        try{
-        openEventView(actionEvent, "Edit Event", true);
-        } catch(Exception e){
+        try {
+            openEventView(actionEvent, "Edit Event", true);
+        } catch (Exception e) {
             displayError(e);
             e.printStackTrace();
         }
@@ -226,19 +226,19 @@ public class MainViewController extends BaseController {
      * Gets the chosen event.
      */
     private Event getChosenEvent() {
-            int id = eventBordet.getSelectionModel().getSelectedItem().getId();
-            String name = eventBordet.getSelectionModel().getSelectedItem().getName();
-            Date date = eventBordet.getSelectionModel().getSelectedItem().getDate();
-            Time time = eventBordet.getSelectionModel().getSelectedItem().getTime();
-            String location = eventBordet.getSelectionModel().getSelectedItem().getLocation();
-            int participants = eventBordet.getSelectionModel().getSelectedItem().getParticipants();
-            boolean VIP = eventBordet.getSelectionModel().getSelectedItem().isVIP();
-            boolean food = eventBordet.getSelectionModel().getSelectedItem().isFood();
-            boolean frontRow = eventBordet.getSelectionModel().getSelectedItem().isFrontRow();
-            boolean beer = eventBordet.getSelectionModel().getSelectedItem().isBeer();
+        int id = eventBordet.getSelectionModel().getSelectedItem().getId();
+        String name = eventBordet.getSelectionModel().getSelectedItem().getName();
+        Date date = eventBordet.getSelectionModel().getSelectedItem().getDate();
+        Time time = eventBordet.getSelectionModel().getSelectedItem().getTime();
+        String location = eventBordet.getSelectionModel().getSelectedItem().getLocation();
+        int participants = eventBordet.getSelectionModel().getSelectedItem().getParticipants();
+        boolean VIP = eventBordet.getSelectionModel().getSelectedItem().isVIP();
+        boolean food = eventBordet.getSelectionModel().getSelectedItem().isFood();
+        boolean frontRow = eventBordet.getSelectionModel().getSelectedItem().isFrontRow();
+        boolean beer = eventBordet.getSelectionModel().getSelectedItem().isBeer();
 
-            return new Event(id, name, date, time, location, participants, VIP, food, frontRow, beer);
-        }
+        return new Event(id, name, date, time, location, participants, VIP, food, frontRow, beer);
+    }
 
     /**
      * Opens the users view, to add or delete users
@@ -259,7 +259,7 @@ public class MainViewController extends BaseController {
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
             stage.show();
-        }catch (Exception e){
+        } catch (Exception e) {
             displayError(e);
         }
     }
@@ -267,19 +267,19 @@ public class MainViewController extends BaseController {
     /**
      * Disables buttons the admin user does not need.
      */
-    private void enableAdmin(){
-        try{
-        createEvent.setVisible(false);
-        sellTickets.setVisible(false);
-        editEvent.setVisible(false);
-        deleteEvent.setVisible(true);
-        btnManageUsers.setVisible(true);
-        btnExtraTicket.setVisible(false);
+    private void enableAdmin() {
+        try {
+            createEvent.setVisible(false);
+            sellTickets.setVisible(false);
+            editEvent.setVisible(false);
+            deleteEvent.setVisible(true);
+            btnManageUsers.setVisible(true);
+            btnExtraTicket.setVisible(false);
 
-        Comparator<Node> byVisibility = (Node b1, Node b2) -> Boolean.compare(b2.isVisible(), b1.isVisible());
+            Comparator<Node> byVisibility = (Node b1, Node b2) -> Boolean.compare(b2.isVisible(), b1.isVisible());
 
-        FXCollections.sort(vbButtons.getChildren(), byVisibility);
-        } catch(Exception e){
+            FXCollections.sort(vbButtons.getChildren(), byVisibility);
+        } catch (Exception e) {
             displayError(e);
             e.printStackTrace();
         }
@@ -288,16 +288,16 @@ public class MainViewController extends BaseController {
     /**
      * Disables buttons the coordinator does not need.
      */
-    private void enableCoordinator(){
-        try{
-        createEvent.setVisible(true);
-        sellTickets.setVisible(true);
-        editEvent.setVisible(true);
-        deleteEvent.setVisible(true);
-        btnManageUsers.setVisible(false);
-        btnExtraTicket.setVisible(true);
-        eventListListener();
-        } catch(Exception e){
+    private void enableCoordinator() {
+        try {
+            createEvent.setVisible(true);
+            sellTickets.setVisible(true);
+            editEvent.setVisible(true);
+            deleteEvent.setVisible(true);
+            btnManageUsers.setVisible(false);
+            btnExtraTicket.setVisible(true);
+            eventListListener();
+        } catch (Exception e) {
             displayError(e);
             e.printStackTrace();
         }
@@ -324,29 +324,29 @@ public class MainViewController extends BaseController {
      * Opens the extra ticket view
      */
     @FXML
-    private void handleExtraTicket(ActionEvent actionEvent) throws Exception {
-        try{
-        Event selectedEvent = eventBordet.getSelectionModel().getSelectedItem();
-        if (selectedEvent != null) {
+    private void handleExtraTicket(ActionEvent actionEvent) {
+        try {
+            Event selectedEvent = eventBordet.getSelectionModel().getSelectedItem();
+            if (selectedEvent != null) {
 
-            eventModel.setSelectedEvent(selectedEvent);
+                eventModel.setSelectedEvent(selectedEvent);
 
-            Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/ExtraTicketView.fxml"));
-            Parent root = loader.load();
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/View/ExtraTicketView.fxml"));
+                Parent root = loader.load();
 
-            ExtraTicketViewController controller = loader.getController();
-            controller.setModel(super.getModel());
-            controller.setup();
+                ExtraTicketViewController controller = loader.getController();
+                controller.setModel(super.getModel());
+                controller.setup();
 
-            stage.setScene(new Scene(root));
-            stage.setTitle("Extra Ticket");
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
-            stage.showAndWait();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Extra Ticket");
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
+                stage.showAndWait();
 
-        }
-        } catch(Exception e){
+            }
+        } catch (Exception e) {
             displayError(e);
             e.printStackTrace();
         }

@@ -19,7 +19,7 @@ public class UserFacade {
         du.deleteUser(deletedUser);
     }
 
-    public List<User> getUsers() throws Exception{
+    public List<User> getUsers() throws Exception {
         GetUsers users = new GetUsers();
         return users.returnUsers();
     }

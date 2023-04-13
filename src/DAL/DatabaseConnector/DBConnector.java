@@ -16,7 +16,7 @@ public class DBConnector {
     /**
      * Constructor of the DBConnector class, used to declare the database information.
      */
-    public DBConnector() throws Exception{
+    public DBConnector() throws Exception {
         Properties databaseProperties = new Properties();
         databaseProperties.load(new FileInputStream(new File(PROP_FILE)));
 
